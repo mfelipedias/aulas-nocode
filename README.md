@@ -11,6 +11,23 @@ npm run build        # checagem de tipos + build estático em dist/
 npm run preview      # serve dist/ em http://localhost:5181 (use este na aula)
 ```
 
+## Subir numa VPS com Docker
+
+Requisito: Docker com o plugin Compose. Na VPS:
+
+```bash
+git clone https://github.com/mfelipedias/aulas-nocode.git
+cd aulas-nocode
+docker compose up -d
+```
+
+As aulas ficam em `http://<ip-da-vps>:8080`. Para usar outra porta, crie um `.env` a partir do `.env.example` e mude `PORTA`.
+
+- **Capturas e vídeos:** copie para `public/media/aula-0N/` dentro da pasta clonada (por exemplo com `scp`). A pasta é montada no container, então os arquivos aparecem na hora, sem rebuild.
+- **Atualizar o deck:** `git pull && docker compose up -d --build`.
+- **Parar:** `docker compose down`.
+- **HTTPS com domínio:** aponte o proxy reverso que já roda na VPS (Nginx, Caddy ou Traefik) para `http://127.0.0.1:8080`. O container não precisa de nenhuma configuração extra.
+
 ## Endereços
 
 | URL | O que abre |

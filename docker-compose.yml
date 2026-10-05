@@ -1,0 +1,14 @@
+# Sobe as aulas com um único comando:  docker compose up -d
+# Depois abra http://<ip-da-vps>:8080  (ou a porta definida em PORTA no arquivo .env).
+services:
+  aulas:
+    build: .
+    image: aulas-nocode:latest
+    container_name: aulas-nocode
+    restart: unless-stopped
+    ports:
+      - "${PORTA:-8080}:80"
+    volumes:
+      # Capturas e vídeos de backup: copie para public/media/aula-0N/ na VPS e eles
+      # aparecem na hora, sem rebuild.
+      - ./public/media:/usr/share/nginx/html/media:ro
