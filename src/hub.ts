@@ -78,7 +78,6 @@ export async function renderHub() {
         h('a.hub-btn', { href: deckUrl(key, '&rascunho=1'), title: 'Destaca as capturas e vídeos que ainda faltam' }, 'Pendências'),
         h('a.hub-btn', { href: deckUrl(key, '&print=1'), title: 'Todos os slides para salvar em PDF' }, 'PDF'),
       ),
-      h('span.hub-key', { 'aria-hidden': 'true' }, String(d.numero)),
     );
     el.querySelector('[data-act="apresentar"]')!.addEventListener('click', () => apresentar(key, d.id));
     return el;

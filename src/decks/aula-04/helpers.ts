@@ -3,7 +3,7 @@ import type { SlideDef, SlideInstance } from '../../engine/types';
 
 /**
  * Ajuste local da aula 4: um passo extra de revelação (frase-síntese) em quote, bulletsRich, timeline,
- * stat e twoColumn. `fonte` e a moldura 'nenhuma' já são do motor (v2.2) e não precisam mais de ajuste.
+ * stat e twoColumn. `fonte` e a moldura 'nenhuma' já são do motor e não precisam mais de ajuste.
  */
 
 const M = 'media/aula-04/';

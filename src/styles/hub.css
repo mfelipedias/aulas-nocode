@@ -172,17 +172,6 @@ html[data-mode='hub'] #app {
 .hub-btn:focus-visible,
 .hub-main:focus-visible .hub-title { outline: 2px solid var(--accent-tint); outline-offset: 3px; }
 
-.hub-key {
-  position: absolute;
-  top: clamp(22px, 2.6vw, 34px);
-  right: clamp(22px, 2.6vw, 34px);
-  transform: translateY(44px);
-  font: 500 12px var(--font-mono);
-  color: var(--n-7);
-  border: 1px solid var(--n-5);
-  border-radius: 6px;
-  padding: 2px 7px;
-}
 
 .hub-footer {
   display: flex;

@@ -1,5 +1,5 @@
 /* =========================================================
-   Arquétipos de conteúdo denso (v2.1) — palco 1920 x 1080
+   Arquétipos de conteúdo denso — palco 1920 x 1080
    Regra: nada abaixo de 24 px; elementos com data-step não
    recebem transform em CSS (o GSAP controla y/opacidade).
    ========================================================= */
@@ -2144,7 +2144,7 @@
 }
 
 /* =========================================================
-   v2.2 — extensões pedidas pelas aulas 1 a 4
+   Extensões pedidas pelas aulas 1 a 4
    ========================================================= */
 
 /* ---------- Imagem em tela cheia: duas metades ---------- */
