@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 1000" width="1560" height="1000">
+  <!-- Esquema desenhado (não é captura): uma planilha genérica vira um app de lista. Sem marcas. -->
+  <style>
+    .ui { font-family: Geist, 'Segoe UI', Inter, Arial, sans-serif; }
+    .mono { font-family: 'Geist Mono', 'Cascadia Mono', Consolas, monospace; }
+  </style>
+  <rect width="1560" height="1000" fill="#0A0C10"/>
+  <text x="64" y="96" class="ui" font-size="40" fill="#AAB2C4">Planilha</text>
+  <text x="1080" y="96" class="ui" font-size="40" fill="#AAB2C4">App gerado</text>
+  <text x="1496" y="960" class="ui" font-size="32" fill="#5B6375" text-anchor="end">Esquema, não é captura</text>
+
+  <!-- planilha: grade com cabeçalho -->
+  <g transform="translate(64 136)">
+    <rect width="760" height="640" rx="18" fill="#10131A" stroke="#2C3240" stroke-width="3"/>
+    <rect x="0" y="0" width="760" height="96" rx="18" fill="#171B24"/>
+    <rect x="0" y="78" width="760" height="18" fill="#171B24"/>
+    <g class="mono" font-size="36" fill="#8FEAD8">
+      <text x="28" y="62">id</text>
+      <text x="150" y="62">nome</text>
+      <text x="430" y="62">trilha</text>
+      <text x="600" y="62">presente</text>
+    </g>
+    <g stroke="#20252F" stroke-width="2">
+      <line x1="0" y1="96" x2="760" y2="96"/>
+      <line x1="0" y1="205" x2="760" y2="205"/>
+      <line x1="0" y1="314" x2="760" y2="314"/>
+      <line x1="0" y1="423" x2="760" y2="423"/>
+      <line x1="0" y1="532" x2="760" y2="532"/>
+      <line x1="126" y1="0" x2="126" y2="640"/>
+      <line x1="406" y1="0" x2="406" y2="640"/>
+      <line x1="576" y1="0" x2="576" y2="640"/>
+    </g>
+    <g class="ui" font-size="36" fill="#D6DBE6">
+      <text x="150" y="164">Ana Exemplo</text>
+      <text x="150" y="273">Bruno Teste</text>
+      <text x="150" y="382">Carla Modelo</text>
+      <text x="150" y="491">Davi Amostra</text>
+      <text x="150" y="600">Elisa Ficticia</text>
+    </g>
+    <g class="ui" font-size="34" fill="#AAB2C4">
+      <text x="430" y="164">Web</text>
+      <text x="430" y="273">Mobile</text>
+      <text x="430" y="382">Autom.</text>
+      <text x="430" y="491">IA</text>
+      <text x="430" y="600">Web</text>
+    </g>
+    <g fill="#5B6375">
+      <rect x="28" y="136" width="70" height="30" rx="6"/>
+      <rect x="28" y="245" width="70" height="30" rx="6"/>
+      <rect x="28" y="354" width="70" height="30" rx="6"/>
+      <rect x="28" y="463" width="70" height="30" rx="6"/>
+      <rect x="28" y="572" width="70" height="30" rx="6"/>
+    </g>
+    <!-- caixas de seleção da coluna presente -->
+    <g stroke="#838CA1" stroke-width="3" fill="none">
+      <rect x="642" y="134" width="40" height="40" rx="8" fill="#1FC8A9" stroke="#1FC8A9"/>
+      <rect x="642" y="243" width="40" height="40" rx="8"/>
+      <rect x="642" y="352" width="40" height="40" rx="8"/>
+      <rect x="642" y="461" width="40" height="40" rx="8"/>
+      <rect x="642" y="570" width="40" height="40" rx="8"/>
+    </g>
+    <path d="M651 155 l8 8 l15 -17" stroke="#050608" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ligação planilha -> app -->
+  <path d="M850 456 C 920 456 940 456 1010 456" stroke="#1FC8A9" stroke-width="6" fill="none"/>
+  <path d="M1004 436 L1036 456 L1004 476 Z" fill="#1FC8A9"/>
+  <text x="930" y="420" class="ui" font-size="32" fill="#8FEAD8" text-anchor="middle">lê a tabela</text>
+
+  <!-- telefone genérico com lista -->
+  <g transform="translate(1080 128)">
+    <rect width="416" height="800" rx="56" fill="#10131A" stroke="#3D4454" stroke-width="4"/>
+    <rect x="150" y="22" width="116" height="20" rx="10" fill="#20252F"/>
+    <text x="40" y="118" class="ui" font-size="40" font-weight="600" fill="#F2F4F9">Check-in</text>
+    <rect x="32" y="146" width="352" height="64" rx="16" fill="#0A0C10" stroke="#2C3240" stroke-width="3"/>
+    <text x="60" y="190" class="ui" font-size="30" fill="#5B6375">Buscar</text>
+    <text x="40" y="270" class="ui" font-size="30" fill="#8FEAD8">Web</text>
+    <g class="ui" font-size="32" fill="#D6DBE6">
+      <rect x="32" y="290" width="352" height="96" rx="16" fill="#171B24"/>
+      <text x="56" y="350">Ana Exemplo</text>
+      <circle cx="350" cy="338" r="14" fill="#1FC8A9"/>
+      <rect x="32" y="398" width="352" height="96" rx="16" fill="#171B24"/>
+      <text x="56" y="458">Elisa Ficticia</text>
+      <circle cx="350" cy="446" r="14" fill="none" stroke="#5B6375" stroke-width="3"/>
+    </g>
+    <text x="40" y="560" class="ui" font-size="30" fill="#8FEAD8">Mobile</text>
+    <g class="ui" font-size="32" fill="#D6DBE6">
+      <rect x="32" y="580" width="352" height="96" rx="16" fill="#171B24"/>
+      <text x="56" y="640">Bruno Teste</text>
+      <circle cx="350" cy="628" r="14" fill="none" stroke="#5B6375" stroke-width="3"/>
+    </g>
+    <rect x="148" y="752" width="120" height="8" rx="4" fill="#3D4454"/>
+  </g>
+</svg>

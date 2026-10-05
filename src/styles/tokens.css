@@ -1,0 +1,89 @@
+/* Tokens do sistema visual. Fonte da verdade: 00-DIRECAO-DE-ARTE.md */
+:root {
+  /* Escala neutra "Grafite" */
+  --n-0: #050608;
+  --n-1: #0a0c10;
+  --n-2: #10131a;
+  --n-3: #171b24;
+  --n-4: #20252f;
+  --n-5: #2c3240;
+  --n-6: #3d4454;
+  --n-7: #5b6375;
+  --n-8: #838ca1;
+  --n-9: #aab2c4;
+  --n-10: #d6dbe6;
+  --n-11: #f2f4f9;
+
+  /* Semânticas (tabelas e medidores apenas) */
+  --ok: #3ddc97;
+  --warn: #f5b83d;
+  --crit: #ff6b6b;
+
+  /* Destaque padrão (sobrescrito por data-accent) */
+  --accent: #4f7bff;
+  --accent-tint: #a8beff;
+  --accent-deep: #0d1a47;
+  --accent-rgb: 79 123 255;
+
+  /* Tipografia */
+  --font-sans: 'Geist Variable', 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  --t-hero: 168px;
+  --t-display: 120px;
+  --t-stat: 300px;
+  --t-h1: 76px;
+  --t-h2: 52px;
+  --t-h3: 38px;
+  --t-body-l: 34px;
+  --t-body: 28px;
+  --t-caption: 24px;
+
+  /* Grid 1920 x 1080 */
+  --stage-w: 1920px;
+  --stage-h: 1080px;
+  --safe-x: 120px;
+  --safe-top: 96px;
+  --safe-bottom: 120px;
+  --col: 103.33px;
+  --gutter: 40px;
+
+  /* Forma */
+  --radius-s: 12px;
+  --radius-m: 20px;
+  --radius-l: 32px;
+  --border: 2px;
+
+  /* Movimento (espelhado em engine/motion.ts) */
+  --dur-micro: 200ms;
+  --dur-reveal: 700ms;
+  --dur-slide: 500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+[data-accent='aula1'] {
+  --accent: #4f7bff;
+  --accent-tint: #a8beff;
+  --accent-deep: #0d1a47;
+  --accent-rgb: 79 123 255;
+}
+[data-accent='aula2'] {
+  --accent: #8b5cf6;
+  --accent-tint: #c9b6ff;
+  --accent-deep: #1f1147;
+  --accent-rgb: 139 92 246;
+}
+[data-accent='aula3'] {
+  --accent: #1fc8a9;
+  --accent-tint: #8fead8;
+  --accent-deep: #06352e;
+  --accent-rgb: 31 200 169;
+}
+[data-accent='aula4'] {
+  --accent: #f5a524;
+  --accent-tint: #ffd68f;
+  --accent-deep: #3a2606;
+  --accent-rgb: 245 165 36;
+}
