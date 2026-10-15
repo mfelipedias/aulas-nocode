@@ -1,4 +1,5 @@
 import type { DeckDef } from '../../engine/types';
+import { comFeedback } from '../feedback';
 import { bloco01 } from './bloco-0-1';
 import { bloco2 } from './bloco-2';
 import { bloco3 } from './bloco-3';
@@ -25,7 +26,8 @@ const deck: DeckDef = {
   professor: 'Prof. Marcos',
   accent: 'aula4',
   duracaoMin: 90,
-  slides: [...bloco01, ...bloco2, ...bloco3, ...bloco4, ...bloco5, ...bloco6, ...bloco7, ...bloco89],
+  // Penúltimo slide: feedback da aula (QR), logo antes do encerramento.
+  slides: comFeedback(4, [...bloco01, ...bloco2, ...bloco3, ...bloco4, ...bloco5, ...bloco6, ...bloco7, ...bloco89]),
 };
 
 export default deck;

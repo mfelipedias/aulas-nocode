@@ -1,23 +1,50 @@
 /* Painel principal (index.html sem ?aula=). Página rolável normal, fora do palco 1920 x 1080. */
 html[data-mode='hub'],
 html[data-mode='hub'] body {
-  overflow: auto;
+  overflow: visible;
   height: auto;
   min-height: 100%;
-  background:
-    radial-gradient(1200px 700px at 15% -10%, rgb(79 123 255 / 0.14), transparent 60%),
-    radial-gradient(1000px 600px at 95% 110%, rgb(139 92 246 / 0.12), transparent 60%),
-    var(--n-0);
+  background: #080a0f;
   color: var(--n-11);
   font-family: var(--font-sans);
 }
 
+/* Fundo fixo: brilho com as cores das quatro aulas + textura de pontos que some para baixo.
+   Vale para o painel e para as páginas dos alunos e do professor (todas usam data-mode="hub"). */
+/* A rolagem fica na janela (overflow visível no body), senão os elementos sticky não grudam. */
+html[data-mode='hub'] { overflow-y: auto; }
+
+html[data-mode='hub'] body::before,
+html[data-mode='hub'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+html[data-mode='hub'] body::before {
+  background:
+    radial-gradient(900px 560px at 8% -6%, rgb(79 123 255 / 0.30), transparent 62%),
+    radial-gradient(760px 520px at 92% 2%, rgb(139 92 246 / 0.24), transparent 64%),
+    radial-gradient(820px 560px at -4% 104%, rgb(31 200 169 / 0.14), transparent 62%),
+    radial-gradient(760px 520px at 104% 100%, rgb(245 165 36 / 0.12), transparent 62%),
+    linear-gradient(180deg, #0d111b 0%, #090b11 55%, #07080c 100%);
+}
+html[data-mode='hub'] body::after {
+  background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1.6px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgb(0 0 0 / 0.5) 40%, transparent 85%);
+  mask-image: linear-gradient(180deg, #000 0%, rgb(0 0 0 / 0.5) 40%, transparent 85%);
+}
+
 html[data-mode='hub'] #app {
-  position: static;
+  position: relative;
+  z-index: 1;
   inset: auto;
   width: auto;
   height: auto;
   overflow: visible;
+  background: transparent;
 }
 
 .hub {
@@ -36,6 +63,10 @@ html[data-mode='hub'] #app {
 }
 .hub-h1 {
   margin: 0;
+  background: linear-gradient(180deg, #fff 30%, var(--n-9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-size: clamp(36px, 5.2vw, 72px);
   line-height: 1.02;
   letter-spacing: -0.035em;
@@ -65,8 +96,10 @@ html[data-mode='hub'] #app {
   border-radius: var(--radius-m);
   border: 1px solid var(--n-4);
   background:
-    radial-gradient(600px 260px at 0% 0%, rgb(var(--accent-rgb) / 0.16), transparent 70%),
-    linear-gradient(180deg, var(--n-2), var(--n-1));
+    radial-gradient(600px 260px at 0% 0%, rgb(var(--accent-rgb) / 0.18), transparent 70%),
+    linear-gradient(180deg, rgb(20 24 33 / 0.86), rgb(12 14 20 / 0.86));
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
   overflow: hidden;
   transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
 }
@@ -182,6 +215,7 @@ html[data-mode='hub'] #app {
   font-size: 14px;
   color: var(--n-8);
 }
+.hub-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .hub-link { color: var(--n-9); }
 .hub-link:hover { color: var(--n-11); }
 
@@ -230,3 +264,44 @@ html[data-mode='hub'] #app {
   .hub-card { transition: none; }
   .hub-card:hover { transform: none; }
 }
+
+/* Área dos alunos: mural e feedback, logo abaixo do título. */
+.hub-alunos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+@media (max-width: 820px) {
+  .hub-alunos { grid-template-columns: 1fr; }
+}
+.hub-aluno {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--n-4);
+  background: rgb(18 22 30 / 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.hub-aluno:hover,
+.hub-aluno:focus-visible { border-color: rgb(var(--accent-rgb) / 0.7); background: rgb(24 29 40 / 0.85); transform: translateY(-2px); outline: none; }
+.hub-aluno-ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgb(var(--accent-rgb) / 0.16);
+  color: var(--accent-tint);
+}
+.hub-aluno-txt { display: flex; flex-direction: column; gap: 4px; }
+.hub-aluno-title { font-size: 19px; font-weight: 600; }
+.hub-aluno-sub { font-size: 15px; line-height: 1.4; color: var(--n-9); }
+.hub-link { display: inline-flex; align-items: center; gap: 4px; }

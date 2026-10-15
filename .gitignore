@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.log
 .env
+dados/
+
+# Documentos só do professor (roteiros de prompts): servidos pela área do professor, nunca versionados.
+materiais-professor/

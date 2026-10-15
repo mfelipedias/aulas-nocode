@@ -37,6 +37,18 @@ Todas seguem o mesmo projeto fictício, o *Hackathon No-Code 2026*, que evolui d
 - **25 modelos de slide** (capa, estatística, comparação, fluxo, modelo de dados, código, linha do tempo, estudo de caso e outros) e **15 cenas 3D** de fundo.
 - Tudo embutido no build: fontes, ícones, logos e bibliotecas. Nada depende de internet durante a aula.
 
+## Mural da turma e feedback
+
+- **Mural da turma** (`mural.html`): os alunos enviam prints, arquivos e um texto do que fizeram em cada aula, com nome e curso. O envio tem 3 passos (Você → Trabalho → Anexos), aceita arrastar arquivos e colar print com Ctrl+V. Quem enviou pode excluir o próprio envio pelo mesmo aparelho.
+- **Feedback da aula** (`feedback.html?aula=N`): nota de 1 a 5, ritmo e dois comentários opcionais; anônimo por padrão. Cada aula tem, antes do encerramento, um slide com o QR do feedback e do mural.
+- **Área do professor** (`professor.html`, link no rodapé do painel): entra com a senha `SENHA_PROFESSOR` do `.env` (dá para trocar pelo próprio painel). Abas:
+  - *Visão geral*: abre e fecha os envios e o feedback de cada aula e liga a moderação prévia (envio novo fica "aguardando" até ser publicado).
+  - *Envios*: publicar, ocultar ou excluir, um a um ou em lote, com filtros por status, aula e busca.
+  - *Feedback*: notas, ritmo, comentários, CSV e opção de apagar respostas.
+  - *Conta*: trocar a senha e sair dos outros aparelhos. Esqueceu a senha? Apague `senha` de `dados/config.json` e reinicie a API: volta a valer a do `.env`.
+- Os dados ficam em `dados/` (fora do container): `envios.json`, `feedback.jsonl`, `config.json`, `sessoes.json` e `arquivos/`. Faça backup dessa pasta.
+- A API (`server/server.mjs`, Node puro, sem dependências) roda no container `aulas-nocode-api`, e o nginx repassa `/api/` para ela. Limites: 8 arquivos por envio, 20 MB cada, 70 MB no total.
+
 ## Rodar localmente
 
 Requisito: Node.js 22 ou mais recente.

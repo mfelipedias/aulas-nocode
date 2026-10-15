@@ -1,4 +1,5 @@
 import type { DeckDef } from '../../engine/types';
+import { comFeedback } from '../feedback';
 import { cap01 } from './cap-0-1';
 import { cap23 } from './cap-2-3';
 import { cap45 } from './cap-4-5';
@@ -20,7 +21,8 @@ const deck: DeckDef = {
   professor: 'Prof. Marcos',
   accent: 'aula2',
   duracaoMin: 90,
-  slides: [...cap01, ...cap23, ...cap45, ...cap67, ...cap8],
+  // Penúltimo slide: feedback da aula (QR), logo antes do encerramento.
+  slides: comFeedback(2, [...cap01, ...cap23, ...cap45, ...cap67, ...cap8]),
 };
 
 export default deck;

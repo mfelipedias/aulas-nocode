@@ -1,5 +1,7 @@
+import { BookOpenCheck, FileText, ImagePlus, LockKeyhole, MessageSquareHeart } from 'lucide';
 import { DECKS } from './decks';
 import { h } from './engine/dom';
+import { icon } from './engine/icons';
 import type { DeckDef } from './engine/types';
 
 /**
@@ -75,7 +77,6 @@ export async function renderHub() {
         'div.hub-actions',
         h('button.hub-btn.is-primary', { type: 'button', 'data-act': 'apresentar' }, 'Apresentar'),
         h('a.hub-btn', { href: deckUrl(key) }, 'Só o deck'),
-        h('a.hub-btn', { href: deckUrl(key, '&rascunho=1'), title: 'Destaca as capturas e vídeos que ainda faltam' }, 'Pendências'),
         h('a.hub-btn', { href: deckUrl(key, '&print=1'), title: 'Todos os slides para salvar em PDF' }, 'PDF'),
       ),
     );
@@ -93,11 +94,42 @@ export async function renderHub() {
         h('h1.hub-h1', 'No-Code Development Platforms'),
         h('p.hub-sub', 'Escolha a aula. Teclas 1 a 4 abrem o deck; dentro da aula, a tecla A volta para este painel.'),
       ),
+      h(
+        'section.hub-alunos',
+        { 'aria-label': 'Para os alunos' },
+        h(
+          'a.hub-aluno',
+          { href: 'roteiro-hackathon-bubble-make-sheets.html', target: '_blank', rel: 'noopener' },
+          h('span.hub-aluno-ic', icon(BookOpenCheck, 28)),
+          h('span.hub-aluno-txt', h('span.hub-aluno-title', 'Roteiro de construção'), h('span.hub-aluno-sub', 'O passo a passo do projeto com Bubble, Make e Google Sheets.')),
+        ),
+        h(
+          'a.hub-aluno',
+          { href: 'guia-ferramentas-no-code-2026.pdf', target: '_blank', rel: 'noopener' },
+          h('span.hub-aluno-ic', icon(FileText, 28)),
+          h('span.hub-aluno-txt', h('span.hub-aluno-title', 'Guia de ferramentas no-code'), h('span.hub-aluno-sub', '30 ferramentas com preços, forças e fraquezas. PDF, 11 páginas.')),
+        ),
+        h(
+          'a.hub-aluno',
+          { href: 'mural.html' },
+          h('span.hub-aluno-ic', icon(ImagePlus, 28)),
+          h('span.hub-aluno-txt', h('span.hub-aluno-title', 'Mural da turma'), h('span.hub-aluno-sub', 'Envie prints, arquivos e um texto do que você fez na aula.')),
+        ),
+        h(
+          'a.hub-aluno',
+          { href: `feedback.html?aula=${decks.slice().reverse().find(([, d]) => parseData(d.data).getTime() <= t)?.[1].numero ?? 1}` },
+          h('span.hub-aluno-ic', icon(MessageSquareHeart, 28)),
+          h('span.hub-aluno-txt', h('span.hub-aluno-title', 'Feedback da aula'), h('span.hub-aluno-sub', 'Conte como foi a aula. Leva 30 segundos e pode ser anônimo.')),
+        ),
+      ),
       h('section.hub-grid', ...decks.map(([k, d]) => card(k, d))),
       h(
         'footer.hub-footer',
         h('span', '"Apresentar" abre a visão do apresentador numa janela e o deck nesta aba. No deck, F coloca em tela cheia.'),
-        h('a.hub-link', { href: deckUrl('galeria') }, 'Galeria de modelos'),
+        h(
+          'span.hub-links',
+          h('a.hub-link', { href: 'professor.html' }, icon(LockKeyhole, 16), ' Área do professor'),
+        ),
       ),
     ),
   );

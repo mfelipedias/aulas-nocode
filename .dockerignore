@@ -4,3 +4,6 @@ dist
 *.log
 .env
 docker-compose.yml
+server
+dados
+materiais-professor

@@ -9,6 +9,7 @@ export { chapter } from './chapter';
 export { agenda } from './agenda';
 export { recap } from './recap';
 export { closing } from './closing';
+export { feedback } from './feedback';
 
 // Ideias e texto
 export { statement } from './statement';
