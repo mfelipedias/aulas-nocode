@@ -95,9 +95,13 @@ Logo da Stellantis não é usado (cliente citado só em texto).`,
     ],
     duracao: 'Cerca de 6 minutos',
     url: 'make.com · Make AI Toolkit',
-    captura: 'media/aula-03/make-ai-categorize.png',
+    captura: 'media/aula-03/tela-make-ai-categorize.svg',
+    capturaDescricao: 'Tela ilustrativa do Make: módulo Categorize Text do Make AI Toolkit com a ideia mapeada e as trilhas Web, Mobile, Automação e IA como categorias',
     video: { src: 'media/aula-03/demo-ia.mp4', label: 'Backup: IA dentro do fluxo no Make' },
     title: 'Demo: IA dentro do fluxo',
+    termos: [
+      { termo: 'Prompt', nota: 'a instrução, em texto, que se dá para a IA.' },
+    ],
     notes: `Desligar o cenário antes de editar (Scheduling OFF). Religar no fim.
 Provedor: Make AI Toolkit com Make's AI Provider (decisão C5): nenhuma chave externa.
 1. Insert module entre o filtro e o Sheets: Categorize Text, texto 1.ideia, categorias Web, Mobile, Automação, IA (descrições no aula03-comandos.txt). Uma categoria só.
@@ -106,7 +110,8 @@ Provedor: Make AI Toolkit com Make's AI Provider (decisão C5): nenhuma chave ex
 4. Run once com o curl da Gabi (Automação) e do Heitor (escolheu Web; a IA deve sugerir IA). Mostrar planilha, e-mail e créditos no History. Religar.
 "A IA sugere, a pessoa decide."
 IA demorando mais de 60 s ou com erro: tecla V (demo-ia.mp4). Resposta ruim vira conteúdo no S49.
-Passo a passo completo: conteudo.md, seção 6.4.`,
+Passo a passo completo: conteudo.md, seção 6.4.
+A moldura mostra uma tela ilustrativa desenhada do módulo Categorize Text, não uma captura.`,
   }),
 
   // S47
@@ -133,6 +138,9 @@ Passo a passo completo: conteudo.md, seção 6.4.`,
       { linhas: '6-10', nota: 'Os limites: o que a IA não pode fazer. É a parte mais importante.' },
       { linhas: 11, nota: 'O formato da saída: só o texto, porque ele vai direto para o e-mail.' },
     ],
+    termos: [
+      { termo: '{{nome}}', nota: 'campo que o Make troca pelo dado de cada inscrição.' },
+    ],
     notes: `"É a frase da Aula 1 de volta: o prompt é uma especificação."
 Passo 1: o papel. Passo 2: os dados mapeados do webhook.
 Passo 3: os limites. "Não prometer prêmio, nem vaga, nem horário. Uma IA escrevendo e-mail em nome de uma organização pode prometer o que a organização não oferece."
@@ -149,6 +157,9 @@ Ponte: quanto isso custa.`,
     descricao: 'tokens de entrada = 1 crédito. Saída: 2.260 tokens = 1 crédito. Free: até 200 mil tokens de entrada por semana.',
     unidades: false,
     fonte: 'Make Help, Credits (atualizado em 02/10/2026); Make Apps, Make AI Toolkit (limite do Free). Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Token', nota: 'pedaço de palavra que a IA conta e cobra.' },
+    ],
     notes: `Passo 0: a pergunta.
 Passo 1: o número. "Nos modelos pequenos e médios, 18.080 tokens de entrada valem um crédito, e 2.260 tokens de saída valem um crédito. Modelos grandes custam umas cinco vezes mais por token. E no plano gratuito há um teto de 200 mil tokens de entrada por semana."
 "Uma boas-vindas curta usa algumas centenas de tokens. O custo maior não é o token: é cada módulo a mais por inscrição."
@@ -178,22 +189,22 @@ Ponte: o mesmo fluxo em outra ferramenta.`,
   showcase({
     titulo: 'O mesmo fluxo no n8n',
     plataforma: 'n8n',
-    midia: { src: 'media/aula-03/n8n-workflow.png', descricao: 'Workflow no n8n: Webhook, Google Sheets (Append Row) e Gmail' },
+    midia: { src: 'media/aula-03/tela-n8n-workflow.svg', descricao: 'Tela ilustrativa de um workflow no n8n: Webhook, Google Sheets (Append Row) e Gmail' },
     url: 'n8n · Workflow',
     anotacoes: [
-      { x: 20, y: 48, titulo: 'Webhook', texto: 'O mesmo gatilho, com outro nome: nó em vez de módulo.' },
-      { x: 50, y: 48, titulo: 'Google Sheets: Append Row', texto: 'A linha na planilha. Cobrança por execução, não por passo.' },
-      { x: 80, y: 48, titulo: 'Gmail', texto: 'O e-mail de confirmação. Community Edition roda grátis no seu servidor.' },
-      { x: 86, y: 14, titulo: 'Próximo degrau: agentes', texto: 'A IA decide os próprios passos. Tema da Aula 4.' },
+      { x: 20, y: 35, titulo: 'Webhook', texto: 'O mesmo gatilho, com outro nome: nó em vez de módulo.' },
+      { x: 50, y: 35, titulo: 'Google Sheets: Append Row', texto: 'A linha na planilha. Cobrança por execução, não por passo.' },
+      { x: 80, y: 35, titulo: 'Gmail', texto: 'O e-mail de confirmação. Community Edition roda grátis no seu servidor.' },
+      { x: 75, y: 14, titulo: 'Próximo degrau: agentes', texto: 'A IA decide os próprios passos. Tema da Aula 4.' },
     ],
-    fonte: 'n8n docs (Google Sheets node); n8n.io/pricing. Acesso em 04/10/2026.',
+    fonte: 'n8n docs; n8n.io/pricing. Acesso em 04/10/2026.',
     video: { src: 'media/aula-03/demo-n8n.mp4', label: 'n8n: o mesmo fluxo (2 min)' },
     notes: `Tecla V: rodar o corte de 1 min 40 s do demo-n8n.mp4 narrando (decisão C6). Depois, as anotações.
 1. "Nó Webhook, nó Google Sheets com a operação Append Row, nó Gmail. Os conceitos são os mesmos: gatilho, nós, mapeamento."
 2. "Muda o nome e muda a cobrança: no n8n paga-se por execução."
 3. "A versão Community roda de graça no seu servidor. Foi o que a Icatu e a Vodafone escolheram."
 4. Ponte para a Aula 4: "O próximo degrau é o agente: em vez de eu desenhar os passos, a IA decide quais dar e quais ferramentas chamar. O Make tem os Make AI Agents, o n8n também tem agentes. A diferença entre workflow e agente é assunto da Aula 4."
-Corte F (menos 1 min 20 s): só a captura, 20 s.
+Corte F (menos 1 min 20 s): só a tela ilustrativa, 20 s. A tela é desenhada, não uma captura do n8n.
 Ponte: "A organização do hackathon não vai abrir o Make na porta do evento. Ela precisa de um app no celular."`,
   }),
 ];

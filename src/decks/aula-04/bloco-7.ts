@@ -8,6 +8,9 @@ export const bloco7: SlideDef[] = [
   // S47
   chapter({
     title: 'S47 Bloco 7: Agentes e harness',
+    termos: [
+      { termo: 'Harness', nota: 'o software em volta do modelo: ferramentas, regras e controles.' },
+    ],
     numero: 7,
     total: 9,
     titulo: 'Agentes de código\ne harness',
@@ -20,6 +23,9 @@ Ponte com o caso Replit da abertura: agora vamos abrir o capô.`,
   // S48
   comparison({
     title: 'S48 Workflow x agente',
+    termos: [
+      { termo: 'Loop', nota: 'repetição: agir, ver o resultado e decidir de novo.' },
+    ],
     titulo: 'Workflow ou agente?',
     colunas: [
       { id: 'workflow', nome: 'Workflow', icone: Workflow },
@@ -166,6 +172,11 @@ Ponte com a Aula 3: o Make é um harness para APIs. As perguntas são as mesmas:
   // S51
   grid({
     title: 'S51 Agentes de código em 2026',
+    termos: [
+      { termo: 'IDE', nota: 'programa editor onde se escreve e testa código.' },
+      { termo: 'MCP', nota: 'padrão aberto para a IA se conectar a outros sistemas.' },
+      { termo: 'Pull request', nota: 'pedido para revisar e juntar uma mudança ao código.' },
+    ],
     titulo: 'Agentes de código',
     cartoes: [
       {
@@ -215,6 +226,9 @@ Fonte: 00-PESQUISA-ECOSSISTEMA.md, seção 7.`,
   // S52
   code({
     title: 'S52 Uma tarefa, passo a passo',
+    termos: [
+      { termo: 'Migração', nota: 'arquivo que descreve uma mudança na estrutura do banco.' },
+    ],
     titulo: 'Uma tarefa, passo a passo',
     arquivo: 'terminal: transcrição simplificada e ilustrativa',
     linguagem: 'texto',
@@ -248,12 +262,17 @@ Passo 4: a migração escrita e NÃO aplicada, porque a regra do projeto proíbe
   // S53
   demo({
     title: 'S53 Ao vivo: preparar e disparar o agente',
+    termos: [
+      { termo: 'CLAUDE.md', nota: 'arquivo de regras que o agente lê em toda sessão.' },
+      { termo: 'Allow e deny', nota: 'listas do que o agente pode e não pode fazer.' },
+    ],
     plataforma: 'claudecode',
     titulo: 'Preparar e disparar o agente',
     passos: ['A memória do projeto: CLAUDE.md', 'As permissões: allow e deny', 'A tarefa em modo de planejamento'],
     duracao: '2 min ao vivo e 3 min de vídeo',
     url: 'terminal: ~/hackathon-lovable',
-    captura: media('agente-permissoes.png'),
+    captura: media('tela-agente-permissoes.svg'),
+    capturaDescricao: 'Tela ilustrativa: permissões allow e deny e o pedido de aprovação do agente no terminal',
     video: {
       src: media('v-agente-sessao-acelerada.mp4'),
       label: 'Backup: sessão do agente, acelerada',
@@ -265,7 +284,7 @@ Passo 4: a migração escrita e NÃO aplicada, porque a regra do projeto proíbe
 3 Terminal, modo de planejamento: colar a tarefa (texto completo em conteudo.md, S53). Ler o plano em voz alta: "ele leu os arquivos antes de propor: é o passo reunir contexto do loop."
 "Em vez de esperar 15 minutos, vejam a mesma tarefa gravada ontem, acelerada." Ir para o S54.
 Se falhar (login, lentidão maior que 40 s, plano estranho): ir direto ao S54. Plano errado ao vivo é conteúdo: "vejam por que existe a aprovação do plano".
-Capturas de apoio: agente-claude-md.png, agente-permissoes.png, agente-plano.png (media/aula-04).`,
+Capturas de apoio: agente-claude-md.png, tela-agente-permissoes.svg (ilustrativa), agente-plano.png (media/aula-04).`,
   }),
 
   // S54

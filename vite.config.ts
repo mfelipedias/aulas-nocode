@@ -2,8 +2,8 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
 // Páginas: o deck (index.html), a visão do apresentador (presenter.html) e as dos alunos:
-// mural da turma (mural.html) e feedback das aulas (feedback.html), mais a área do professor (professor.html).
-// As três falam com a API em /api/.
+// mural da turma (mural.html), feedback das aulas (feedback.html) e quiz ao vivo (quiz.html), mais a área do professor (professor.html).
+// Todas falam com a API em /api/.
 // base './' permite servir o build de qualquer pasta (pendrive, servidor local).
 export default defineConfig({
   base: './',
@@ -19,6 +19,7 @@ export default defineConfig({
         mural: resolve(import.meta.dirname, 'mural.html'),
         feedback: resolve(import.meta.dirname, 'feedback.html'),
         professor: resolve(import.meta.dirname, 'professor.html'),
+        quiz: resolve(import.meta.dirname, 'quiz.html'),
       },
     },
   },

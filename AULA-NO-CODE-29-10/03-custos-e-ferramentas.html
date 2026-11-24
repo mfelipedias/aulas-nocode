@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Custos de ferramentas, hospedagem e domínios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F6F8;--surface:#fff;--ink:#0F1A2B;--ink2:#4A5568;--line:#DCE0E7;
+  --cobalto:#2646D9;--cobalto-t:#E3E9FF;
+  --turquesa:#087A6D;--turquesa-t:#D6F3EE;
+  --ambar:#A85F00;--ambar-t:#FBEBCB;
+  --ardosia:#566074;--ardosia-t:#E6E9EF;
+  --rubi:#C62F3E;--rubi-t:#FBE2E5;
+  --accent:var(--ambar);--accent-t:var(--ambar-t);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.trilha{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0;font-size:.95rem}
+.trilha a{padding:6px 14px;border-radius:999px;text-decoration:none;color:var(--ink2);border:1px solid var(--line);background:var(--surface)}
+.trilha a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;letter-spacing:-.02em;font-variation-settings:"wdth" 88}
+h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800;max-width:17ch;margin-top:28px}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:700}
+code{background:var(--ardosia-t);padding:1px 6px;border-radius:4px;font-size:.92em}
+.lead{font-size:1.2rem;color:var(--ink2);max-width:58ch;margin:18px 0 0}
+.bloco{margin-top:64px}
+.bloco>p{color:var(--ink2);max-width:64ch;margin:10px 0 0}
+
+/* calculadora */
+.calc{margin-top:40px;background:var(--surface);border-radius:16px;padding:26px 28px 28px}
+.calc>p{margin:8px 0 0;color:var(--ink2);max-width:60ch}
+.calc-grid{display:grid;grid-template-columns:minmax(240px,.8fr) 1.6fr;gap:34px;margin-top:22px;align-items:start}
+.controles label{display:flex;justify-content:space-between;gap:10px;font-weight:700;margin-top:6px}
+.controles output{font-family:var(--f-display);font-size:1.3rem;color:var(--ink)}
+.controles input[type=range]{width:100%;margin:6px 0 22px;accent-color:var(--ambar);height:28px}
+.controles .peq{font-size:.92rem;color:var(--ink2);margin:0}
+.res{padding:14px 0 6px;border-top:1px solid var(--line)}
+.res:first-child{border-top:0;padding-top:0}
+.r-make{--c:var(--cobalto)}.r-n8n{--c:var(--turquesa)}
+.res-topo{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.res-topo h3{color:var(--c);font-size:1.5rem}
+.consumo{margin:0;color:var(--ink2)}
+.consumo strong{font:700 1.5rem var(--f-display);color:var(--ink)}
+.pista{position:relative;height:14px;background:var(--ardosia-t);border-radius:7px;margin:22px 0 38px}
+.pista i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--c);transition:width .25s}
+.marca{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.marca>span{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:.78rem;white-space:nowrap;margin-top:3px;color:var(--ink2)}
+.plano{margin:0;font-weight:700}
+.preco{margin:2px 0 8px;color:var(--ink2);font-size:.97rem}
+.extra{margin:0;color:var(--ink2);font-size:.92rem}
+.dica{margin-top:20px;padding:16px 20px;background:var(--ambar-t);border-radius:2px 14px 14px 2px;border-left:6px solid var(--ambar);max-width:72ch}
+.dica h3{color:var(--ambar);margin-bottom:4px}
+.dica p{margin:0}
+
+/* tabela */
+.rolavel{overflow-x:auto;margin-top:24px}
+table.comp{width:100%;min-width:860px;border-collapse:collapse;background:var(--surface);border-radius:12px;overflow:hidden}
+table.comp th,table.comp td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:.96rem}
+table.comp thead th{background:var(--ardosia-t);font:700 .98rem var(--f-display)}
+table.comp tbody tr:last-child th,table.comp tbody tr:last-child td{border-bottom:0}
+table.comp tbody th{font:700 1.15rem var(--f-display);width:11%}
+table.comp .t-make{color:var(--cobalto)}table.comp .t-n8n{color:var(--turquesa)}table.comp .t-bub{color:var(--ink)}table.comp .t-lov{color:var(--rubi)}
+.cell-sub{display:block;color:var(--ink2);font-size:.9rem;margin-top:3px}
+
+/* trio */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}
+.item{background:var(--surface);padding:20px 22px 22px;border-top:6px solid var(--c);border-radius:2px 2px 14px 14px}
+.i-dom{--c:var(--cobalto)}.i-hosp{--c:var(--ardosia)}.i-back{--c:var(--turquesa)}
+.item h3{color:var(--c)}
+.item .num{font:800 1.9rem/1.1 var(--f-display);margin:10px 0 2px;letter-spacing:-.02em}
+.item .un{margin:0 0 12px;color:var(--ink2);font-size:.93rem}
+.item ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.96rem}
+.item li::marker{color:var(--c)}
+
+.esquecidos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0 40px;margin:24px 0 0;padding:0;list-style:none}
+.esquecidos li{padding:14px 0;border-top:1px solid #C9CFDA}
+.esquecidos b{display:block;font:700 1.08rem var(--f-display)}
+.esquecidos span{color:var(--ink2);font-size:.96rem}
+
+.passos{counter-reset:p;list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;max-width:70ch}
+.passos li{counter-increment:p;position:relative;padding:12px 16px 12px 56px;background:var(--surface);border-radius:10px}
+.passos li::before{content:counter(p);position:absolute;left:14px;top:10px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font:700 .95rem/30px var(--f-display);text-align:center}
+
+.fontes{margin:18px 0 0;padding-left:1.2em;columns:2;column-gap:40px;font-size:.92rem;color:var(--ink2)}
+.fontes li{break-inside:avoid;margin-bottom:4px}
+.fecho{margin-top:72px;background:var(--ink);color:#fff;padding:52px 0 44px}
+.fecho p{font:700 clamp(1.7rem,4.2vw,2.8rem)/1.12 var(--f-display);letter-spacing:-.02em;max-width:22ch;margin:0}
+.fecho a{color:#fff;display:inline-block;margin-top:26px}
+
+@media (max-width:820px){
+  .calc{padding:20px 18px 22px}
+  .calc-grid{grid-template-columns:1fr;gap:18px}
+  .trio{grid-template-columns:1fr}
+  .fontes{columns:1}
+}
+@media (prefers-reduced-motion:reduce){.pista i{transition:none}}
+@media print{
+  body{background:#fff}.trilha,.fecho a,.controles{display:none}
+  .item,.res{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="trilha" aria-label="Folhas de aula">
+    <a href="01-tipos-de-sistemas.html">Tipos de sistemas</a>
+    <a href="02-seguranca-e-riscos.html">Segurança e riscos</a>
+    <a href="03-custos-e-ferramentas.html" aria-current="page">Custos e ferramentas</a>
+  </nav>
+
+  <header>
+    <h1>Quanto custa construir e manter um sistema no-code?</h1>
+    <p class="lead">Cada ferramenta mede o consumo de um jeito. Entender a unidade de cobrança vale mais que decorar o preço. Valores consultados entre setembro e outubro de 2026, nas moedas em que cada fornecedor publica; confirme nas páginas oficiais antes de decidir.</p>
+  </header>
+
+  <main>
+    <section class="calc" aria-labelledby="t-calc">
+      <h2 id="t-calc">Mesmo fluxo, duas contas diferentes</h2>
+      <p>O Make cobra por passo executado. O n8n cobra por execução do fluxo inteiro. Mova os controles e compare.</p>
+      <div class="calc-grid">
+        <div class="controles">
+          <label for="passos">Passos do fluxo <output id="v-passos" for="passos">8</output></label>
+          <input type="range" id="passos" min="1" max="30" value="8">
+          <label for="runs">Execuções por mês <output id="v-runs" for="runs">600</output></label>
+          <input type="range" id="runs" min="50" max="20000" step="50" value="600">
+          <p class="peq">Um passo é uma ação do fluxo, como ler uma linha da planilha ou enviar um e-mail.</p>
+        </div>
+        <div class="resultados" aria-live="polite">
+          <div class="res r-make">
+            <div class="res-topo"><h3>Make</h3><p class="consumo"><strong id="make-uso">0</strong> créditos por mês</p></div>
+            <div class="pista"><i id="fill-make"></i>
+              <span class="marca" style="left:8.33%"><span>Free 1.000</span></span>
+              <span class="marca" style="left:83.33%"><span>Core 10.000</span></span>
+            </div>
+            <p class="plano" id="make-plano"></p>
+            <p class="preco" id="make-preco"></p>
+          </div>
+          <div class="res r-n8n">
+            <div class="res-topo"><h3>n8n na nuvem</h3><p class="consumo"><strong id="n8n-uso">0</strong> execuções por mês</p></div>
+            <div class="pista"><i id="fill-n8n"></i>
+              <span class="marca" style="left:20.83%"><span>Starter 2.500</span></span>
+              <span class="marca" style="left:83.33%"><span>Pro 10.000</span></span>
+            </div>
+            <p class="plano" id="n8n-plano"></p>
+            <p class="preco" id="n8n-preco"></p>
+            <p class="extra">Auto-hospedado, o n8n não tem limite de execuções: você paga só o servidor (de US$ 5 a 20 por mês) e a manutenção.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="dica">
+      <h3>Armadilha do Make: consultas periódicas</h3>
+      <p>Um gatilho que consulta algo a cada 5 minutos gasta cerca de 8.640 créditos por mês, quase todo o plano Core. Sempre que der, prefira webhooks, que só rodam quando há novidade.</p>
+    </div>
+
+    <section class="bloco" aria-labelledby="t-tab">
+      <h2 id="t-tab">As quatro ferramentas lado a lado</h2>
+      <p>Mesma pergunta para todas: o que é medido, quanto custa começar e o que costuma surpreender.</p>
+      <div class="rolavel" role="region" aria-label="Tabela de preços das ferramentas" tabindex="0">
+        <table class="comp">
+          <thead>
+            <tr><th scope="col">Ferramenta</th><th scope="col">O que é cobrado</th><th scope="col">Para começar</th><th scope="col">Primeiro plano pago</th><th scope="col">O que costuma surpreender</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="t-make">Make</th>
+              <td>Crédito por módulo executado (antes chamado de operação)</td>
+              <td>Free: 1.000 créditos por mês e 2 cenários ativos</td>
+              <td>Core: US$ 9/mês no anual ou US$ 10,59 no mensal, com 10.000 créditos<span class="cell-sub">Pro: US$ 16 e Teams: US$ 29, no anual</span></td>
+              <td>Fluxos longos e frequentes consomem rápido. Agentes de IA também gastam créditos.</td>
+            </tr>
+            <tr>
+              <th scope="row" class="t-n8n">n8n</th>
+              <td>Execução do fluxo inteiro, não importa quantos passos</td>
+              <td>Grátis se você hospedar (execuções ilimitadas)</td>
+              <td>Cloud Starter: €24/mês (€20 no anual), com 2.500 execuções<span class="cell-sub">Pro: €60 (€50 no anual), 10.000 execuções</span></td>
+              <td>Execuções de teste e novas tentativas após erro também contam. Hospedando, servidor e manutenção são seus.</td>
+            </tr>
+            <tr>
+              <th scope="row" class="t-bub">Bubble</th>
+              <td>Workload units (WU): a carga de servidor que o app consome</td>
+              <td>Free: 50 mil WU e 1 editor, sem publicação ao vivo</td>
+              <td>Starter: o valor varia entre as fontes consultadas (uma de 2026 cita US$ 69/mês)<span class="cell-sub">Confira em bubble.io/pricing</span></td>
+              <td>Consultas ao banco, workflows e chamadas de API gastam WU. Dá para comprar WU extra.</td>
+            </tr>
+            <tr>
+              <th scope="row" class="t-lov">Lovable</th>
+              <td>Crédito, gasto ao construir, hospedar na Cloud e usar IA dentro do app</td>
+              <td>Free: 5 créditos por dia, no máximo 30 por mês</td>
+              <td>Pro: US$ 25/mês, com 100 créditos<span class="cell-sub">Business: US$ 50/mês</span></td>
+              <td>A hospedagem Cloud é cobrada por uso, à parte do plano. Iterar muito queima crédito. O preço é por créditos, não por usuário.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-mais">
+      <h2 id="t-mais">O que mais entra na conta</h2>
+      <p>A plataforma é só uma parte. Para colocar um sistema no ar de verdade, somam-se domínio, hospedagem e banco de dados.</p>
+      <div class="trio">
+        <div class="item i-dom">
+          <h3>Domínio</h3>
+          <p class="num">R$ 40</p><p class="un">por ano, um .com.br no Registro.br</p>
+          <ul>
+            <li>O preço do Registro.br é fixo e exige CPF ou CNPJ.</li>
+            <li>Registradoras cobram de cerca de R$ 26 a R$ 80 por ano. Muitas dão desconto só no primeiro ano, então confira a renovação.</li>
+            <li>O .com costuma ser cobrado em dólar. As referências encontradas vão de cerca de US$ 10 por ano a R$ 69 por ano, conforme a registradora.</li>
+            <li>Ative a renovação automática: sem renovar, o domínio é liberado para qualquer pessoa após cerca de 60 dias.</li>
+          </ul>
+        </div>
+        <div class="item i-hosp">
+          <h3>Hospedagem (VPS)</h3>
+          <p class="num">US$ 5 a 30</p><p class="un">por mês, conforme o porte</p>
+          <ul>
+            <li>De US$ 5 a 10 para um servidor pequeno e de US$ 10 a 30 para produção modesta.</li>
+            <li>Necessária se você hospeda o n8n ou outro software por conta própria.</li>
+            <li>Fique de olho nos extras: backup, tráfego, endereço IPv4 e painel de controle podem encarecer o preço de vitrine.</li>
+            <li>Em 2026, alguns provedores reajustaram preços. Compare o total, não só a oferta.</li>
+          </ul>
+        </div>
+        <div class="item i-back">
+          <h3>Banco e backend (Supabase)</h3>
+          <p class="num">US$ 0 a 25</p><p class="un">por mês, para começar</p>
+          <ul>
+            <li>Free: 2 projetos, 500 MB de banco e 50 mil usuários ativos por mês. O projeto pausa após cerca de uma semana sem uso.</li>
+            <li>Pro: US$ 25 por mês, com US$ 10 de crédito de computação. Apps pequenos e médios costumam ficar entre US$ 35 e US$ 75 com o uso.</li>
+            <li>Domínio personalizado no Supabase soma cerca de US$ 10 por mês.</li>
+            <li>É a base da Lovable Cloud, que cobra por uso.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-esq">
+      <h2 id="t-esq">Custos que costumam ser esquecidos</h2>
+      <ul class="esquecidos">
+        <li><b>Renovação do domínio</b><span>Todo ano, e às vezes mais cara que o preço promocional.</span></li>
+        <li><b>E-mail profissional</b><span>Caixa de e-mail com o seu domínio costuma ser serviço à parte.</span></li>
+        <li><b>Uso de IA dentro do app</b><span>No Lovable e nos agentes do Make, consome créditos extras.</span></li>
+        <li><b>Backup</b><span>Muitos provedores cobram à parte, e perder dados custa mais.</span></li>
+        <li><b>Tempo de manutenção</b><span>Self-hosted custa horas de atualização, segurança e monitoramento.</span></li>
+        <li><b>Câmbio e impostos</b><span>Muitos preços são em dólar ou euro, e compras em moeda estrangeira têm impostos.</span></li>
+      </ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-estimar">
+      <h2 id="t-estimar">Como estimar antes de escolher</h2>
+      <ol class="passos">
+        <li>Calcule o volume: quantos passos tem o fluxo e quantas vezes ele roda por mês.</li>
+        <li>Veja a unidade de cobrança de cada ferramenta (crédito, execução, WU) e compare com o seu volume.</li>
+        <li>Some o que cada camada custa: plataforma, automação, banco, hospedagem e domínio.</li>
+        <li>Revise a cada trimestre, porque planos e preços mudam com frequência.</li>
+      </ol>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-fontes">
+      <h2 id="t-fontes">Fontes consultadas</h2>
+      <ul class="fontes">
+        <li><a href="https://latenode.com/blog/make-com-pricing">Make.com Pricing in 2026 (Latenode)</a></li>
+        <li><a href="https://coworker.ai/blog/make-com-pricing">Make.com Pricing in 2026 (Coworker)</a></li>
+        <li><a href="https://www.jetadmin.io/blog/make-pricing/amp/">Make.com Pricing in 2026 (Jet Admin)</a></li>
+        <li><a href="https://www.cloudzero.com/blog/n8n-pricing/">n8n Pricing (CloudZero)</a></li>
+        <li><a href="https://automationatlas.io/answers/n8n-pricing-self-hosted-vs-cloud-2026/">n8n: self-hosted vs cloud (Automation Atlas)</a></li>
+        <li><a href="https://www.jetadmin.io/blog/bubble-pricing-in-2026-plans-workload-units-and-when-it-really-makes-sense/amp/">Bubble Pricing in 2026 (Jet Admin)</a></li>
+        <li><a href="https://bubble.io/pricing">Bubble: preços</a></li>
+        <li><a href="https://lovable.dev/pricing">Lovable: preços</a></li>
+        <li><a href="https://www.jetadmin.io/blog/lovable-pricing-how-credits-plans-and-total-cost-really-work-and-when-to-pick-jet-admin-instead/">Lovable pricing guide (Jet Admin)</a></li>
+        <li><a href="https://www.homehost.com.br/blog/registro-de-dominios/quanto-custa-um-dominio">Quanto custa um domínio (Homehost)</a></li>
+        <li><a href="https://guiaferramentasdigitais.com.br/guias/como-registrar-dominio-brasil/">Como registrar um domínio no Brasil</a></li>
+        <li><a href="https://macmyths.com/vps-hosting-price-what-a-vps-costs-in-2026/">VPS hosting price in 2026</a></li>
+        <li><a href="https://www.nocode.mba/articles/supabase-pricing">Supabase pricing (nocode.mba)</a></li>
+        <li><a href="https://focusreactive.com/blog/supabase-price/">Supabase pricing explained (FocusReactive)</a></li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer class="fecho">
+  <div class="wrap">
+    <p>O preço do plano é só o começo da conta.</p>
+    <a href="01-tipos-de-sistemas.html">Voltar à primeira folha</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(n){return n.toLocaleString('pt-BR')};
+  var ESCALA=12000;
+  function largura(v){return Math.min(100,v/ESCALA*100)+'%'}
+  function calcular(){
+    var passos=+$('passos').value,runs=+$('runs').value;
+    $('v-passos').textContent=passos;$('v-runs').textContent=fmt(runs);
+
+    var cred=passos*runs,plano,preco;
+    if(cred<=1000){plano='Plano Free';preco='US$ 0. Limites: 2 cenários ativos e execução a cada 15 minutos, no mínimo.';}
+    else if(cred<=10000){plano='Plano Core, com 10.000 créditos';preco='US$ 9 por mês no anual ou US$ 10,59 no mensal.';}
+    else{plano='Pacote com mais de 10.000 créditos';preco='Os planos pagos permitem aumentar os créditos, e o preço sobe com o volume.';}
+    $('make-uso').textContent=fmt(cred);
+    $('fill-make').style.width=largura(cred);
+    $('make-plano').textContent=plano;$('make-preco').textContent=preco;
+
+    var p2,r2;
+    if(runs<=2500){p2='Cloud Starter, com 2.500 execuções';r2='€24 por mês, ou €20 no anual.';}
+    else if(runs<=10000){p2='Cloud Pro, com 10.000 execuções';r2='€60 por mês, ou €50 no anual.';}
+    else if(runs<=40000){p2='Business, com 40.000 execuções';r2='Cerca de €800 por mês, ou €667 no anual.';}
+    else{p2='Enterprise';r2='Sob consulta.';}
+    $('n8n-uso').textContent=fmt(runs);
+    $('fill-n8n').style.width=largura(runs);
+    $('n8n-plano').textContent=p2;$('n8n-preco').textContent=r2;
+  }
+  $('passos').addEventListener('input',calcular);
+  $('runs').addEventListener('input',calcular);
+  calcular();
+})();
+</script>
+</body>
+</html>

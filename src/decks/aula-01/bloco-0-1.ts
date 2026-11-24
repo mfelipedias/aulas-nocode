@@ -22,11 +22,11 @@ export const bloco01: SlideDef[] = [
   showcase({
     title: 'S01 · Duas páginas, a mesma IA',
     titulo: 'A mesma IA. A mesma noite.',
-    midia: { src: m('abertura-pagina-a.png'), descricao: 'Página de inscrição A, gerada no Lovable (ensaio de D−2)' },
+    midia: { src: m('tela-abertura-pagina-a.svg'), descricao: 'Tela ilustrativa: página de inscrição A, como a IA gera a partir de um pedido de uma linha' },
     moldura: 'navegador',
     url: 'pagina-a',
     par: {
-      midia: { src: m('abertura-pagina-b.png'), descricao: 'Página de inscrição B, gerada no Lovable (ensaio de D−2)' },
+      midia: { src: m('tela-abertura-pagina-b.svg'), descricao: 'Tela ilustrativa: página de inscrição B, como a IA gera a partir do pedido planejado' },
       url: 'pagina-b',
       passo: 1,
     },
@@ -34,6 +34,7 @@ export const bloco01: SlideDef[] = [
     chrome: false,
     notes: `Começar sem boas-vindas. Página A entra sozinha, sem rótulo.
 "Duas páginas de inscrição para o mesmo evento, geradas pela mesma IA, na mesma noite, por mim."
+As telas são ilustrativas (desenhadas para a aula): representam o que o Lovable costuma gerar com cada pedido.
 Comentar o que se vê sem julgar: título, botão, cores, campos.
 Passo 1: a página B entra ao lado. "Numa eu escrevi uma linha. Na outra, entreguei vinte minutos de planejamento: para quem é, o que é essencial, como a tela se organiza e com que cara ela deve falar."
 Comparar em voz alta: títulos, botões, cores e campos diferentes. Ainda sem dizer qual é qual.
@@ -104,6 +105,9 @@ Ponte: "Antes de abrir qualquer ferramenta, o vocabulário."`,
     title: 'S07 · Lógica × sintaxe',
     partes: ['No-code não elimina\na lógica.', 'Elimina a sintaxe.'],
     apoio: 'Você continua decidindo dados, regras e fluxos. Só não precisa digitar cada um deles.',
+    termos: [
+      { termo: 'Sintaxe', nota: 'as regras de escrita de uma linguagem de programação.' },
+    ],
     cena: 'blocos-centro',
     notes: `Primeira parte entra sozinha. Pausa de 2 s.
 Pergunta retórica: "Se não tem código, onde mora a lógica?"
@@ -138,6 +142,10 @@ Ponte: vamos ver a mesma regra escrita das duas formas.`,
       { linhas: '6-10', nota: 'Passo 1: criar uma nova Inscrição' },
       { linhas: 11, nota: 'Passo 2: mostrar a mensagem' },
     ],
+    termos: [
+      { termo: 'JavaScript (.js)', nota: 'linguagem de programação usada nas páginas web.' },
+      { termo: 'Bubble', nota: 'ferramenta no-code para criar apps web; usada na Aula 2.' },
+    ],
     cena: 'nevoa-suave',
     notes: `Ler as duas colunas na mesma linha. Cada passo acende o trecho do código e o bloco visual correspondente.
 Passo 1: "quando clicar" está nas duas.
@@ -157,6 +165,10 @@ Exemplo próprio.`,
       { icone: MessageSquareText, titulo: 'App por IA', texto: 'Você descreve; a IA escreve o código. O código existe, você só não o escreveu.' },
     ],
     fonte: 'Low-code: Forrester, 2014 (Clay Richardson e John Rymer), via CIO Dive e Smartsheet (fontes secundárias).',
+    termos: [
+      { termo: 'Código-fonte', nota: 'o texto escrito do programa.' },
+      { termo: 'Forrester', nota: 'empresa de pesquisa de mercado em tecnologia.' },
+    ],
     cena: 'nevoa-esquerda',
     notes: `Uma definição por passo.
 No-code: telas, dados e fluxos configurados visualmente.
@@ -177,6 +189,9 @@ Ponte: a vontade de construir sem programar é bem mais antiga que a IA.`,
       { data: '2014', titulo: 'Low-code ganha nome', texto: 'A Forrester batiza o mercado.' },
     ],
     fonte: 'Wikipedia (VisiCalc, HyperCard, Visual Basic, WordPress); Zapier 2011, Bubble 2012, Webflow 2013: pesquisa do ecossistema; Forrester: CIO Dive.',
+    termos: [
+      { termo: 'HTML', nota: 'linguagem que descreve o conteúdo de uma página web.' },
+    ],
     cena: 'horizonte',
     notes: `Uma frase por marco.
 1979: a planilha foi o primeiro no-code de massa: milhões escrevendo fórmulas, ou seja, lógica, sem se chamar de programadores.
@@ -197,6 +212,10 @@ Ponte: a vontade de construir sem programar é bem mais antiga que a IA.`,
       { data: 'ago/2026', titulo: 'Lovable', texto: 'Avaliada em US$ 13,3 bi. Empresa de 2023 que gera apps por conversa.' },
     ],
     fonte: 'OpenAI, 30/11/2022; Karpathy (X), 02/02/2025; BusinessWire, 16/10/2025; Collins, nov/2025; TechCrunch, 12/08/2026.',
+    termos: [
+      { termo: 'Vibe coding', nota: 'programar pedindo à IA, sem olhar o código.' },
+      { termo: 'AI Agent', nota: 'agente de IA: executa tarefas em etapas.' },
+    ],
     cena: 'horizonte-avanco',
     notes: `Comparar a distância entre os marcos dos dois slides: de 1979 a 2014 são décadas; de 2022 a 2026, meses.
 Vibe coding: programar descrevendo e aceitando o que a IA gera, sem olhar o código.
@@ -211,6 +230,10 @@ Lovable: avaliada em US$ 13,3 bilhões em agosto de 2026.
     sufixo: '%',
     descricao: 'dos usuários de tecnologias low-code estarão fora dos departamentos de TI. Em 2021, eram 60%.',
     fonte: 'Gartner, previsão publicada em dez/2022, via InfoWorld. Previsão, não medição.',
+    termos: [
+      { termo: 'TI', nota: 'tecnologia da informação: o setor de tecnologia da empresa.' },
+      { termo: 'Gartner', nota: 'consultoria que publica pesquisas e previsões de tecnologia.' },
+    ],
     cena: 'nevoa',
     notes: `Ler a pergunta e deixar a grade vazia por um instante.
 Passo 1: o número conta e a grade acende, 80 de cada 100.

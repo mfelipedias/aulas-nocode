@@ -1,4 +1,4 @@
-import { BookOpenCheck, FileText, ImagePlus, LockKeyhole, MessageSquareHeart } from 'lucide';
+import { BookOpenCheck, FileText, Gamepad2, ImagePlus, LockKeyhole, MessageSquareHeart } from 'lucide';
 import { DECKS } from './decks';
 import { h } from './engine/dom';
 import { icon } from './engine/icons';
@@ -97,6 +97,12 @@ export async function renderHub() {
       h(
         'section.hub-alunos',
         { 'aria-label': 'Para os alunos' },
+        h(
+          'a.hub-aluno.is-destaque',
+          { href: 'quiz.html' },
+          h('span.hub-aluno-ic', icon(Gamepad2, 28)),
+          h('span.hub-aluno-txt', h('span.hub-aluno-title', 'Quiz ao vivo'), h('span.hub-aluno-sub', 'Entre com um apelido e responda pelo celular quando o professor abrir o quiz.')),
+        ),
         h(
           'a.hub-aluno',
           { href: 'roteiro-hackathon-bubble-make-sheets.html', target: '_blank', rel: 'noopener' },

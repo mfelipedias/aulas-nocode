@@ -8,25 +8,34 @@ export const bloco01: SlideDef[] = [
   // S01
   timeline({
     title: 'S01 Julho de 2025: o caso Replit',
-    titulo: 'Julho de 2025. Um agente de IA, um app em produção.',
-    subtitulo: 'O agente do Replit e o fundador da SaaStr, Jason Lemkin.',
+    termos: [
+      { termo: 'Agente de IA', nota: 'IA que decide e executa ações sozinha, passo a passo.' },
+      { termo: 'Banco de produção', nota: 'onde ficam os dados reais que o app usa de verdade.' },
+    ],
+    titulo: 'Julho de 2025: um agente de IA apagou os dados reais de um app',
+    subtitulo:
+      'Jason Lemkin, fundador da SaaStr, criava um app sem programar, só conversando com o agente de IA do Replit, que escrevia, testava e publicava o código.',
     marcos: [
       {
-        data: 'A regra',
-        titulo: 'Code freeze',
-        texto: 'Nada muda sem autorização. Dito ao agente mais de uma vez.',
+        data: '1. A ordem',
+        titulo: 'Congelar o código',
+        texto: 'Ele avisou ao agente, mais de uma vez: nada muda sem autorização.',
       },
       {
-        data: 'O comando',
+        data: '2. O erro',
         titulo: 'Banco de produção apagado',
-        texto: '1.200+ executivos e 1.190+ empresas.',
+        texto: 'O agente agiu mesmo assim e apagou os dados reais: 1.200+ executivos, 1.190+ empresas.',
       },
       {
-        data: 'O disfarce',
+        data: '3. O disfarce',
         titulo: '~4.000 registros falsos',
-        texto: 'E relatórios de teste que não batiam com a realidade.',
+        texto: 'Inventou dados e relatórios de teste que escondiam o problema.',
       },
-      { data: 'A resposta', titulo: '“Não dá para desfazer.”', texto: 'Dava.' },
+      {
+        data: '4. A resposta',
+        titulo: '“Não dá para desfazer.”',
+        texto: 'Foi o que o agente afirmou. Não era verdade.',
+      },
     ],
     fonte: 'The Register, 21/07/2025; Fortune, 23/07/2025 (acesso em 04/10/2026).',
     cena: 'horizonte-avanco',
@@ -45,6 +54,9 @@ Ponte: "E olhem o que o próprio agente escreveu depois."`,
   comRevelacao(
     quote({
       title: 'S02 A mensagem do agente',
+      termos: [
+        { termo: 'Rollback', nota: 'voltar o app e os dados a uma versão anterior.' },
+      ],
       texto: 'Cometi um erro catastrófico de julgamento.',
       autor: 'Agente de IA do Replit',
       obra: 'a Jason Lemkin (SaaStr), jul/2025. No original: “I made a catastrophic error in judgment.”',
@@ -114,6 +126,10 @@ Ponte: antes, um minuto para lembrar o que já construímos.`,
   // S06
   flow({
     title: 'S06 O projeto até aqui',
+    termos: [
+      { termo: 'Workflow', nota: 'sequência de ações que o app executa após um evento.' },
+      { termo: 'Webhook', nota: 'endereço que recebe um aviso automático quando algo acontece.' },
+    ],
     titulo: 'Hackathon No-Code 2026: o que já existe',
     nos: [
       {
@@ -196,6 +212,11 @@ AppSheet e Planilha Google aparecem só como nome (regra de marca).`,
   // S07
   grid({
     title: 'S07 A Unidade IV em quatro temas',
+    termos: [
+      { termo: 'Deploy', nota: 'colocar uma versão do app no ar para o público.' },
+      { termo: 'Latência', nota: 'tempo de espera entre pedir algo e receber a resposta.' },
+      { termo: 'HTTPS', nota: 'conexão cifrada entre navegador e site (o cadeado).' },
+    ],
     titulo: 'Unidade IV: o que a ementa pede',
     cartoes: [
       {

@@ -77,6 +77,10 @@ Fonte: projeto-âncora, 00-PLANO-GERAL.md §2.4.`,
       { icone: GitBranch, titulo: 'Quatro trilhas', texto: 'Web, Mobile, Automação e IA.' },
     ],
     conclusao: 'Evento fictício. Problema real.',
+    termos: [
+      { termo: 'Hackathon', nota: 'maratona em que equipes criam soluções.' },
+      { termo: 'Trilha', nota: 'tema que a equipe escolhe para o projeto.' },
+    ],
     cena: 'nevoa',
     notes: `Ficha em 1 minuto: datas, formato, desafio, vagas, mentoria, trilhas.
 Passo 1: "Evento fictício. Problema real."
@@ -107,6 +111,9 @@ Fonte: 00-PLANO-GERAL.md §2.4.`,
       { de: 'make', para: 'checkin' },
     ],
     passos: [['pagina'], ['bubble'], ['make', 'planilha', 'email', 'ia', 'checkin']],
+    termos: [
+      { termo: 'Banco de dados', nota: 'onde o sistema guarda as informações.' },
+    ],
     cena: 'nevoa-suave',
     notes: `Passo 0: só a página, o nó desta aula (borda acesa). "Hoje construímos só o primeiro nó, e nem ele completo: a página que mostra, mas ainda não guarda."
 Passo 1: Aula 2, banco de dados com regras no Bubble.
@@ -124,6 +131,11 @@ Fonte: 00-PLANO-GERAL.md §2.4.`,
       { data: '15/10', titulo: 'Dando vida às telas', texto: 'Banco, workflow, organização e login.' },
       { data: '22/10', titulo: 'Conectando o mundo', texto: 'Webhook, planilha, e-mail, IA e app de check-in.' },
       { data: '29/10', titulo: 'Publicar e avaliar', texto: 'E o que vem depois: segurança, custo, consumo, IA e agentes.' },
+    ],
+    termos: [
+      { termo: 'Workflow', nota: 'sequência de passos que o app executa (ex.: ao clicar).' },
+      { termo: 'Webhook', nota: 'aviso automático que um sistema manda a outro.' },
+      { termo: 'Login', nota: 'entrar no sistema com e-mail e senha.' },
     ],
     cena: 'horizonte',
     notes: `Rápido: o detalhe de cada aula fica para a própria aula.
@@ -154,6 +166,10 @@ Fonte: 00-PLANO-GERAL.md §2.4 e §4.`,
     sufixo: '%',
     descricao: 'tinham produto sem aderência ao mercado: construíram algo que pouca gente queria.',
     fonte: 'CB Insights, 05/03/2026: 431 startups com venture capital fechadas desde 2023. Em 70% o dinheiro acabou, causa final e não raiz.',
+    termos: [
+      { termo: 'Startup', nota: 'empresa nova que busca crescer rápido.' },
+      { termo: 'Venture capital', nota: 'investimento em empresas novas.' },
+    ],
     cena: 'nevoa',
     notes: `"A videoaula 1 se chama 'Por que 90% dos apps morrem antes de nascer'. O 90% é uma provocação conhecida, sem fonte única. Vamos a um dado com fonte."
 Passo 1: 43 de cada 100.
@@ -174,6 +190,9 @@ Em 70% dos casos o dinheiro acabou, mas o próprio relatório chama isso de caus
       { icone: CircleHelp, titulo: 'Antes de se inscrever', texto: 'É pago? Preciso programar? Preciso ter equipe?' },
     ],
     conclusao: 'Não-público: desenvolvedores experientes procurando competição de alto nível.',
+    termos: [
+      { termo: 'ADS', nota: 'Análise e Desenvolvimento de Sistemas.' },
+    ],
     cena: 'nevoa-esquerda',
     notes: `Persona transforma "o público é jovem" em "a Camila entenderia este botão no celular, no ônibus?".
 Medo dela: não acompanhar quem já sabe programar.
@@ -218,6 +237,10 @@ A frase vira o título, o apoio e o primeiro parágrafo do prompt.
         posicao: 'center',
       },
     },
+    termos: [
+      { termo: 'Identidade visual', nota: 'cores, fontes e estilo próprios do produto.' },
+      { termo: '#C6F432', nota: 'código hexadecimal: identifica uma cor exata.' },
+    ],
     cena: 'vazio',
     notes: `Fundo vazio: as cores do evento não podem competir com a névoa azul da aula.
 Um tópico por passo; a amostra correspondente se aproxima.
@@ -298,6 +321,9 @@ O skate do nosso evento é a página que capta inscrições; o carro é o sistem
       { titulo: 'Won’t (por enquanto)', itens: ['Pagamento', 'Login do participante', 'Ranking de equipes', 'Chat entre participantes'] },
     ],
     conclusao: 'Interessante não é o mesmo que necessário.',
+    termos: [
+      { termo: 'MoSCoW', nota: 'priorizar em deve ter, deveria, poderia e não vai ter.' },
+    ],
     cena: 'nevoa-suave',
     notes: `Uma coluna por passo. O Must tem cinco itens no gabarito: "Salvar a inscrição" e "Mensagem de confirmação" estão juntos no último.
 Por que Telefone é Must? O público vive no celular; o contato durante as 48 horas será por mensagem.

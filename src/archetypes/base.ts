@@ -1,5 +1,5 @@
 import { createFragments } from '../engine/motion';
-import type { CommonFields, SceneRequest, SlideCtx, SlideDef, SlideInstance } from '../engine/types';
+import type { CommonFields, SceneRequest, SlideCtx, SlideDef, SlideInstance, Termo } from '../engine/types';
 import { h } from '../engine/dom';
 import { cenaRequest } from '../engine/scenes';
 import { attachTimer } from './parts/timer';
@@ -57,8 +57,20 @@ export function define<T extends CommonFields>(
     scene: d.scene ?? defaults.scene,
     video: d.video ?? defaults.video,
     media: collectMedia(d),
-    build: (ctx) => (d.cronometro ? attachTimer(build(d, ctx), d.cronometro, ctx) : build(d, ctx)),
+    build: (ctx) => {
+      const inst = d.cronometro ? attachTimer(build(d, ctx), d.cronometro, ctx) : build(d, ctx);
+      if (d.termos?.length) inst.el.append(glossario(d.termos));
+      return inst;
+    },
   };
+}
+
+/** Notas de termos técnicos no pé do slide (campo comum `termos`). */
+function glossario(termos: Termo[]) {
+  return h(
+    'dl.slide-termos',
+    ...termos.map((t) => h('div.slide-termo', h('dt', t.termo), h('dd', t.nota))),
+  );
 }
 
 /** Coleta todos os caminhos "media/..." citados nos dados do slide (busca profunda). */

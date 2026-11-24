@@ -53,6 +53,11 @@ Ponte: três palavras que não são sinônimos.`,
   // S43
   twoColumn({
     title: 'S43 · Autenticação, autorização, papel',
+    termos: [
+      { termo: 'Servidor', nota: 'computador da plataforma que guarda os dados e aplica as regras.' },
+      { termo: 'Privacy rule', nota: 'regra no servidor que decide quem vê cada dado.' },
+      { termo: 'User', nota: 'data type pronto do Bubble para quem faz login.' },
+    ],
     titulo: 'Três palavras que não são sinônimos',
     topicos: [
       { icone: KeyRound, titulo: 'Autenticação: quem é você?', texto: 'Cadastro e login: Sign the user up e Log the user in.', realce: ['login'] },
@@ -116,6 +121,10 @@ Ponte: onde está a proteção de verdade.`,
   // S45
   flow({
     title: 'S45 · Onde cada regra roda',
+    termos: [
+      { termo: 'Navegador', nota: 'programa onde a página roda, como o Chrome.' },
+      { termo: 'Redirect', nota: 'mandar a pessoa sozinha para outra página.' },
+    ],
     titulo: 'Onde cada regra roda',
     nos: [
       { id: 'banco', tag: 'Servidor', rotulo: 'Banco', sub: 'todas as inscrições', icone: Database, tipo: 'dado', col: 0 },
@@ -146,19 +155,19 @@ Ponte: como isso aparece no editor.`,
     titulo: 'Privacy rules da Inscricao',
     plataforma: 'bubble',
     midia: {
-      src: 'media/aula-02/bubble-privacy-regra.png',
-      descricao: 'Aba Data, Privacy: regra Organizador e regra Everyone else no data type Inscricao',
+      src: 'media/aula-02/tela-bubble-privacy-regra.svg',
+      descricao: 'Tela ilustrativa: aba Data, Privacy: regra Organizador e regra Everyone else no data type Inscricao',
     },
     url: 'bubble.io/page?id=hackathon-aula02&tab=Data&subtab=Privacy',
     anotacoes: [
-      { x: 20, y: 18, titulo: 'Antes: Publicly visible', texto: 'Sem regra, qualquer visitante recebe todos os campos.', zoom: { x: 0, y: 0, w: 55, h: 45 } },
-      { x: 55, y: 40, titulo: 'Regra Organizador', texto: "When Current User's organizador is yes: tudo liberado.", zoom: { x: 25, y: 20, w: 60, h: 50 } },
-      { x: 55, y: 72, titulo: 'Everyone else', texto: 'Só Find this in searches. O e-mail só como Constraint.', zoom: { x: 25, y: 50, w: 60, h: 50 } },
+      { x: 20, y: 18, titulo: 'Antes: Publicly visible', texto: 'Sem regra, qualquer visitante recebe todos os campos.', zoom: { x: 0, y: 0, w: 55, h: 55 } },
+      { x: 82, y: 36, titulo: 'Regra Organizador', texto: "When Current User's organizador is yes: tudo liberado.", zoom: { x: 25, y: 20, w: 60, h: 50 } },
+      { x: 55, y: 72, titulo: 'Everyone else', texto: 'Só Find this in searches. O e-mail só como Constraint.', zoom: { x: 25, y: 40, w: 60, h: 60 } },
     ],
     fonte: 'Manual do Bubble, “Privacy rules”.',
     cena: 'paineis',
     notes: `Data > Privacy mostra cada data type como "Publicly visible" ou "Privacy rules applied".
-Passo 1: hoje a Inscricao está Publicly visible. (Captura do estado anterior: bubble-privacy-antes.png, pendente; pode substituir esta no PDF.)
+Passo 1: hoje a Inscricao está Publicly visible. (Na tela ilustrativa, o status antigo aparece riscado na lista à esquerda.)
 Passo 2: regra Organizador. Quando o usuário atual for organizador, pode tudo: encontrar nas buscas e ver todos os campos.
 Passo 3: Everyone else. Só encontrar nas buscas, sem ver nenhum campo; o e-mail fica como Constraint: dá para buscar por ele, mas não para lê-lo.
 Por quê? O contador de vagas e a checagem de duplicidade precisam contar e buscar, mesmo sem login.
@@ -169,6 +178,9 @@ Ponte: mini-demo, na ordem certa.`,
   // S47
   demo({
     title: 'S47 · Mini-demo: protegendo a organização',
+    termos: [
+      { termo: 'Janela anônima', nota: 'janela do navegador sem login e sem dados salvos.' },
+    ],
     plataforma: 'bubble',
     titulo: 'Mini-demo: protegendo a organização',
     passos: ['Ver o problema numa janela anônima', 'Criar a privacy rule', 'Redirecionar e entrar como organizador'],
@@ -234,6 +246,11 @@ Ponte: o que é o Bubble AI Agent.`,
   // S50
   bulletsRich({
     title: 'S50 · Bubble AI Agent',
+    termos: [
+      { termo: 'Beta', nota: 'versão ainda em teste, sujeita a mudanças.' },
+      { termo: 'Plugin', nota: 'extensão que adiciona recursos prontos ao app.' },
+      { termo: 'Issue checker', nota: 'verificador do Bubble que aponta erros no app.' },
+    ],
     titulo: 'Bubble AI Agent',
     subtitulo: 'Beta, gratuito. Lançado em out/2025; mobile e APIs desde ago/2026.',
     itens: [
@@ -248,13 +265,17 @@ Ponte: o que é o Bubble AI Agent.`,
 Um item por passo.
 Diferença para a Aula 1: lá, a IA gerou uma página em código que não editamos visualmente. Aqui, tudo o que o agente faz fica nas mesmas abas que acabamos de usar. Dá para conferir.
 Detalhe do manual que importa: o agente tem as mesmas permissões que você no app.
-A captura do painel do agente (bubble-ai-agent-painel.png) aparece no slide da demo, na moldura do navegador.
+Uma tela ilustrativa do painel do agente aparece no slide da demo, na moldura do navegador.
 Ponte: como pedir.`,
   }),
 
   // S51
   code({
     title: 'S51 · Dois pedidos, um de cada vez',
+    termos: [
+      { termo: 'Prompt', nota: 'o pedido escrito que se faz à IA.' },
+      { termo: 'Repeating Group', nota: 'lista que repete um bloco para cada registro.' },
+    ],
     titulo: 'Dois pedidos, um de cada vez',
     arquivo: 'Bubble AI Agent, novo chat',
     linguagem: 'texto',
@@ -295,7 +316,8 @@ Ponte: agora, com o agente.`,
     passos: ['Pedir a Equipe', 'Ler o plano antes de aplicar', 'Inspecionar dados, regras e página'],
     duracao: 'Cerca de 5 minutos, no app irmão hackathon-agente',
     url: 'bubble.io/page?id=hackathon-agente',
-    captura: 'media/aula-02/bubble-ai-agent-painel.png',
+    captura: 'media/aula-02/tela-bubble-ai-agent-painel.svg',
+    capturaDescricao: 'Tela ilustrativa: painel do Bubble AI Agent com o pedido da Equipe e o plano antes de aplicar',
     video: { src: 'media/aula-02/demo4-ai-agent.mp4', poster: 'media/aula-02/demo4-ai-agent.jpg', label: 'Backup: demo do Bubble AI Agent' },
     cena: 'paineis',
     notes: `Dizer em voz alta que a demo roda num app irmão, hackathon-agente, cópia do ponto em que paramos. É prudência com qualquer agente, não desconfiança da plataforma.
@@ -346,6 +368,10 @@ Ponte: o Bubble não é a única opção.`,
   // S55
   grid({
     title: 'S55 · Outros construtores visuais',
+    termos: [
+      { termo: 'Front-end', nota: 'a parte do app que a pessoa vê e usa.' },
+      { termo: 'Back-end', nota: 'a parte que roda no servidor: dados e regras.' },
+    ],
     titulo: 'Outros construtores visuais',
     cartoes: [
       { icone: Smartphone, titulo: 'FlutterFlow', itens: ['Apps Flutter: iOS, Android e web', 'Free: 2 projetos, sem exportar'] },
@@ -368,6 +394,10 @@ Ponte: quando cada um faz sentido.`,
   // S56
   comparison({
     title: 'S56 · Quando cada um faz sentido',
+    termos: [
+      { termo: 'SaaS', nota: 'software usado pela internet, pago por assinatura.' },
+      { termo: 'Subdomínio', nota: 'endereço dentro do site da plataforma.' },
+    ],
     titulo: 'Quando cada um faz sentido',
     colunas: [
       { id: 'bubble', nome: 'Bubble', sub: 'tudo num lugar' },

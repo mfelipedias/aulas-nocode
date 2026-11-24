@@ -90,6 +90,11 @@ Ponte: as quatro peças de toda requisição.`,
         { "nome": "Ana Exemplo", "trilha": "Web" }
       `,
     },
+    termos: [
+      { termo: 'Requisição', nota: 'o pedido que um sistema envia a outro.' },
+      { termo: 'HTTP', nota: 'a "língua" que navegadores e servidores usam para conversar.' },
+      { termo: 'JSON', nota: 'texto com pares "chave": valor, o formato que os sistemas trocam.' },
+    ],
     notes: `"Toda requisição tem quatro peças." Cada passo destaca as linhas da peça no painel; o resto esmaece.
 Passo 1: método. POST quer dizer criar.
 Passo 2: endpoint. /inscricoes, num servidor de exemplo.
@@ -129,6 +134,9 @@ Ponte: "Chega de teoria: uma API de verdade, agora."`,
     captura: 'media/aula-03/esquema-viacep-json.svg',
     video: { src: 'media/aula-03/demo-viacep.mp4', label: 'Backup: ViaCEP no navegador' },
     title: 'Demo: ViaCEP no navegador',
+    termos: [
+      { termo: 'ViaCEP', nota: 'serviço gratuito que devolve o endereço de um CEP.' },
+    ],
     notes: `Trocar para a aba do navegador (perfil da aula, zoom 150%). DevTools fechado.
 1. Barra de endereço: viacep.com.br/ws/01001000/json/ e Enter. Marcar Pretty-print. "Acabei de fazer uma requisição GET. Sem conta, sem chave."
 2. F12, aba Network, F5, clicar na linha json/. Mostrar Request Method GET, Status 200 OK, Content-Type application/json.
@@ -216,6 +224,9 @@ Ponte: e quando a API não é pública?`,
       { linhas: 3, nota: 'A chave vai no header, não na URL: URL aparece em log, em histórico e em print.' },
       { linhas: 1, nota: 'Sem a chave, o Make responde 401: não autorizado.' },
       { linhas: '1-4', nota: 'Chave é senha de sistema: nunca no código da página, nunca no print.' },
+    ],
+    termos: [
+      { termo: 'curl', nota: 'programa de terminal que faz requisições sem abrir o navegador.' },
     ],
     notes: `"Quando a API não é pública, ela precisa saber quem está chamando. A forma mais comum é uma chave, enviada num header."
 Passo 1: linha 3. "Este é o header que o Make usa para proteger um webhook com chave: x-make-apikey."
@@ -314,6 +325,9 @@ Ponte: o mapa do que vamos construir.`,
     ],
     passos: [[], ['bubble', 'make'], ['ia', 'planilha', 'gmail'], ['appsheet']],
     conclusao: 'Cada capítulo acende um pedaço deste mapa.',
+    termos: [
+      { termo: 'AppSheet', nota: 'ferramenta do Google que cria app a partir de uma planilha.' },
+    ],
     notes: `Este desenho é o índice do resto da aula. Ele volta na prova final (S57).
 Passo 1: o Bubble faz um POST para um webhook do Make. Um evento.
 Passo 2: o Make passa por uma IA, que classifica e escreve; grava uma linha na planilha; manda o e-mail.

@@ -20,6 +20,10 @@ export const bloco5: SlideDef[] = [
   // S35
   stat({
     title: 'S35 Data centers: 485 TWh',
+    termos: [
+      { termo: 'TWh', nota: 'terawatt-hora: 1 bilhão de kWh.' },
+      { termo: 'Data center', nota: 'prédio cheio de servidores.' },
+    ],
     contexto: 'Quanta eletricidade os data centers do mundo usam?',
     valor: 485,
     sufixo: ' TWh',
@@ -38,6 +42,11 @@ Números conferidos nos PDFs da IEA em 05/10/2026: "approximately 415 TWh for 20
   comRevelacao(
     twoColumn({
       title: 'S36 0,24 Wh por prompt',
+      termos: [
+        { termo: 'Wh', nota: 'watt-hora: 1 watt de energia gasto durante 1 hora.' },
+        { termo: 'CO2e', nota: 'gases do efeito estufa, convertidos em CO2.' },
+        { termo: 'Prompt', nota: 'pedido em texto que se envia para a IA.' },
+      ],
       titulo: 'O que esse número não conta',
       inverter: true,
       topicos: [
@@ -78,12 +87,16 @@ Passo 5, a conta do nosso projeto: 120 inscrições x 0,24 Wh = ~29 Wh, uma lâm
       fonte: 'Google Cloud Blog, 21/08/2025; arXiv 2508.15734. Conta da lâmpada: 120 × 0,24 Wh, aritmética da aula.',
     }),
     'Nosso projeto: 120 chamadas ≈ 29 Wh, uma lâmpada LED de 10 W acesa por 3 horas.',
-    'left:120px;bottom:150px',
+    'left:120px;bottom:180px;max-width:1060px',
   ),
 
   // S37
   comparison({
     title: 'S37 Polling x webhook',
+    termos: [
+      { termo: 'Polling', nota: 'perguntar de tempos em tempos se há algo novo.' },
+      { termo: 'Webhook', nota: 'aviso automático enviado só quando algo acontece.' },
+    ],
     titulo: 'A decisão da Aula 3, em números',
     colunas: [
       { id: 'polling', nome: 'Polling a cada 15 min', icone: RefreshCw },

@@ -76,6 +76,9 @@ AppSheet e Gmail aparecem só como nome (regra de marca).`,
   // S28
   twoColumn({
     title: 'S28 Simultâneos, volume, latência',
+    termos: [
+      { termo: 'Latência', nota: 'tempo de espera entre pedir algo e receber a resposta.' },
+    ],
     titulo: 'Três jeitos de não aguentar',
     topicos: [
       {
@@ -176,6 +179,9 @@ Sala vazia: "Pause e refaça a conta com os números do seu app."`,
   // S31
   comparison({
     title: 'S31 Custo em três escalas',
+    termos: [
+      { termo: 'E-mail transacional', nota: 'e-mail automático disparado por uma ação, como a inscrição.' },
+    ],
     titulo: 'Quanto custa a nossa stack',
     colunas: [
       { id: 'c120', nome: '120', sub: 'inscrições, o evento' },
@@ -270,6 +276,11 @@ Corte C: dizer só Make, Firebase Studio e Airtable.`,
   // S33
   comparison({
     title: 'S33 O que você leva se sair',
+    termos: [
+      { termo: 'Lock-in', nota: 'dependência que torna caro ou difícil trocar de plataforma.' },
+      { termo: 'CSV', nota: 'planilha em texto simples, que qualquer programa abre.' },
+      { termo: 'Auto-hospedável', nota: 'dá para rodar num servidor seu.' },
+    ],
     titulo: 'Lock-in: o que você leva se sair',
     colunas: [
       { id: 'dados', nome: 'Os dados', icone: Database },

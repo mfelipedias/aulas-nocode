@@ -45,8 +45,10 @@ Todas seguem o mesmo projeto fictício, o *Hackathon No-Code 2026*, que evolui d
   - *Visão geral*: abre e fecha os envios e o feedback de cada aula e liga a moderação prévia (envio novo fica "aguardando" até ser publicado).
   - *Envios*: publicar, ocultar ou excluir, um a um ou em lote, com filtros por status, aula e busca.
   - *Feedback*: notas, ritmo, comentários, CSV e opção de apagar respostas.
+  - *Quiz*: abre o telão do quiz ao vivo e mostra os resultados dos jogos anteriores, com CSV.
   - *Conta*: trocar a senha e sair dos outros aparelhos. Esqueceu a senha? Apague `senha` de `dados/config.json` e reinicie a API: volta a valer a do `.env`.
-- Os dados ficam em `dados/` (fora do container): `envios.json`, `feedback.jsonl`, `config.json`, `sessoes.json` e `arquivos/`. Faça backup dessa pasta.
+- **Quiz ao vivo** (`quiz.html`), no estilo Kahoot: o professor abre `quiz.html?telao` no projetor (precisa estar logado na área do professor), a turma entra pelo QR com um apelido e responde pelo celular. Acertos valem de 500 a 1.000 pontos conforme a rapidez, mais um bônus por acertos seguidos. Espaço ou → avança; F põe em tela cheia; clicar num nome no lobby tira a pessoa da sala. As perguntas ficam em `materiais-professor/quiz-*.json` (fora do git, para o gabarito não ficar público) no formato `{ "titulo", "perguntas": [{ "texto", "respostas": [4], "correta": 0-3, "tempo": 20, "explicacao" }] }`.
+- Os dados ficam em `dados/` (fora do container): `envios.json`, `feedback.jsonl`, `config.json`, `sessoes.json`, `quiz.json` (jogo em andamento), `quiz-resultados.jsonl` e `arquivos/`. Faça backup dessa pasta.
 - A API (`server/server.mjs`, Node puro, sem dependências) roda no container `aulas-nocode-api`, e o nginx repassa `/api/` para ela. Limites: 8 arquivos por envio, 20 MB cada, 70 MB no total.
 
 ## Rodar localmente

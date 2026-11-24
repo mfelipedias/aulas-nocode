@@ -27,6 +27,11 @@ Para a gravação: este é o marcador 04:00 do índice de capítulos.`,
       { icone: Workflow, titulo: 'Automação de fluxos', texto: 'Notificar, aprovar, sincronizar: os padrões que se repetem.' },
     ],
     fonte: 'Ementa da disciplina No-Code Development Platforms, tópico 3 (Unidade III).',
+    termos: [
+      { termo: 'Endpoint', nota: 'o endereço exato, na API, para onde vai o pedido.' },
+      { termo: 'Payload', nota: 'os dados que seguem junto com o pedido.' },
+      { termo: 'API key', nota: 'senha que identifica o sistema que está chamando.' },
+    ],
     notes: `Um item por passo, ligando cada um a um capítulo de hoje.
 Passo 1: APIs REST, no capítulo 2.
 Passo 2: conectores e webhooks, nos capítulos 3 e 4.
@@ -79,6 +84,10 @@ Ponte: quem vende integração.`,
       { icone: Blocks, titulo: 'Dentro de outras plataformas', texto: 'API Connector do Bubble, automações do AppSheet, workflows do Softr.', realce: ['bubble', 'appsheet', 'softr'] },
     ],
     visual: { tipo: 'logos', ids: ['make', 'zapier', 'n8n', 'powerautomate', 'bubble', 'appsheet', 'softr'] },
+    termos: [
+      { termo: 'Código aberto', nota: 'código público: qualquer um pode ver, usar e adaptar.' },
+      { termo: 'Servidor', nota: 'computador sempre ligado que roda sistemas na internet.' },
+    ],
     notes: `"Quatro famílias." Cada passo acende os logos da família à direita.
 Passo 1: plataformas visuais na nuvem: Make e Zapier.
 Passo 2: código aberto, que você roda no seu próprio servidor: o n8n é o principal.
@@ -100,6 +109,11 @@ Ponte: um número para cada um.`,
       { icone: Workflow, titulo: 'Power Automate', itens: ['Power Platform: 56 mi usuários/mês', 'Integrado ao Microsoft 365'] },
     ],
     fonte: 'Make: make.com (home e pricing); Zapier: pricing e Wikipedia [secundária]; n8n: comunicado SAP/EQS mai/2026 e n8n.io/pricing; Microsoft: earnings FY25 Q3. Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Gatilho', nota: 'o evento que dá a partida no fluxo.' },
+      { termo: 'Crédito', nota: 'unidade de cobrança do Make: cada módulo executado gasta 1.' },
+      { termo: 'GitHub', nota: 'site onde se publicam projetos de código; estrela = "curti".' },
+    ],
     notes: `Um cartão por passo, um número por plataforma, sempre com o ano.
 Passo 1: Make. Mais de 400 mil organizações e mais de 3 mil apps. Nasceu em Praga como Integromat e hoje pertence à Celonis.
 Passo 2: Zapier. Mais de 3 milhões de empresas e 9 mil apps. O mais simples: gatilho e ação.

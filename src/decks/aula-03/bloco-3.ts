@@ -49,7 +49,8 @@ Ponte: para a ferramenta.`,
     ],
     duracao: 'Cerca de 10 minutos',
     url: 'make.com · Scenario Builder',
-    captura: 'media/aula-03/make-webhook-url.png',
+    captura: 'media/aula-03/tela-make-webhook-url.svg',
+    capturaDescricao: 'Tela ilustrativa do Make: módulo Custom webhook "hackathon-inscricao" com o endereço (mascarado) e a estrutura de dados determinada',
     video: { src: 'media/aula-03/demo-make.mp4', label: 'Backup: primeiro fluxo no Make' },
     title: 'Demo: o primeiro fluxo no Make',
     notes: `Antes de trocar de aba: "Agora eu saio dos slides. Os quatro passos estão à esquerda."
@@ -61,6 +62,7 @@ Filtro "dados minimos" (nome existe E email contém @), Run once, curl do Bruno;
 4. Immediately as data arrives, ON, curl da Carla, aba History.
 Cortes: B (só curl, sem navegador); C (filtro só no S36). Limite de 60 s para qualquer conserto: depois, cenário pronto ou tecla V.
 Passo a passo completo: conteudo.md, seção 3.3. A URL do webhook nunca vai para o deck.
+A moldura mostra uma tela ilustrativa desenhada (o webhook criado, com o endereço mascarado), não uma captura.
 Ponte ao voltar: síntese do fluxo.`,
   }),
 
@@ -68,13 +70,13 @@ Ponte ao voltar: síntese do fluxo.`,
   showcase({
     titulo: 'O fluxo que acabamos de montar',
     plataforma: 'make',
-    midia: { src: 'media/aula-03/make-canvas-final.png', descricao: 'Canvas do Make: Custom webhook, filtro, Google Sheets Add a Row e Gmail Send an Email' },
+    midia: { src: 'media/aula-03/tela-make-canvas-final.svg', descricao: 'Tela ilustrativa do canvas do Make: Custom webhook, filtro, Google Sheets Add a Row e Gmail Send an Email' },
     url: 'make.com · Scenario Builder',
     anotacoes: [
-      { x: 16, y: 46, titulo: 'Custom webhook', texto: 'O endereço que recebe a inscrição.', zoom: { x: 0, y: 20, w: 50, h: 55 } },
-      { x: 34, y: 46, titulo: 'Filtro', texto: 'Só passa com nome e um e-mail com arroba.', zoom: { x: 15, y: 20, w: 50, h: 55 } },
-      { x: 54, y: 46, titulo: 'Add a Row', texto: 'Cada bundle vira uma linha na planilha.', zoom: { x: 32, y: 20, w: 50, h: 55 } },
-      { x: 74, y: 46, titulo: 'Send an Email', texto: 'Mapeando nome e trilha. Agendado em Immediately as data arrives.', zoom: { x: 50, y: 20, w: 50, h: 55 } },
+      { x: 16, y: 32, titulo: 'Custom webhook', texto: 'O endereço que recebe a inscrição.', zoom: { x: 0, y: 22, w: 50, h: 50 } },
+      { x: 35, y: 32, titulo: 'Filtro', texto: 'Só passa com nome e um e-mail com arroba.', zoom: { x: 15, y: 22, w: 50, h: 50 } },
+      { x: 54, y: 32, titulo: 'Add a Row', texto: 'Cada bundle vira uma linha na planilha.', zoom: { x: 32, y: 22, w: 50, h: 50 } },
+      { x: 74, y: 32, titulo: 'Send an Email', texto: 'Mapeando nome e trilha. Agendado em Immediately as data arrives.', zoom: { x: 50, y: 22, w: 50, h: 50 } },
     ],
     notes: `Síntese de saída da demo, 40 segundos. Uma anotação por passo, com zoom no módulo.
 1. Custom webhook: a campainha.
@@ -82,7 +84,7 @@ Ponte ao voltar: síntese do fluxo.`,
 3. Add a Row: a linha que guarda.
 4. Send an Email: o e-mail que avisa. E a chave Immediately que liga tudo.
 "Gatilho, módulos, mapeamento. Repitam comigo mentalmente."
-Mídia: make-canvas-final.png (versão sem IA). Conferir as posições x/y dos marcadores depois da captura.
+Mídia: tela ilustrativa desenhada do cenário (tela-make-canvas-final.svg, versão sem IA), não uma captura; os marcadores ficam logo acima de cada módulo.
 A miniatura make-scheduling.png pedida no storyboard não cabe neste arquétipo: o agendamento está no texto da anotação 4.
 Ponte: se não funcionou no seu.`,
   }),
@@ -96,6 +98,9 @@ Ponte: se não funcionou no seu.`,
       { texto: 'Nada acontece', detalhe: 'O cenário está ligado e em Immediately as data arrives?' },
       { texto: 'O e-mail não chegou', detalhe: 'Olhe o Spam e a aba History do cenário.' },
       { texto: 'Erro de conexão com o Google', detalhe: 'Refaça a connection fora do horário de aula, na mesma conta.' },
+    ],
+    termos: [
+      { termo: 'History', nota: 'aba do Make que lista cada execução do cenário.' },
     ],
     notes: `"Pause o vídeo se estiver replicando." Cada passo marca um item.
 1. Sem estrutura determinada: mande um teste antes de mapear; se mudou, Redetermine data structure.

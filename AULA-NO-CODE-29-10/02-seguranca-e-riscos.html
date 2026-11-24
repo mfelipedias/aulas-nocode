@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Segurança e riscos no no-code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F6F8;--surface:#fff;--ink:#0F1A2B;--ink2:#4A5568;--line:#DCE0E7;
+  --cobalto:#2646D9;--cobalto-t:#E3E9FF;
+  --turquesa:#087A6D;--turquesa-t:#D6F3EE;
+  --ambar:#A85F00;--ambar-t:#FBEBCB;
+  --ardosia:#566074;--ardosia-t:#E6E9EF;
+  --rubi:#C62F3E;--rubi-t:#FBE2E5;
+  --accent:var(--rubi);--accent-t:var(--rubi-t);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.trilha{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0;font-size:.95rem}
+.trilha a{padding:6px 14px;border-radius:999px;text-decoration:none;color:var(--ink2);border:1px solid var(--line);background:var(--surface)}
+.trilha a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;letter-spacing:-.02em;font-variation-settings:"wdth" 88}
+h1{font-size:clamp(2.4rem,6.4vw,4.4rem);font-weight:800;max-width:14ch;margin-top:28px}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:700}
+.lead{font-size:1.2rem;color:var(--ink2);max-width:58ch;margin:18px 0 0}
+.bloco{margin-top:64px}
+.bloco>p{color:var(--ink2);max-width:62ch;margin:10px 0 0}
+
+/* diagrama */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.painel{background:var(--surface);border-radius:14px;padding:16px 18px 18px}
+.painel h2{font-size:1.25rem;margin-bottom:4px}
+.painel.mau h2{color:var(--rubi)}
+.painel.bom h2{color:var(--turquesa)}
+.painel svg{width:100%;height:auto;display:block;margin:6px 0 4px}
+.painel p{margin:0;color:var(--ink2);font-size:.97rem}
+
+/* riscos */
+.riscos{margin-top:22px}
+.riscos details{background:var(--surface);border-left:6px solid var(--rubi);border-radius:2px 12px 12px 2px;margin-top:10px}
+.riscos summary{cursor:pointer;padding:14px 20px;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.riscos summary::-webkit-details-marker{display:none}
+.riscos summary b{font:700 1.1rem var(--f-display)}
+.riscos summary small{color:var(--ink2);font-size:.92rem;flex:1;text-align:right}
+.riscos summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--rubi)}
+.riscos details[open] summary::after{content:"\2212"}
+.riscos .corpo{padding:0 20px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+.riscos .corpo p{margin:0;color:var(--ink2);font-size:.98rem}
+.riscos .corpo strong{display:block;color:var(--ink);margin-bottom:2px}
+.riscos .corpo div:last-child strong{color:var(--turquesa)}
+
+/* exemplo bubble */
+.passos{counter-reset:p;list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;max-width:70ch}
+.passos li{counter-increment:p;position:relative;padding:12px 16px 12px 56px;background:var(--surface);border-radius:10px}
+.passos li::before{content:counter(p);position:absolute;left:14px;top:10px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font:700 .95rem/30px var(--f-display);text-align:center}
+.passos code,.regra code{background:var(--ardosia-t);padding:1px 6px;border-radius:4px;font-size:.92em}
+
+.regras{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.regra{background:var(--surface);border-radius:14px;overflow:hidden}
+.regra header{padding:12px 18px;font:700 1.1rem var(--f-display);color:#fff}
+.regra.libera header{background:var(--turquesa)}
+.regra.fecha header{background:var(--ink)}
+.regra .quando{padding:12px 18px 4px;color:var(--ink2);font-size:.95rem}
+.regra ul{list-style:none;margin:0;padding:6px 18px 16px;display:grid;gap:6px}
+.regra li{display:flex;gap:10px;align-items:baseline;font-size:.97rem}
+.regra li i{font-style:normal;font-weight:700;width:1.2em;text-align:center}
+.regra li.sim i{color:var(--turquesa)}
+.regra li.nao i{color:var(--rubi)}
+
+table.quem{width:100%;border-collapse:collapse;margin-top:26px;background:var(--surface);border-radius:12px;overflow:hidden}
+table.quem th,table.quem td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:.97rem}
+table.quem thead th{background:var(--ardosia-t);font-family:var(--f-display);font-size:1rem}
+table.quem tbody tr:last-child td,table.quem tbody tr:last-child th{border-bottom:0}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-weight:700;font-size:.88rem}
+.tag.ok{background:var(--turquesa-t);color:var(--turquesa)}
+.tag.no{background:var(--rubi-t);color:var(--rubi)}
+.tag.mid{background:var(--ambar-t);color:var(--ambar)}
+.rolavel{overflow-x:auto;margin-top:0}
+.rolavel table{min-width:640px}
+
+.dica{margin-top:22px;padding:16px 20px;background:var(--ambar-t);border-radius:2px 14px 14px 2px;border-left:6px solid var(--ambar);max-width:70ch}
+.dica h3{color:var(--ambar);margin-bottom:4px}
+.dica p{margin:0}
+
+/* checklist */
+.check{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:8px;max-width:70ch}
+.check label{display:flex;gap:14px;align-items:flex-start;padding:13px 18px;background:var(--surface);border-radius:10px;cursor:pointer}
+.check input{width:22px;height:22px;margin-top:2px;accent-color:var(--turquesa);flex:none}
+.check input:checked+span{color:var(--ink2);text-decoration:line-through;text-decoration-color:#9AA3B2}
+#prog{margin:14px 0 0;font-weight:700}
+
+.fecho{margin-top:72px;background:var(--ink);color:#fff;padding:52px 0 44px}
+.fecho p{font:700 clamp(1.7rem,4.2vw,2.8rem)/1.12 var(--f-display);letter-spacing:-.02em;max-width:22ch;margin:0}
+.fecho a{color:#fff;display:inline-block;margin-top:26px}
+
+@media (max-width:760px){
+  .duo,.regras,.riscos .corpo{grid-template-columns:1fr}
+  .riscos summary{flex-wrap:wrap}
+  .riscos summary small{text-align:left;flex-basis:100%;order:3}
+}
+@media print{
+  body{background:#fff}.trilha,.fecho a{display:none}
+  .painel,.regra,.riscos details{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="trilha" aria-label="Folhas de aula">
+    <a href="01-tipos-de-sistemas.html">Tipos de sistemas</a>
+    <a href="02-seguranca-e-riscos.html" aria-current="page">Segurança e riscos</a>
+    <a href="03-custos-e-ferramentas.html">Custos e ferramentas</a>
+  </nav>
+
+  <header>
+    <h1>Esconder na tela não é proteger</h1>
+    <p class="lead">No no-code, a plataforma cuida da infraestrutura, mas a configuração do app continua sendo sua. A maioria dos incidentes vem de erro de configuração, não de falha da plataforma.</p>
+  </header>
+
+  <main>
+    <section aria-label="Diagrama: tela versus banco de dados">
+      <div class="duo">
+        <div class="painel mau">
+          <h2>Sem privacy rule</h2>
+          <svg viewBox="0 0 440 262" role="img" aria-label="Sem privacy rule: o filtro fica só na tela. João chama a API direto e recebe as notas de todos.">
+            <defs>
+              <marker id="ok-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#087A6D"/></marker>
+              <marker id="mau-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C62F3E"/></marker>
+            </defs>
+            <rect x="8" y="28" width="92" height="44" rx="8" fill="#fff" stroke="#DCE0E7"/>
+            <text x="54" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0F1A2B">Maria</text>
+            <rect x="8" y="183" width="92" height="44" rx="8" fill="#fff" stroke="#DCE0E7"/>
+            <text x="54" y="210" text-anchor="middle" font-size="14" font-weight="700" fill="#0F1A2B">João</text>
+            <rect x="138" y="28" width="116" height="44" rx="4" fill="#E6E9EF" stroke="#566074"/>
+            <text x="196" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#0F1A2B">Tela do app</text>
+            <text x="196" y="63" text-anchor="middle" font-size="11" fill="#4A5568">filtro: só as minhas</text>
+            <rect x="310" y="14" width="10" height="222" fill="none" stroke="#C62F3E" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <text x="315" y="254" text-anchor="middle" font-size="12" fill="#C62F3E">sem regra: portão aberto</text>
+            <rect x="346" y="93" width="88" height="64" rx="4" fill="#0F1A2B"/>
+            <text x="390" y="121" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Banco</text>
+            <text x="390" y="138" text-anchor="middle" font-size="11" fill="#fff">de dados</text>
+            <path d="M100 50H138" stroke="#087A6D" stroke-width="2.5" fill="none" marker-end="url(#ok-a)"/>
+            <path d="M254 50H390V93" stroke="#087A6D" stroke-width="2.5" fill="none" marker-end="url(#ok-a)"/>
+            <path d="M100 205H390V157" stroke="#C62F3E" stroke-width="2.5" fill="none" stroke-dasharray="7 5" marker-end="url(#mau-a)"/>
+            <text x="205" y="195" text-anchor="middle" font-size="12" fill="#C62F3E">atalho: chamada direta à API</text>
+          </svg>
+          <p>Maria vê só as notas dela, porque a tela filtra. João pula a tela, chama a API e <strong>recebe as notas de todos</strong>.</p>
+        </div>
+
+        <div class="painel bom">
+          <h2>Com privacy rule</h2>
+          <svg viewBox="0 0 440 262" role="img" aria-label="Com privacy rule: o banco só libera os dados de quem é dono. João, chamando a API direto, recebe uma lista vazia.">
+            <defs>
+              <marker id="ok-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#087A6D"/></marker>
+            </defs>
+            <rect x="8" y="28" width="92" height="44" rx="8" fill="#fff" stroke="#DCE0E7"/>
+            <text x="54" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0F1A2B">Maria</text>
+            <rect x="8" y="183" width="92" height="44" rx="8" fill="#fff" stroke="#DCE0E7"/>
+            <text x="54" y="210" text-anchor="middle" font-size="14" font-weight="700" fill="#0F1A2B">João</text>
+            <rect x="138" y="28" width="116" height="44" rx="4" fill="#E6E9EF" stroke="#566074"/>
+            <text x="196" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#0F1A2B">Tela do app</text>
+            <text x="196" y="63" text-anchor="middle" font-size="11" fill="#4A5568">filtro: só as minhas</text>
+            <rect x="310" y="14" width="10" height="222" fill="#087A6D"/>
+            <text x="315" y="254" text-anchor="middle" font-size="12" font-weight="700" fill="#087A6D">privacy rule: só o dono passa</text>
+            <rect x="346" y="93" width="88" height="64" rx="4" fill="#0F1A2B"/>
+            <text x="390" y="121" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Banco</text>
+            <text x="390" y="138" text-anchor="middle" font-size="11" fill="#fff">de dados</text>
+            <path d="M100 50H138" stroke="#087A6D" stroke-width="2.5" fill="none" marker-end="url(#ok-b)"/>
+            <path d="M254 50H390V93" stroke="#087A6D" stroke-width="2.5" fill="none" marker-end="url(#ok-b)"/>
+            <path d="M100 205H296" stroke="#C62F3E" stroke-width="2.5" fill="none" stroke-dasharray="7 5"/>
+            <path d="M298 196l12 18M310 196l-12 18" stroke="#C62F3E" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <text x="200" y="195" text-anchor="middle" font-size="12" fill="#C62F3E">atalho: chamada direta à API</text>
+          </svg>
+          <p>Maria continua vendo as notas dela. João, pelo atalho, <strong>recebe uma lista vazia</strong>: a proteção está no banco, não na tela.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco riscos" aria-labelledby="t-riscos">
+      <h2 id="t-riscos">Oito riscos e o cuidado para cada um</h2>
+      <p style="color:var(--ink2);margin:10px 0 0;max-width:62ch">Clique em cada item para ver o que acontece e o que fazer.</p>
+
+      <details open>
+        <summary><b>Regras de acesso mal configuradas</b><small>o erro mais comum</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Sem privacy rules (Bubble) ou com RLS desligada (Supabase, usado pelo Lovable), qualquer pessoa consulta a API e recebe os dados. Validar só no front-end não protege. No IDOR, o usuário troca o ID na URL e abre o dado de outra pessoa.</p></div>
+          <div><p><strong>O que fazer</strong>Comece fechando tudo e abra só o necessário. Aplique o menor privilégio por perfil. Teste com usuários de perfis diferentes, inclusive visitante.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Segredos expostos</b><small>chaves e tokens no lugar errado</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Em apps gerados por IA, é comum a chave de API ir parar no código do navegador, que qualquer pessoa pode ler. Tokens colados em prompts, planilhas ou chats também vazam.</p></div>
+          <div><p><strong>O que fazer</strong>Guarde credenciais no cofre da própria ferramenta (Make e n8n têm gerenciamento de conexões). Troque chaves que possam ter vazado.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Código gerado por IA</b><small>funciona não quer dizer seguro</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Lovable e similares geram código funcional, mas com autenticação frágil, validação ausente ou RLS incompleta.</p></div>
+          <div><p><strong>O que fazer</strong>Revise o que foi gerado antes de publicar, principalmente login, pagamentos e acesso a dados.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Integrações e automações</b><small>Make, n8n, webhooks</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Webhook público sem autenticação pode ser disparado por qualquer pessoa que descubra a URL. Conexões com permissão total ampliam o estrago. Cada app conectado é mais um ponto de vazamento.</p></div>
+          <div><p><strong>O que fazer</strong>Proteja o webhook com token ou validação de origem. Use o mínimo de escopo. No n8n self-hosted, cuide de atualizações, firewall, HTTPS e backups.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Dados pessoais e LGPD</b><small>você responde pelos dados</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Quem constrói o app é controlador ou operador dos dados, mesmo usando plataforma de terceiros. Dados sensíveis e de menores exigem cuidado redobrado.</p></div>
+          <div><p><strong>O que fazer</strong>Colete só o necessário, tenha base legal e política de privacidade, confira onde os dados ficam hospedados e prepare-se para pedidos de acesso, correção e exclusão.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Dependência do fornecedor</b><small>preço, queda, encerramento</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Se a plataforma mudar preços, sair do ar ou encerrar, o app pode ser perdido. No Bubble, o código não é exportável.</p></div>
+          <div><p><strong>O que fazer</strong>Faça backup periódico dos dados, documente a lógica do app e verifique SLA, histórico de incidentes e certificações (SOC 2, ISO 27001).</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Contas e governança</b><small>quem entra no editor</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>A conta da plataforma controla todo o app. Contas compartilhadas e apps sem dono criam uma TI paralela (shadow IT).</p></div>
+          <div><p><strong>O que fazer</strong>Ative autenticação em dois fatores, evite contas compartilhadas, revise acessos e separe teste de produção usando dados fictícios nos testes.</p></div>
+        </div>
+      </details>
+      <details>
+        <summary><b>Plugins de terceiros</b><small>marketplace</small></summary>
+        <div class="corpo">
+          <div><p><strong>O que acontece</strong>Plugins podem ter falhas ou coletar dados do seu app.</p></div>
+          <div><p><strong>O que fazer</strong>Prefira os bem avaliados, mantidos e com muitos usuários, e revise as permissões que pedem.</p></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-bubble">
+      <h2 id="t-bubble">Exemplo no Bubble: formulário de inscrição</h2>
+      <p>Cenário: qualquer pessoa preenche o formulário (tipo de dado <code>Inscricao</code>, com nome, e-mail, telefone, ideia e trilha), mas só você, como admin, pode ver as inscrições.</p>
+
+      <ol class="passos">
+        <li>Em <strong>Data → Data types → User</strong>, crie o campo <code>admin</code> (sim/não). Marque <code>sim</code> só no seu usuário.</li>
+        <li>Em <strong>Data → Privacy → Inscricao</strong>, crie a regra <strong>Admin</strong> com a condição <code>Current User's admin is yes</code>.</li>
+        <li>Na regra padrão <strong>Everyone else</strong>, desmarque tudo. Sem isso, a regra de admin não protege nada.</li>
+        <li>Teste com <strong>Run as</strong>: como visitante, a lista vem vazia; como admin, aparece tudo. O painel App data não serve de teste, pois mostra tudo ao dono.</li>
+      </ol>
+
+      <div class="regras">
+        <div class="regra libera">
+          <header>Regra "Admin"</header>
+          <div class="quando">Quando: <code>Current User's admin is yes</code></div>
+          <ul>
+            <li class="sim"><i>✓</i>Find this in searches</li>
+            <li class="sim"><i>✓</i>View files attached to this</li>
+            <li class="sim"><i>✓</i>View em todos os campos</li>
+            <li class="sim"><i>✓</i>Constraint</li>
+            <li class="nao"><i>✕</i>Auto-bind (admin só visualiza)</li>
+          </ul>
+        </div>
+        <div class="regra fecha">
+          <header>Regra "Everyone else"</header>
+          <div class="quando">Quando: todos os outros, inclusive visitante</div>
+          <ul>
+            <li class="nao"><i>✕</i>Find this in searches</li>
+            <li class="nao"><i>✕</i>View files attached to this</li>
+            <li class="nao"><i>✕</i>View em todos os campos</li>
+            <li class="nao"><i>✕</i>Constraint</li>
+            <li class="nao"><i>✕</i>Auto-bind</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rolavel">
+      <table class="quem">
+        <thead><tr><th scope="col">Quem acessa</th><th scope="col">Pode criar uma inscrição?</th><th scope="col">Vê as inscrições?</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Visitante anônimo</th><td><span class="tag ok">Sim</span> o formulário continua funcionando</td><td><span class="tag no">Não</span> lista vazia</td></tr>
+          <tr><th scope="row">Admin</th><td><span class="tag ok">Sim</span></td><td><span class="tag ok">Todas</span></td></tr>
+          <tr><th scope="row">Inscrito logado (variante)</th><td><span class="tag ok">Sim</span></td><td><span class="tag mid">Só a própria</span> com a regra <code>Created By is Current User</code></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="dica">
+        <h3>Cuidado com a coluna Constraint</h3>
+        <p>Em campos sensíveis como e-mail e telefone, deixe Constraint desmarcado para todos, menos para o admin. Com ele liberado, alguém pode descobrir valores por tentativa, buscando por exemplo e-mails que contenham um trecho.</p>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-make">
+      <h2 id="t-make">E o webhook do Make continua funcionando?</h2>
+      <p>Na maioria dos casos, sim. O que importa é de que lado está a integração e de onde saem os dados.</p>
+      <div class="rolavel">
+      <table class="quem">
+        <thead><tr><th scope="col">Direção</th><th scope="col">Privacy rules afetam?</th><th scope="col">O que verificar</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Bubble envia ao Make com os valores dos inputs do formulário</th><td><span class="tag ok">Não</span></td><td>Nada, é o jeito mais seguro.</td></tr>
+          <tr><th scope="row">Bubble envia ao Make lendo os dados do banco, como visitante</th><td><span class="tag no">Sim</span></td><td>Campos podem chegar vazios. Use os inputs ou um backend workflow.</td></tr>
+          <tr><th scope="row">Make lê o Bubble com token de admin</th><td><span class="tag ok">Não</span></td><td>Ignora as regras. Proteja bem o token.</td></tr>
+          <tr><th scope="row">Make lê o Bubble com token de usuário</th><td><span class="tag no">Sim</span></td><td>O usuário do token precisa ter permissão.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="dica">
+        <h3>Teste de dois minutos</h3>
+        <p>Ative as regras, saia da conta, envie uma inscrição de teste e abra a execução no Make. Se algum campo veio em branco, a causa é a regra de privacidade.</p>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-ver">
+      <h2 id="t-ver">Com tudo fechado, como eu vejo os dados?</h2>
+      <p>Regras de privacidade definem quem consegue ver. Para você consultar, escolha uma das opções.</p>
+      <div class="rolavel">
+      <table class="quem">
+        <thead><tr><th scope="col">Situação</th><th scope="col">Melhor opção</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Só você consulta, de vez em quando</th><td>Painel <strong>App data</strong> do editor, com exportação em CSV. Não exige login nem tela.</td></tr>
+          <tr><th scope="row">Outras pessoas da equipe precisam ver</th><td>Página <code>admin</code> com login e um <strong>Repeating Group</strong> de Inscricao, ou planilha compartilhada alimentada pelo Make.</td></tr>
+          <tr><th scope="row">Quer filtros, busca e botões no sistema</th><td>Página <code>admin</code> com login e Repeating Group. A página redireciona quem não é admin, mas quem protege o dado é a privacy rule.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-check">
+      <h2 id="t-check">Checklist antes de publicar</h2>
+      <p>Marque conforme conferir. É só para a sua tela e não fica salvo.</p>
+      <ul class="check" id="check">
+        <li><label><input type="checkbox"><span>Regras de acesso testadas com usuários de perfis diferentes</span></label></li>
+        <li><label><input type="checkbox"><span>Nenhum segredo exposto no front-end</span></label></li>
+        <li><label><input type="checkbox"><span>Webhooks e APIs protegidos</span></label></li>
+        <li><label><input type="checkbox"><span>Autenticação em dois fatores ativa e acessos revisados</span></label></li>
+        <li><label><input type="checkbox"><span>Backup dos dados e plano para falhas</span></label></li>
+        <li><label><input type="checkbox"><span>Conformidade com a LGPD: política de privacidade e base legal</span></label></li>
+        <li><label><input type="checkbox"><span>Código gerado por IA revisado, se houver</span></label></li>
+      </ul>
+      <p id="prog" aria-live="polite">0 de 7 itens conferidos</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-ex">
+      <h2 id="t-ex">Exercício para a aula</h2>
+      <ol class="passos">
+        <li>Crie duas contas de teste, Maria e João.</li>
+        <li>Com a Maria, crie algumas notas.</li>
+        <li>Entre como João e tente ver as notas da Maria: pela tela, mudando a URL e com o modo <strong>Run as</strong> do editor.</li>
+        <li>Compare o resultado com a privacy rule desligada e ligada.</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer class="fecho">
+  <div class="wrap">
+    <p>A proteção precisa estar no banco de dados.</p>
+    <a href="03-custos-e-ferramentas.html">Próxima folha: custos e ferramentas</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var itens=document.querySelectorAll('#check input'),p=document.getElementById('prog');
+  function atualizar(){
+    var n=0;itens.forEach(function(i){if(i.checked)n++});
+    p.textContent=n+' de '+itens.length+' itens conferidos'+(n===itens.length?'. Todos conferidos.':'');
+  }
+  itens.forEach(function(i){i.addEventListener('change',atualizar)});
+})();
+</script>
+</body>
+</html>

@@ -28,33 +28,33 @@ export const cap01: SlideDef[] = [
     title: 'S01 · A página da Aula 1',
     titulo: 'Semana passada, esta página ficou pronta.',
     midia: {
-      src: 'media/aula-02/aula01-pagina-ia.png',
-      descricao: 'Página de inscrição do Hackathon No-Code 2026 gerada por IA na Aula 1, com formulário e botão',
+      src: 'media/aula-02/tela-aula01-pagina-ia.svg',
+      descricao: 'Tela ilustrativa: página de inscrição do Hackathon No-Code 2026 gerada por IA na Aula 1, com formulário e botão',
     },
     url: 'hackathon-nocode-2026.lovable.app',
     anotacoes: [
       { x: 64, y: 50, titulo: 'Nome, e-mail, telefone', texto: 'O formulário que a Unidade I pediu, gerado a partir do wireframe.', zoom: { x: 40, y: 22, w: 58, h: 58 } },
-      { x: 64, y: 78, titulo: 'Quero minha vaga', texto: 'O botão diz o que acontece com a pessoa, não “Enviar”.', zoom: { x: 40, y: 48, w: 58, h: 52 } },
+      { x: 88, y: 78, titulo: 'Quero minha vaga', texto: 'O botão diz o que acontece com a pessoa, não “Enviar”.', zoom: { x: 40, y: 42, w: 58, h: 58 } },
       {
-        x: 50,
-        y: 50,
+        x: 90,
+        y: 86,
         titulo: 'Onde foi parar a inscrição?',
         texto: 'Eu preenchi e cliquei. Para onde foi?',
         midia: {
-          src: 'media/aula-02/aula01-teste-envio.png',
-          descricao: 'A mesma página depois do clique em Quero minha vaga, com os campos preenchidos com dados fictícios',
+          src: 'media/aula-02/tela-aula01-teste-envio.svg',
+          descricao: 'Tela ilustrativa: a mesma página depois do clique em Quero minha vaga, com os campos preenchidos com dados fictícios',
         },
       },
     ],
-    fonte: 'Captura do professor, Aula 1 (08/10/2026).',
+    fonte: 'Tela ilustrativa, com dados fictícios.',
     chrome: false,
     cena: 'paineis',
     notes: `Começar sem boas-vindas: a cena fala primeiro. Deixar a moldura girar até ficar de frente (2 s).
 "Esta é a página que uma IA gerou para o nosso Hackathon No-Code 2026 na Aula 1, a partir de persona, MoSCoW e wireframe."
 Passo 1: o formulário com nome, e-mail e telefone. "Tem formulário, tem identidade visual."
 Passo 2: o botão "Quero minha vaga", o texto de ação que a Unidade I pediu.
-Passo 3: a captura troca para o teste de envio (aula01-teste-envio.png). Dizer em voz alta: "Eu preenchi e cliquei. A pergunta que dá nome à aula: para onde foi essa inscrição?"
-Mídias: aula01-pagina-ia.png (passos 0 a 2) e aula01-teste-envio.png (passo 3).
+Passo 3: a tela troca para o teste de envio: campos preenchidos e um "Obrigado!" que não prova nada. Dizer em voz alta: "Eu preenchi e cliquei. A pergunta que dá nome à aula: para onde foi essa inscrição?"
+Telas ilustrativas (não são print): tela-aula01-pagina-ia.svg (passos 0 a 2) e tela-aula01-teste-envio.svg (passo 3). Se quiser, mostrar a página real na aba do navegador.
 Ponte: "Quantas inscrições essa página guardou desde a semana passada?"`,
   }),
 
@@ -156,6 +156,11 @@ Ponte: a história em seis marcos.`,
   // S08
   timeline({
     title: 'S08 · Bubble em seis marcos',
+    termos: [
+      { termo: 'Série A', nota: 'primeira grande rodada de investimento numa startup.' },
+      { termo: 'Agente de IA', nota: 'IA que executa tarefas no app, não só responde.' },
+      { termo: 'API', nota: 'porta pela qual um sistema conversa com outro.' },
+    ],
     titulo: 'Bubble em seis marcos',
     marcos: [
       { data: '2012', titulo: 'Fundado em Nova York', texto: 'Por Josh Haas e Emmanuel Straschnov.' },
@@ -179,6 +184,9 @@ Ponte: a palavra mais importante da aula.`,
   // S09
   stat({
     title: 'S09 · 28,6 bilhões de workflows',
+    termos: [
+      { termo: 'Workflow', nota: 'sequência de ações que o app faz quando algo acontece.' },
+    ],
     contexto: 'Quantos workflows os apps feitos no Bubble executaram em 2025?',
     valor: 28.6,
     casas: 1,
@@ -198,6 +206,9 @@ Ponte: quem construiu negócio de verdade nele?`,
   // S10
   grid({
     title: 'S10 · Empresas que começaram no Bubble',
+    termos: [
+      { termo: 'Marketplace', nota: 'site que junta quem oferece e quem procura.' },
+    ],
     titulo: 'Empresas que começaram no Bubble',
     cartoes: [
       {
@@ -234,6 +245,10 @@ Ponte: o que vocês já viram na Unidade II.`,
   // S11
   checklist({
     title: 'S11 · O que a Unidade II trouxe',
+    termos: [
+      { termo: 'Banco de dados', nota: 'onde o app guarda as informações, organizadas.' },
+      { termo: 'Editor', nota: 'a tela do Bubble onde se monta o app.' },
+    ],
     titulo: 'O que a Unidade II trouxe',
     subtitulo: 'Hoje: tudo isso aplicado ao Hackathon No-Code 2026.',
     itens: [
@@ -254,6 +269,11 @@ Ponte: e quanto custa fazer tudo isso?`,
   // S12
   twoColumn({
     title: 'S12 · O que o plano gratuito permite',
+    termos: [
+      { termo: 'version-test', nota: 'versão de teste do app, só para quem constrói.' },
+      { termo: 'Workload unit', nota: 'medida do trabalho do servidor; o Bubble cobra por ela.' },
+      { termo: 'Versão live', nota: 'versão publicada, aberta ao público.' },
+    ],
     titulo: 'O que o plano gratuito permite',
     topicos: [
       { icone: CircleCheck, titulo: 'Dá para fazer', texto: 'Editor completo, testes em version-test, 50 mil workload units por mês e o AI Agent em beta.' },
@@ -282,15 +302,15 @@ Ponte: o mapa do editor.`,
     titulo: 'O mapa do editor',
     plataforma: 'bubble',
     midia: {
-      src: 'media/aula-02/bubble-editor-mapa.png',
-      descricao: 'Editor do Bubble com a barra lateral (Design, Workflow, Data) e o property editor à direita',
+      src: 'media/aula-02/tela-bubble-editor-mapa.svg',
+      descricao: 'Tela ilustrativa: editor do Bubble com a barra lateral (Design, Workflow, Data) e o property editor à direita',
     },
     url: 'bubble.io/page?id=hackathon-aula02&tab=Design',
     anotacoes: [
       { x: 3, y: 16, titulo: 'Design', texto: 'A página e seus elementos.', zoom: { x: 0, y: 0, w: 45, h: 45 } },
       { x: 3, y: 26, titulo: 'Workflow', texto: 'O que acontece quando alguém faz algo.', zoom: { x: 0, y: 8, w: 45, h: 45 } },
       { x: 3, y: 36, titulo: 'Data', texto: 'O que o app guarda.', zoom: { x: 0, y: 18, w: 45, h: 45 } },
-      { x: 86, y: 30, titulo: 'Property editor (2026)', texto: 'Abas Visual, Interaction e Conditional.', zoom: { x: 58, y: 5, w: 42, h: 60 } },
+      { x: 86, y: 30, titulo: 'Property editor (2026)', texto: 'Abas Visual, Interaction e Conditional.', zoom: { x: 56, y: 4, w: 44, h: 44 } },
     ],
     fonte: 'Blog e manual do Bubble: property editor.',
     cena: 'paineis',
@@ -298,13 +318,16 @@ Ponte: o mapa do editor.`,
 Passos 1 a 3: Design, Workflow, Data, com zoom na barra lateral.
 Citar de passagem as outras abas (Styles, Plugins, Settings, Logs) sem se demorar.
 Passo 4: o property editor redesenhado em 2025, liberado aos poucos. "Appearance virou Visual e Layout virou Interaction."
-Recorte do property editor: bubble-property-editor.png (pendente). Enquanto não houver, o zoom do passo 4 mostra a região na captura principal.
+A tela é ilustrativa (não é print): o zoom do passo 4 amplia o property editor nela mesma. O editor real aparece na Demo 1.
 Ponte: se é tão completo, por que nem tudo é feito nele?`,
   }),
 
   // S14
   pause({
     title: 'S14 · Pausa: por que nem tudo é Bubble?',
+    termos: [
+      { termo: 'Lock-in', nota: 'dependência de um fornecedor: sair dele é caro ou difícil.' },
+    ],
     pergunta: 'Se o Bubble faz tudo isso, por que nem todo software é feito nele?',
     resposta: 'Código não exportável (lock-in), custo que cresce com o uso e menos controle em escala muito grande.',
     detalhe: 'Ferramenta é escolha, não religião. Na Aula 4 fazemos essa conta com números.',

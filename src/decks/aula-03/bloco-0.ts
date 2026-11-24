@@ -44,6 +44,9 @@ Ponte: "Isso não é brincadeira de hackathon."`,
       { valor: 1000, sufixo: '+', rotulo: 'corretores por dia' },
     ],
     fonte: 'n8n, estudo de caso Icatu Seguros (acesso em 04/10/2026): de ~5 min para < 40 s (−85%), 7 semanas, 1.000+ corretores/dia.',
+    termos: [
+      { termo: 'API', nota: 'porta combinada para um sistema pedir dados ou ações a outro.' },
+    ],
     notes: `Passo 0: empresa e problema. "A Icatu Seguros, aqui no Brasil, tinha um problema: uma cotação levava uns cinco minutos navegando em sistema."
 Passo 1: a solução. "Montou um assistente no WhatsApp para os corretores. Por baixo, o n8n recebe a mensagem, chama a API interna de cotação e usa uma IA para entender o que o corretor escreveu."
 Passo 2: os números contam. "Menos de 40 segundos. Em produção em sete semanas. Mais de mil corretores por dia."

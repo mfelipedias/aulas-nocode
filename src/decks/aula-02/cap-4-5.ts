@@ -37,6 +37,11 @@ Ponte: como essa frase aparece na aba Workflow.`,
   // S30
   flow({
     title: 'S30 · Anatomia de um workflow',
+    termos: [
+      { termo: 'Evento', nota: 'o que dispara o workflow, como um clique.' },
+      { termo: 'Step', nota: 'cada ação do workflow, em ordem.' },
+      { termo: 'Only when', nota: 'só executa se a condição for verdadeira.' },
+    ],
     titulo: 'Anatomia de um workflow',
     nos: [
       { id: 'evento', tag: 'Evento', rotulo: 'Botão clicado', sub: 'Quero minha vaga', icone: MousePointerClick, tipo: 'gatilho' },
@@ -49,7 +54,7 @@ Ponte: como essa frase aparece na aba Workflow.`,
       { de: 'cria', para: 'reset' },
       { de: 'reset', para: 'mostra' },
     ],
-    conclusao: 'Um evento, passos numerados, executados em ordem. Only when no evento vale para todos.',
+    conclusao: 'Um evento, passos em ordem. Only when no evento vale para todos.',
     cena: 'nevoa-suave',
     notes: `Na aba Workflow, a frase vira este desenho. Um nó por passo.
 Passo 0: o evento, When Button Quero minha vaga is clicked, com o selo Only when.
@@ -58,13 +63,17 @@ Passo 2: Step 2, Reset relevant inputs, limpar o formulário.
 Passo 3: Step 3, Show an element, mostrar a confirmação.
 Passo 4: a síntese. Os passos rodam em ordem, de cima para baixo. A condição Only when pode ficar no evento (vale para tudo) ou num passo específico.
 Os nomes em inglês são exatamente os da aba Workflow (manual do Bubble, "Element actions").
-Miniatura opcional bubble-workflow-inscricao.png: aparece no slide da Demo 2.
+A tela ilustrativa do workflow aparece no slide da Demo 2.
 Ponte: os eventos e ações que mais vamos usar.`,
   }),
 
   // S31
   grid({
     title: 'S31 · Eventos e ações mais usados',
+    termos: [
+      { termo: 'Element', nota: 'cada peça da tela: texto, botão, campo.' },
+      { termo: 'Thing', nota: 'um registro guardado no banco.' },
+    ],
     titulo: 'Eventos e ações mais usados',
     cartoes: [
       { icone: MousePointerClick, titulo: 'Quando: na tela', itens: ['An element is clicked', "An input's value is changed"] },
@@ -86,6 +95,10 @@ Ponte: onde a condição pode morar.`,
   // S32
   twoColumn({
     title: 'S32 · Condição em dois lugares',
+    termos: [
+      { termo: 'Conditional', nota: 'aba que muda a aparência do elemento conforme uma condição.' },
+      { termo: 'Make required', nota: 'torna o preenchimento do campo obrigatório.' },
+    ],
     titulo: 'Condição em dois lugares',
     topicos: [
       { icone: Workflow, titulo: 'No workflow: decide se acontece', texto: "Only when Input E-mail's value is not empty. É lógica.", realce: ['workflow', 'inscricao'] },
@@ -119,6 +132,11 @@ Ponte: uma regra de negócio de verdade.`,
   // S33
   code({
     title: 'S33 · Sem inscrição duplicada',
+    termos: [
+      { termo: 'Do a search for', nota: 'busca registros no banco, como um SELECT.' },
+      { termo: ':count', nota: 'conta quantos registros a busca encontrou.' },
+      { termo: 'Regra de negócio', nota: 'regra do mundo real que o app precisa respeitar.' },
+    ],
     titulo: 'Sem inscrição duplicada',
     subtitulo: 'A primeira regra de negócio de verdade.',
     arquivo: 'Workflow › evento › Only when',
@@ -154,6 +172,9 @@ Ponte: um bug clássico, como pausa.`,
   // S34
   pause({
     title: 'S34 · Pausa: a tela mente',
+    termos: [
+      { termo: 'App data', nota: 'aba do Bubble que mostra o que está guardado no banco.' },
+    ],
     pergunta: 'Cliquei, a mensagem de confirmação apareceu, e o App data continua vazio. Por quê?',
     resposta: 'O workflow mostra a mensagem mas não cria a Inscricao, ou cria só quando a condição é verdadeira, e ela foi falsa.',
     detalhe: 'Mensagem na tela não prova que salvou. O App data prova.',
@@ -190,6 +211,9 @@ Ponte: o workflow inteiro, em JavaScript.`,
   // S36
   code({
     title: 'S36 · O mesmo workflow, em JavaScript',
+    termos: [
+      { termo: 'JavaScript', nota: 'linguagem de programação da web.' },
+    ],
     titulo: 'O mesmo workflow, em JavaScript',
     arquivo: 'inscricao.js (db é fictício)',
     linguagem: 'js',
@@ -214,14 +238,14 @@ Ponte: o workflow inteiro, em JavaScript.`,
       { linhas: '1-2', nota: 'O evento: um addEventListener de clique no botão.' },
       { linhas: '4-6', nota: 'As condições do Only when: dois ifs que saem da função.' },
       { linhas: '7-10', nota: 'Create a new thing é um insert com os valores dos inputs.' },
-      { linhas: '11-14', nota: 'Reset e Show: duas linhas no fim. Cada comentário é o nome exato no Bubble.' },
+      { linhas: '11-14', nota: 'Reset e Show: duas linhas no fim.' },
     ],
     cena: 'vazio',
     notes: `Para quem já viu um pouco de programação: o mesmo workflow em JavaScript.
 Passo 1: o evento é um addEventListener de clique.
 Passo 2: as condições são dois ifs que saem da função.
 Passo 3: o Create a new thing é um insert.
-Passo 4: reset e show, duas linhas no fim.
+Passo 4: reset e show, duas linhas no fim. Cada comentário do código é o nome exato da ação no Bubble.
 O db aqui é fictício: num sistema real, essa linha esconde um servidor, um banco, autenticação e validação, que o Bubble entrega pronto.
 "A lógica é a mesma. A sintaxe é que sumiu." É a frase da Aula 1.
 Ponte: os três bugs que mais aparecem.`,
@@ -230,6 +254,10 @@ Ponte: os três bugs que mais aparecem.`,
   // S37
   bulletsRich({
     title: 'S37 · Os 3 bugs mais comuns',
+    termos: [
+      { termo: 'Visible on page load', nota: 'elemento já visível quando a página abre.' },
+      { termo: 'Debugger', nota: 'roda o app passo a passo para achar erros.' },
+    ],
     titulo: 'Os 3 bugs mais comuns',
     itens: [
       { icone: Bug, titulo: 'Campo ligado ao input errado', texto: "email = Input Nome's value. Salva, mas salva errado." },
@@ -253,6 +281,10 @@ Ponte: "Vamos ver tudo isso funcionando, e eu vou quebrar uma coisa de propósit
   // S38
   demo({
     title: 'S38 · Demo 2: workflow e organização',
+    termos: [
+      { termo: 'Preview', nota: 'modo de testar o app como um visitante veria.' },
+      { termo: 'Contador', nota: 'número calculado na hora, como o total de inscrições.' },
+    ],
     plataforma: 'bubble',
     titulo: 'Agora, no Bubble: workflow e organização',
     passos: [
@@ -262,7 +294,8 @@ Ponte: "Vamos ver tudo isso funcionando, e eu vou quebrar uma coisa de propósit
     ],
     duracao: 'Cerca de 11 minutos',
     url: 'bubble.io/page?id=hackathon-aula02&tab=Workflow',
-    captura: 'media/aula-02/bubble-workflow-inscricao.png',
+    captura: 'media/aula-02/tela-bubble-workflow-inscricao.svg',
+    capturaDescricao: 'Tela ilustrativa: aba Workflow com o evento do botão, a condição Only when e os três passos',
     video: {
       src: 'media/aula-02/demo2-workflow-organizacao.mp4',
       poster: 'media/aula-02/demo2-workflow-organizacao.jpg',
@@ -301,14 +334,14 @@ Ponte: a página da organização em tela cheia.`,
   imageFull({
     title: 'S40 · A página da organização, aberta',
     midia: {
-      src: 'media/aula-02/bubble-organizacao.png',
-      descricao: 'Página organizacao com 25 inscrições fictícias e o contador 25 inscrições, 95 vagas restantes',
+      src: 'media/aula-02/tela-bubble-organizacao.svg',
+      descricao: 'Tela ilustrativa: página organizacao com 25 inscrições fictícias e o contador 25 inscrições, 95 vagas restantes',
     },
     legenda: 'Qualquer pessoa com o link vê esta página.',
     detalhe: 'Nome, e-mail e telefone de 25 inscrições de teste, sem senha e sem conta.',
     cena: 'vazio',
     notes: `Deixar a imagem falar por 5 segundos antes de ler a faixa.
-"Esta é a página da organização com 25 inscrições de teste. Nome, e-mail, telefone."
+"Esta é a página da organização com 25 inscrições de teste. Nome, e-mail, telefone." (Tela ilustrativa com dados fictícios; a página real foi construída na demo.)
 Ler a legenda devagar: "E qualquer pessoa com este link vê tudo isso. Não precisa de senha, não precisa de conta."
 "Isso não é uma aplicação pronta. É um vazamento esperando acontecer."
 Ponte direta para o bloco 6.`,

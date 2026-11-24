@@ -30,6 +30,10 @@ export const bloco79: SlideDef[] = [
   statement({
     title: 'S55 · O prompt é uma especificação',
     partes: ['O prompt é uma\nespecificação.', 'Planejamento ruim\ngera prompt ruim.'],
+    termos: [
+      { termo: 'Prompt', nota: 'o pedido em texto que você escreve para a IA.' },
+      { termo: 'Especificação', nota: 'documento que diz o que o sistema faz e para quem.' },
+    ],
     cena: 'blocos-centro',
     notes: `"Na engenharia de software, especificação é o documento que diz o que o sistema faz, para quem e com que restrições. Um prompt para gerar um app é exatamente isso, escrito em português."
 Passo 1: "Planejamento ruim gera prompt ruim. E prompt ruim gera um resultado que parece pronto e não serve para o seu público."
@@ -45,6 +49,10 @@ Passo 1: "Planejamento ruim gera prompt ruim. E prompt ruim gera um resultado qu
       { texto: 'Para quem?', detalhe: 'Persona e não-público' },
       { texto: 'Por que vão usar?', detalhe: 'Proposta de valor e identidade' },
       { texto: 'Qual é a ação principal?', detalhe: 'CTA e wireframe' },
+    ],
+    termos: [
+      { termo: 'CTA', nota: 'chamada para ação: o botão que pede o próximo passo.' },
+      { termo: 'Proposta de valor', nota: 'o benefício principal que o produto promete.' },
     ],
     cena: 'nevoa-suave',
     notes: `O guia oficial de prompts da Lovable (docs.lovable.dev/prompting/prompting-one) recomenda planejar antes de pedir, respondendo a quatro perguntas.
@@ -98,17 +106,21 @@ Prompts próprios.`,
     ],
     duracao: 'Cerca de 9 minutos. Plano gratuito; nada é publicado.',
     url: 'lovable.dev',
-    captura: m('lovable-home-prompt.png'),
-    capturaDescricao: 'Lovable: tela inicial com o campo de prompt',
+    captura: m('tela-lovable-home-prompt.svg'),
+    capturaDescricao: 'Tela ilustrativa: Lovable, tela inicial com o prompt planejado e o wireframe anexado',
     trocas: [
-      { passo: 2, captura: m('lovable-gerando.png'), descricao: 'Lovable gerando a página a partir do prompt planejado e do wireframe' },
-      { passo: 3, captura: m('lovable-preview-mobile.png'), descricao: 'Preview do Lovable em modo celular, depois do ajuste pontual' },
+      { passo: 2, captura: m('tela-lovable-gerando.svg'), descricao: 'Tela ilustrativa: Lovable gerando a página a partir do prompt planejado e do wireframe' },
+      { passo: 3, captura: m('tela-lovable-preview-mobile.svg'), descricao: 'Tela ilustrativa: preview do Lovable em modo celular, depois do ajuste pontual' },
     ],
     video: {
       src: m('demo-lovable-prompt-planejado.mp4'),
       poster: m('demo-lovable-poster.png'),
       label: 'Backup: Lovable, prompt planejado e ajuste',
     },
+    termos: [
+      { termo: 'Preview', nota: 'pré-visualização: como a página fica, antes de publicar.' },
+      { termo: 'Tailwind', nota: 'kit de estilos que a IA usa para montar o visual.' },
+    ],
     cena: 'paineis',
     notes: `Plano gratuito: cerca de 3 dos 5 créditos do dia (prompt B ~2, ajuste C ~1); ~2 de reserva. Não usar o modo Plan.
 A. Aba 2: o projeto do prompt de uma linha, gerado em D−3 (custo zero). Apontar título e botão genéricos, campos errados, conteúdo inventado. Vídeo curto: media/aula-01/demo-lovable-prompt-ruim.mp4 (abrir pelo apresentador).
@@ -118,30 +130,30 @@ D. Prompt C de ajuste pontual: só a ordem no celular e a largura do botão muda
 E. Abrir o diálogo de publicar só para mostrar onde seria; NÃO confirmar. Mostrar o saldo de créditos. Apoio: lovable-publicar-dialogo.png.
 Plano B, em ordem: projeto pré-gerado; Google AI Studio (Build); tecla V. Nunca esperar mais de 60 s.
 Se o resultado ao vivo diferir da abertura: "Mesma especificação, outra execução."
-A moldura troca de captura por passo: lovable-home-prompt.png (0 e 1), lovable-gerando.png (2), lovable-preview-mobile.png (3).`,
+A moldura troca de tela ilustrativa por passo: tela-lovable-home-prompt.svg (0 e 1), tela-lovable-gerando.svg (2), tela-lovable-preview-mobile.svg (3). Na demo ao vivo vale a tela real.`,
   }),
 
   showcase({
     title: 'S59 · As duas páginas, agora com nome',
     titulo: 'Mesma ferramenta. Outra especificação.',
-    midia: { src: m('abertura-pagina-a-celular.png'), descricao: 'Página A no celular: gerada a partir do prompt de uma linha' },
+    midia: { src: m('tela-abertura-pagina-a-celular.svg'), descricao: 'Tela ilustrativa: página A no celular, gerada a partir do prompt de uma linha' },
     moldura: 'celular',
     rotulo: 'Prompt de uma linha',
     par: {
-      midia: { src: m('abertura-pagina-b-celular.png'), descricao: 'Página B no celular: gerada com o prompt planejado e o wireframe' },
+      midia: { src: m('tela-abertura-pagina-b-celular.svg'), descricao: 'Tela ilustrativa: página B no celular, gerada com o prompt planejado e o wireframe' },
       rotulo: 'Prompt planejado + wireframe',
     },
     anotacoes: [
       { x: 50, y: 22, titulo: 'Uma linha', texto: 'A IA preencheu o que eu não disse com o que é mais comum na internet.' },
       { x: 50, y: 22, naPar: true, titulo: 'Vinte minutos de plano', texto: 'Público, prioridades, estrutura, identidade e restrições.' },
     ],
-    fonte: 'Captura própria, Lovable, ensaio de D−2.',
+    fonte: 'Telas ilustrativas do que o Lovable gerou com cada prompt.',
     cena: 'paineis',
     notes: `Fecha o laço da abertura (este slide nunca é cortado).
 "Na abertura perguntei qual veio de uma linha e por quê. Agora a resposta tem nome."
 Passo 1: a página A. A IA preencheu tudo o que eu não disse com o que é mais comum na internet.
 Passo 2: a página B teve público, prioridade, estrutura, identidade e restrições. "A ferramenta era a mesma. A especificação, não."
-Fallback: se as versões celular faltarem, usar abertura-pagina-a.png e abertura-pagina-b.png (moldura navegador).
+As telas são ilustrativas; as versões desktop (tela-abertura-pagina-a.svg e tela-abertura-pagina-b.svg) estão em S01 e S61.
 Ponte: "Antes de comemorar: o que essa página realmente é?"`,
   }),
 
@@ -158,7 +170,7 @@ Ponte: "Antes de comemorar: o que essa página realmente é?"`,
   showcase({
     title: 'S61 · Acertou, inventou, esqueceu',
     titulo: 'Acertou, inventou, esqueceu',
-    midia: { src: m('abertura-pagina-b.png'), descricao: 'Página B gerada pela IA, para leitura crítica' },
+    midia: { src: m('tela-abertura-pagina-b.svg'), descricao: 'Tela ilustrativa: página B gerada pela IA, para leitura crítica' },
     moldura: 'navegador',
     url: 'pagina-b',
     anotacoes: [
@@ -166,9 +178,12 @@ Ponte: "Antes de comemorar: o que essa página realmente é?"`,
       { x: 70, y: 55, titulo: 'Inventou', texto: 'Números, depoimentos, patrocinadores que não pedimos.' },
       { x: 30, y: 80, titulo: 'Esqueceu', texto: 'Consentimento, validação, mensagem de erro, texto alternativo.' },
     ],
-    fonte: 'Observação própria do ensaio. Atualizar os itens com o que o ensaio produziu.',
+    fonte: 'Tela ilustrativa, com o que costuma aparecer numa página gerada por IA.',
+    termos: [
+      { termo: 'Texto alternativo', nota: 'descrição da imagem para quem usa leitor de tela.' },
+    ],
     cena: 'nevoa-suave',
-    notes: `Uma categoria por passo; o marcador aponta o trecho na página. Ajustar posições e itens depois do ensaio de D−1.
+    notes: `Uma categoria por passo; o marcador aponta o trecho na tela ilustrativa (acertou: título e apoio; inventou: “+500”, “R$ 10 mil”, depoimento e patrocínio; esqueceu: o pé do formulário, sem consentimento nem aviso de erro).
 Acertou: estrutura, texto do botão, três campos, cores e tom.
 Inventou (mesmo com a restrição, às vezes): "+500 participantes", depoimentos, logos de patrocinadores, prêmio.
 Esqueceu (porque não pedimos): consentimento LGPD (Aula 4), validação de e-mail e telefone, mensagem de erro, texto alternativo, contraste do verde.
@@ -228,6 +243,9 @@ Ponte: "Vamos amarrar."`,
       'Antes de construir: público, problema, o que aprender, MoSCoW.',
       'Wireframe em baixa fidelidade: hierarquia e um objetivo.',
       'O prompt é uma especificação.',
+    ],
+    termos: [
+      { termo: 'Baixa fidelidade', nota: 'desenho simples, sem cores nem detalhes finais.' },
     ],
     cena: 'nevoa-esquerda',
     notes: `Um item a cada 15 s, citando o slide em que nasceu.

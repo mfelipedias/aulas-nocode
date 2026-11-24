@@ -61,6 +61,11 @@ export const bloco7: SlideDef[] = [
     ],
     passos: [['planilha'], ['app']],
     conclusao: 'Eu declaro os dados. A ferramenta deduz a tela.',
+    termos: [
+      { termo: 'KEY', nota: 'coluna que identifica cada linha, sem repetir.' },
+      { termo: 'LABEL', nota: 'coluna usada como nome visível de cada item.' },
+      { termo: 'Enum', nota: 'lista fixa de opções; aqui, as trilhas.' },
+    ],
     notes: `"Aqui o paradigma muda de novo. No Bubble eu desenhei telas. Aqui eu não desenho nada."
 Passo 0: a planilha, com os nomes exatos das colunas.
 Passo 1: o app e as ligações. "O cabeçalho vira o nome dos campos. Cada linha vira um item da lista. O tipo da coluna vira o componente: uma coluna sim ou não vira um botão de marcar. E a chave única vira a identidade do registro. Sem chave, o app não sabe qual linha está editando."
@@ -80,6 +85,9 @@ Ponte: quem faz app a partir de dados.`,
     ],
     conclusao: 'Todos deixam construir de graça. E cobram para publicar.',
     fonte: 'about.appsheet.com/pricing; glideapps.com/pricing; Softr blog (atualizado em 24/09/2026); Microsoft Power Apps pricing. Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Produção', nota: 'a versão no ar, usada por gente de verdade.' },
+    ],
     notes: `Um cartão por passo.
 Passo 1: AppSheet, do Google: cria e testa com até 10 usuários sem pagar; publicar é pago.
 Passo 2: Glide virou GlideOS em agosto de 2026, e o plano gratuito novo publica zero apps.
@@ -101,6 +109,9 @@ Ponte: o que dá para fazer de graça no AppSheet.`,
       { icone: TriangleAlert, titulo: '15/05/2026: menos recursos novos', texto: 'O Google anunciou que vai reduzir o desenvolvimento de novos recursos.' },
     ],
     fonte: 'about.appsheet.com/pricing; AppSheet Help, Deploy; Google Developer forums, AppSheet 2026 Product Strategy Update (15/05/2026). Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Deploy', nota: 'publicar o app para uso real.' },
+    ],
     notes: `Um item por passo.
 Passo 1: até 10 usuários de teste, contando você. "Dez usuários cobrem a equipe de check-in do hackathon com folga."
 Passo 2: o app fica em estado de protótipo, e isso aparece em Manage, Deploy.
@@ -125,6 +136,10 @@ Ponte: para o AppSheet.`,
     captura: 'media/aula-03/esquema-planilha-para-app.svg',
     video: { src: 'media/aula-03/demo-appsheet.mp4', label: 'Backup: AppSheet a partir da planilha' },
     title: 'Demo: app de check-in no AppSheet',
+    termos: [
+      { termo: 'Emulador', nota: 'celular simulado na tela do computador.' },
+      { termo: 'View', nota: 'uma tela do app que mostra os dados de um jeito.' },
+    ],
     notes: `Antes de trocar: conferir se a planilha tem 5 linhas ou mais; se não, colar o seed (20 s).
 1. Na planilha: Extensions, AppSheet, Create an app. Menu cinza: appsheet.com, Create, App, Start with existing data.
 2. Data, inscricoes, Columns: KEY em id, LABEL em nome; email = Email, telefone = Phone, datas = DateTime, presente = Yes/No.

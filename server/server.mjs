@@ -413,6 +413,246 @@ async function rotasProfessor(req, res, url, p, m) {
   json(res, 404, { erro: 'Rota não encontrada.' });
 }
 
+/* ---------------- Quiz ao vivo ---------------- */
+// Um jogo por vez, no estilo Kahoot: o telão (professor) avança as fases e os celulares acompanham por long polling.
+// As perguntas ficam em materiais-professor/quiz-*.json (fora do git): o gabarito nunca vai para o navegador antes da hora.
+// Fases: lobby → pergunta → revelacao → placar → pergunta... → fim. O estado vai para dados/quiz.json a cada mudança.
+
+const ARQ_QUIZ = join(DADOS, 'quiz.json');
+const ARQ_QUIZ_RESULTADOS = join(DADOS, 'quiz-resultados.jsonl');
+const MAX_JOGADORES = 200;
+const ESPERA_MS = 25000;
+
+function listarQuizzes() {
+  if (!existsSync(MATERIAIS)) return [];
+  return readdirSync(MATERIAIS)
+    .filter((f) => /^quiz-[\w.-]+\.json$/.test(f))
+    .map((arquivo) => {
+      try {
+        const q = JSON.parse(readFileSync(join(MATERIAIS, arquivo), 'utf8'));
+        const perguntas = (q.perguntas ?? []).filter(
+          (p) => typeof p.texto === 'string' && Array.isArray(p.respostas) && p.respostas.length >= 2 && Number.isInteger(p.correta) && p.respostas[p.correta] != null,
+        );
+        return { arquivo, titulo: String(q.titulo ?? arquivo), perguntas };
+      } catch {
+        return null;
+      }
+    })
+    .filter((q) => q?.perguntas.length)
+    .sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
+}
+
+/** @type {any} */
+let quiz = lerJson(ARQ_QUIZ, null);
+/** Versões: os celulares só acordam em troca de fase; o telão acorda também a cada entrada e resposta. */
+let versao = 1;
+let versaoTelao = 1;
+const esperando = new Set();
+let timerQuiz = null;
+
+function mudouQuiz(fase) {
+  versaoTelao++;
+  if (fase) versao++;
+  if (quiz) gravarJson(ARQ_QUIZ, quiz);
+  else rmSync(ARQ_QUIZ, { force: true });
+  for (const w of [...esperando]) if (w.versaoAtual() !== w.v) w.enviar();
+}
+
+/** Responde na hora se a versão mudou; senão segura a requisição até mudar (ou 25 s). */
+function aguardar(res, v, versaoAtual, montar) {
+  if (v !== versaoAtual()) return json(res, 200, montar());
+  const w = {
+    v,
+    versaoAtual,
+    enviar() {
+      clearTimeout(w.t);
+      esperando.delete(w);
+      if (!res.writableEnded) json(res, 200, montar());
+    },
+  };
+  w.t = setTimeout(w.enviar, ESPERA_MS);
+  esperando.add(w);
+  res.on('close', () => {
+    clearTimeout(w.t);
+    esperando.delete(w);
+  });
+}
+
+const perguntaAtual = () => quiz?.perguntas[quiz.atual];
+const jogadores = () => Object.values(quiz?.jogadores ?? {});
+const restaMs = () => Math.max(0, (quiz?.prazo ?? 0) - Date.now());
+
+function ranking() {
+  return jogadores()
+    .sort((a, b) => b.pontos - a.pontos || b.acertos - a.acertos || a.entrouEm - b.entrouEm)
+    .map((j, i) => ({ id: j.id, nome: j.nome, pontos: j.pontos, acertos: j.acertos, posicao: i + 1 }));
+}
+
+function contagem() {
+  const p = perguntaAtual();
+  const c = p.respostas.map(() => 0);
+  for (const j of jogadores()) {
+    const r = j.respostas[quiz.atual];
+    if (r && r.escolha >= 0) c[r.escolha]++;
+  }
+  return c;
+}
+
+/** Tempo esgotado ou todos responderam: revela. */
+function fecharPergunta() {
+  clearTimeout(timerQuiz);
+  if (quiz?.fase !== 'pergunta') return;
+  quiz.fase = 'revelacao';
+  // Quem não respondeu perde a sequência de acertos.
+  for (const j of jogadores()) if (!j.respostas[quiz.atual]) j.sequencia = 0;
+  mudouQuiz(true);
+}
+
+function armarTimer() {
+  clearTimeout(timerQuiz);
+  if (quiz?.fase === 'pergunta') timerQuiz = setTimeout(fecharPergunta, restaMs() + 300);
+}
+armarTimer(); // servidor reiniciado no meio de uma pergunta
+
+function abrirQuiz(arquivo) {
+  const q = listarQuizzes().find((x) => x.arquivo === arquivo);
+  if (!q) return false;
+  clearTimeout(timerQuiz);
+  quiz = { id: novoId(), arquivo, titulo: q.titulo, perguntas: q.perguntas, fase: 'lobby', atual: -1, prazo: 0, abertoEm: new Date().toISOString(), jogadores: {} };
+  mudouQuiz(true);
+  return true;
+}
+
+function avancarQuiz() {
+  const f = quiz.fase;
+  if (f === 'pergunta') return fecharPergunta();
+  if (f === 'revelacao') quiz.fase = 'placar';
+  else if (f === 'lobby' || f === 'placar') {
+    if (quiz.atual + 1 >= quiz.perguntas.length) return encerrarJogo();
+    quiz.atual++;
+    quiz.fase = 'pergunta';
+    quiz.inicio = Date.now();
+    quiz.prazo = quiz.inicio + (perguntaAtual().tempo ?? 20) * 1000;
+    armarTimer();
+  } else return;
+  mudouQuiz(true);
+}
+
+function encerrarJogo() {
+  quiz.fase = 'fim';
+  appendFileSync(
+    ARQ_QUIZ_RESULTADOS,
+    JSON.stringify({ id: quiz.id, titulo: quiz.titulo, abertoEm: quiz.abertoEm, encerradoEm: new Date().toISOString(), perguntas: quiz.perguntas.length, ranking: ranking() }) + '\n',
+  );
+  mudouQuiz(true);
+}
+
+/** Pontos no estilo Kahoot: 500 a 1000 por acerto, conforme a rapidez, mais 100 por acerto seguido (até 500). */
+function pontuar(j, escolha) {
+  const p = perguntaAtual();
+  const ms = Date.now() - quiz.inicio;
+  const certa = escolha === p.correta;
+  j.sequencia = certa ? (j.sequencia ?? 0) + 1 : 0;
+  const pontos = certa ? Math.round(1000 * (1 - Math.min(1, ms / ((p.tempo ?? 20) * 1000)) / 2)) + Math.min(500, (j.sequencia - 1) * 100) : 0;
+  j.respostas[quiz.atual] = { escolha, ms, pontos, certa };
+  j.pontos += pontos;
+  if (certa) j.acertos++;
+}
+
+/** O que o celular vê. Pergunta aberta: sem a resposta certa. */
+function visaoJogador(j) {
+  if (!quiz) return { fase: 'fechado', versao };
+  const p = perguntaAtual();
+  const base = { fase: quiz.fase, versao, quizId: quiz.id, titulo: quiz.titulo, total: quiz.perguntas.length, atual: quiz.atual, jogadores: jogadores().length };
+  if (p && quiz.fase === 'pergunta') Object.assign(base, { pergunta: { texto: p.texto, respostas: p.respostas, tempo: p.tempo ?? 20 }, restaMs: restaMs() });
+  if (p && quiz.fase === 'revelacao') Object.assign(base, { pergunta: { texto: p.texto, respostas: p.respostas, correta: p.correta, explicacao: p.explicacao ?? '' } });
+  if (quiz.fase === 'fim') base.podio = ranking().slice(0, 3);
+  if (j) {
+    const r = ranking().find((x) => x.id === j.id);
+    base.eu = { id: j.id, nome: j.nome, pontos: j.pontos, acertos: j.acertos, sequencia: j.sequencia ?? 0, posicao: r?.posicao ?? 0, resposta: j.respostas[quiz.atual] ?? null };
+    // A resposta da pergunta aberta volta sem dizer se acertou.
+    if (quiz.fase === 'pergunta' && base.eu.resposta) base.eu.resposta = { escolha: base.eu.resposta.escolha };
+  }
+  return base;
+}
+
+/** O que o telão vê: tudo, inclusive quem entrou e quantos já responderam. */
+function visaoTelao() {
+  if (!quiz) return { fase: 'fechado', versao: versaoTelao, quizzes: listarQuizzes().map(({ arquivo, titulo, perguntas }) => ({ arquivo, titulo, perguntas: perguntas.length })) };
+  const p = perguntaAtual();
+  const v = { fase: quiz.fase, versao: versaoTelao, titulo: quiz.titulo, total: quiz.perguntas.length, atual: quiz.atual, jogadores: jogadores().map((j) => ({ id: j.id, nome: j.nome })) };
+  if (p) v.pergunta = { texto: p.texto, respostas: p.respostas, tempo: p.tempo ?? 20 };
+  if (quiz.fase === 'pergunta') Object.assign(v, { restaMs: restaMs(), responderam: jogadores().filter((j) => j.respostas[quiz.atual]).length });
+  if (quiz.fase === 'revelacao') Object.assign(v.pergunta, { correta: p.correta, explicacao: p.explicacao ?? '', contagem: contagem() });
+  if (quiz.fase === 'placar' || quiz.fase === 'fim') v.ranking = ranking();
+  return v;
+}
+
+function jogadorDe(req) {
+  const j = quiz?.jogadores[String(req.headers['x-jogador'] ?? '')];
+  return j && j.token === String(req.headers['x-token'] ?? '') ? j : null;
+}
+
+async function entrarNoQuiz(req, res) {
+  if (!quiz || quiz.fase === 'fim') return json(res, 409, { erro: 'Não há quiz aberto agora.' });
+  if (jogadores().length >= MAX_JOGADORES) return json(res, 409, { erro: 'A sala está cheia.' });
+  let nome = texto((await lerJsonCorpo(req)).nome, 24).replace(/\s+/g, ' ');
+  if (!nome) return json(res, 400, { erro: 'Escreva seu nome ou apelido.' });
+  const usados = new Set(jogadores().map((j) => j.nome.toLowerCase()));
+  for (let i = 2, base = nome; usados.has(nome.toLowerCase()); i++) nome = `${base} ${i}`;
+  const j = { id: randomBytes(6).toString('hex'), token: randomBytes(16).toString('hex'), nome, pontos: 0, acertos: 0, sequencia: 0, entrouEm: Date.now(), respostas: {} };
+  quiz.jogadores[j.id] = j;
+  mudouQuiz(false);
+  json(res, 201, { jogador: { id: j.id, token: j.token }, estado: visaoJogador(j) });
+}
+
+async function responderQuiz(req, res) {
+  const j = jogadorDe(req);
+  if (!j) return json(res, 403, { erro: 'Entre no quiz de novo.' });
+  const { pergunta, escolha } = await lerJsonCorpo(req);
+  const p = perguntaAtual();
+  // Meio segundo de tolerância para a rede.
+  if (quiz.fase !== 'pergunta' || pergunta !== quiz.atual || Date.now() > quiz.prazo + 500) return json(res, 409, { erro: 'O tempo acabou.', estado: visaoJogador(j) });
+  if (j.respostas[quiz.atual]) return json(res, 200, { estado: visaoJogador(j) });
+  if (!Number.isInteger(escolha) || escolha < 0 || escolha >= p.respostas.length) return json(res, 400, { erro: 'Resposta inválida.' });
+  pontuar(j, escolha);
+  if (jogadores().every((x) => x.respostas[quiz.atual])) fecharPergunta();
+  else mudouQuiz(false);
+  json(res, 200, { estado: visaoJogador(j) });
+}
+
+async function rotasQuizProfessor(req, res, url, p, m) {
+  if (m === 'GET' && p === '/estado') return aguardar(res, Number(url.searchParams.get('v') ?? 0), () => versaoTelao, visaoTelao);
+  if (m === 'GET' && p === '/resultados') {
+    const linhas = existsSync(ARQ_QUIZ_RESULTADOS) ? readFileSync(ARQ_QUIZ_RESULTADOS, 'utf8').split('\n').filter(Boolean) : [];
+    return json(res, 200, { quizzes: listarQuizzes().map(({ arquivo, titulo, perguntas }) => ({ arquivo, titulo, perguntas: perguntas.length })), resultados: linhas.flatMap((l) => { try { return [JSON.parse(l)]; } catch { return []; } }).reverse() });
+  }
+  if (m === 'POST' && p === '/abrir') {
+    const { arquivo } = await lerJsonCorpo(req);
+    if (!abrirQuiz(String(arquivo ?? ''))) return json(res, 404, { erro: 'Quiz não encontrado.' });
+    return json(res, 200, visaoTelao());
+  }
+  if (!quiz) return json(res, 409, { erro: 'Nenhum quiz aberto.' });
+  if (m === 'POST' && p === '/avancar') {
+    avancarQuiz();
+    return json(res, 200, visaoTelao());
+  }
+  if (m === 'POST' && p === '/encerrar') {
+    clearTimeout(timerQuiz);
+    quiz = null;
+    mudouQuiz(true);
+    return json(res, 200, visaoTelao());
+  }
+  if (m === 'POST' && p === '/remover') {
+    const { id } = await lerJsonCorpo(req);
+    delete quiz.jogadores[String(id)];
+    mudouQuiz(true); // acorda o celular de quem saiu, que volta para a tela de entrada
+    if (quiz.fase === 'pergunta' && jogadores().length && jogadores().every((x) => x.respostas[quiz.atual])) fecharPergunta();
+    return json(res, 200, visaoTelao());
+  }
+  json(res, 404, { erro: 'Rota não encontrada.' });
+}
+
 /* ---------------- Roteamento ---------------- */
 
 async function rotear(req, res) {
@@ -433,10 +673,16 @@ async function rotear(req, res) {
   r = /^\/arquivos\/(\w+)\/([^/]+)$/.exec(p);
   if (m === 'GET' && r) return servirArquivo(req, res, url, r[1], decodeURIComponent(r[2]));
   if (m === 'POST' && p === '/feedback') return criarFeedback(req, res);
+  if (m === 'GET' && p === '/quiz/estado') {
+    return aguardar(res, Number(url.searchParams.get('v') ?? 0), () => versao, () => visaoJogador(jogadorDe(req)));
+  }
+  if (m === 'POST' && p === '/quiz/entrar') return entrarNoQuiz(req, res);
+  if (m === 'POST' && p === '/quiz/responder') return responderQuiz(req, res);
 
   if (m === 'POST' && p === '/professor/entrar') return login(req, res);
   if (p.startsWith('/professor/')) {
     if (!ehProfessor(req)) return json(res, 401, { erro: 'Sessão expirada. Entre de novo.' });
+    if (p.startsWith('/professor/quiz/')) return rotasQuizProfessor(req, res, url, p.slice('/professor/quiz'.length), m);
     return rotasProfessor(req, res, url, p.slice('/professor'.length), m);
   }
 

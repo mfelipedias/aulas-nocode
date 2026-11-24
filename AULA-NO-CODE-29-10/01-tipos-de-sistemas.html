@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tipos de sistemas: SaaS, PaaS e IaaS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F6F8;--surface:#fff;--ink:#0F1A2B;--ink2:#4A5568;--line:#DCE0E7;
+  --cobalto:#2646D9;--cobalto-t:#E3E9FF;
+  --turquesa:#087A6D;--turquesa-t:#D6F3EE;
+  --ambar:#A85F00;--ambar-t:#FBEBCB;
+  --ardosia:#566074;--ardosia-t:#E6E9EF;
+  --rubi:#C62F3E;--rubi-t:#FBE2E5;
+  --accent:var(--cobalto);--accent-t:var(--cobalto-t);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+.trilha{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0;font-size:.95rem}
+.trilha a{padding:6px 14px;border-radius:999px;text-decoration:none;color:var(--ink2);border:1px solid var(--line);background:var(--surface)}
+.trilha a[aria-current=page]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;letter-spacing:-.02em;font-variation-settings:"wdth" 88}
+h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:800;max-width:15ch;margin-top:28px}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+.lead{font-size:1.2rem;color:var(--ink2);max-width:58ch;margin:18px 0 0}
+.bloco{margin-top:64px}
+.bloco>p{color:var(--ink2);max-width:62ch;margin:10px 0 0}
+
+/* matriz de responsabilidades */
+.matriz-wrap{overflow-x:auto;margin-top:36px;padding-bottom:6px}
+table.matriz{border-collapse:separate;border-spacing:5px;width:100%;min-width:740px;table-layout:fixed}
+.matriz th,.matriz td{padding:12px 10px;font-size:.95rem;text-align:center}
+.matriz thead th{vertical-align:bottom;text-align:left;border-radius:3px 3px 0 0;padding:14px 12px;color:#fff;background:var(--c)}
+.matriz thead th strong{display:block;font:700 1.3rem/1.1 var(--f-display)}
+.matriz thead th span{display:block;font-size:.85rem;font-weight:400;margin-top:5px}
+.matriz thead th.vazio{background:none}
+.matriz tbody th{text-align:right;font-weight:700;width:19%;padding-right:14px}
+.col-local{--c:var(--ardosia)}.col-iaas{--c:var(--ambar)}.col-paas{--c:var(--cobalto)}.col-saas{--c:var(--turquesa)}
+td.eu{background:var(--c);color:#fff;font-weight:700;border-radius:3px}
+td.forn{color:var(--ink2);border:1.5px dashed #BFC6D2;border-radius:3px}
+td.misto{background:#fff;color:var(--c);font-weight:700;border:2px solid var(--c);border-radius:3px}
+.matriz tfoot td{font-size:.85rem;color:var(--ink2);text-align:left;vertical-align:top;padding-top:10px}
+.matriz tfoot th{font-size:.85rem;color:var(--ink2);text-align:right;padding-right:14px;vertical-align:top;padding-top:10px}
+.legenda{display:flex;flex-wrap:wrap;gap:8px 24px;margin:14px 0 0;padding:0;list-style:none;font-size:.92rem;color:var(--ink2)}
+.legenda li{display:flex;align-items:center;gap:8px}
+.leg{display:inline-block;width:26px;height:16px;border-radius:3px}
+.leg.eu{background:var(--ink)}
+.leg.misto{border:2px solid var(--ink);background:#fff}
+.leg.forn{border:1.5px dashed #8892A3}
+.sintese{margin-top:20px;font:700 1.35rem/1.25 var(--f-display);max-width:34ch}
+
+/* onde cada ferramenta se encaixa */
+.faixas{display:grid;gap:14px;margin-top:26px}
+.faixa{display:grid;grid-template-columns:150px 1fr;gap:18px;background:var(--surface);border-left:8px solid var(--c);padding:16px 22px;border-radius:2px 14px 14px 2px}
+.faixa h3{font-size:1.6rem;color:var(--c)}
+.faixa p{margin:0 0 10px;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chips li{padding:4px 13px;border-radius:999px;background:var(--ct);font-size:.92rem}
+.f-iaas{--c:var(--ambar);--ct:var(--ambar-t)}
+.f-paas{--c:var(--cobalto);--ct:var(--cobalto-t)}
+.f-ipaas{--c:var(--cobalto);--ct:var(--cobalto-t)}
+.f-saas{--c:var(--turquesa);--ct:var(--turquesa-t)}
+
+/* fluxo */
+.fluxo{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;margin-top:26px}
+.no{background:var(--surface);padding:18px 20px;border-top:6px solid var(--c);border-radius:2px 2px 14px 14px}
+.no b{display:block;font:700 1.4rem/1.15 var(--f-display);color:var(--c)}
+.no span{display:block;margin-top:6px;font-weight:700}
+.no em{display:block;margin-top:8px;font-style:normal;color:var(--ink2);font-size:.93rem}
+.n-paas{--c:var(--cobalto)}.n-app{--c:var(--ink)}.n-saas{--c:var(--turquesa)}
+.seta{align-self:center;justify-self:center;width:34px;height:34px;color:var(--ink2)}
+.notas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.nota{padding:16px 20px;background:var(--surface);border-radius:14px 2px 14px 2px}
+.nota h3{font-size:1.1rem;margin-bottom:6px}
+.nota p{margin:0;color:var(--ink2);font-size:.97rem}
+
+/* o que nao e SaaS */
+.nao-saas{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:0 40px;margin:24px 0 0}
+.nao-saas div{padding:14px 0;border-top:1px solid #C9CFDA}
+.nao-saas dt{font:700 1.12rem var(--f-display)}
+.nao-saas dd{margin:4px 0 0;color:var(--ink2);font-size:.97rem}
+
+/* teste */
+.teste details{background:var(--surface);border-radius:10px;margin-top:10px}
+.teste summary{cursor:pointer;padding:15px 20px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.teste summary::-webkit-details-marker{display:none}
+.teste summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--accent)}
+.teste details[open] summary::after{content:"\2212"}
+.teste details p{margin:0;padding:0 20px 16px;color:var(--ink2)}
+
+.fecho{margin-top:72px;background:var(--ink);color:#fff;padding:52px 0 44px}
+.fecho p{font:700 clamp(1.7rem,4.2vw,2.8rem)/1.12 var(--f-display);letter-spacing:-.02em;max-width:20ch;margin:0}
+.fecho a{color:#fff;display:inline-block;margin-top:26px}
+
+@media (max-width:760px){
+  .faixa{grid-template-columns:1fr;gap:6px}
+  .fluxo{grid-template-columns:1fr}
+  .seta{transform:rotate(90deg);margin:6px 0}
+  .notas{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}.trilha,.fecho a{display:none}
+  .faixa,.no,.nota{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="trilha" aria-label="Folhas de aula">
+    <a href="01-tipos-de-sistemas.html" aria-current="page">Tipos de sistemas</a>
+    <a href="02-seguranca-e-riscos.html">Segurança e riscos</a>
+    <a href="03-custos-e-ferramentas.html">Custos e ferramentas</a>
+  </nav>
+
+  <header>
+    <h1>Quem cuida de quê na nuvem?</h1>
+    <p class="lead">IaaS, PaaS e SaaS mudam uma coisa só: o que fica por sua conta e o que fica por conta do fornecedor. Quanto mais à direita, menos você administra e menos você controla.</p>
+  </header>
+
+  <main>
+    <section class="bloco" aria-labelledby="t-matriz" style="margin-top:36px">
+      <h2 id="t-matriz" class="sr">Quem administra cada camada</h2>
+      <div class="matriz-wrap" role="region" aria-label="Tabela: quem administra cada camada" tabindex="0">
+        <table class="matriz">
+          <thead>
+            <tr>
+              <th class="vazio" scope="col"><span class="sr"></span></th>
+              <th scope="col" class="col-local"><strong>Local</strong><span>você instala e opera tudo (on-premise)</span></th>
+              <th scope="col" class="col-iaas"><strong>IaaS</strong><span>você aluga a infraestrutura</span></th>
+              <th scope="col" class="col-paas"><strong>PaaS</strong><span>você aluga a plataforma</span></th>
+              <th scope="col" class="col-saas"><strong>SaaS</strong><span>você usa o produto pronto</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Aplicativo</th>
+              <td class="eu col-local">Você</td><td class="eu col-iaas">Você</td><td class="eu col-paas">Você</td><td class="forn">Fornecedor</td>
+            </tr>
+            <tr>
+              <th scope="row">Dados</th>
+              <td class="eu col-local">Você</td><td class="eu col-iaas">Você</td><td class="eu col-paas">Você</td><td class="misto col-saas">Compartilhado</td>
+            </tr>
+            <tr>
+              <th scope="row">Ambiente de execução</th>
+              <td class="eu col-local">Você</td><td class="eu col-iaas">Você</td><td class="forn">Fornecedor</td><td class="forn">Fornecedor</td>
+            </tr>
+            <tr>
+              <th scope="row">Sistema operacional</th>
+              <td class="eu col-local">Você</td><td class="eu col-iaas">Você</td><td class="forn">Fornecedor</td><td class="forn">Fornecedor</td>
+            </tr>
+            <tr>
+              <th scope="row">Servidores, rede e hardware</th>
+              <td class="eu col-local">Você</td><td class="forn">Fornecedor</td><td class="forn">Fornecedor</td><td class="forn">Fornecedor</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Exemplo</th>
+              <td>ERP instalado no datacenter da empresa</td>
+              <td>Servidor virtual na Hetzner ou na AWS</td>
+              <td>Bubble, Lovable, Heroku</td>
+              <td>Gmail, Notion, Slack</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <ul class="legenda" aria-label="Legenda">
+        <li><span class="leg eu"></span>Você administra</li>
+        <li><span class="leg misto"></span>Compartilhado: o fornecedor guarda, mas você decide o conteúdo e quem acessa</li>
+        <li><span class="leg forn"></span>O fornecedor administra</li>
+      </ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-onde">
+      <h2 id="t-onde">Onde cada ferramenta se encaixa</h2>
+      <div class="faixas">
+        <div class="faixa f-iaas">
+          <h3>IaaS</h3>
+          <div><p>Você aluga servidores e instala o que quiser neles.</p>
+            <ul class="chips"><li>AWS EC2</li><li>DigitalOcean</li><li>Hetzner (VPS)</li></ul></div>
+        </div>
+        <div class="faixa f-paas">
+          <h3>PaaS</h3>
+          <div><p>Você aluga um ambiente pronto para construir e rodar aplicações, sem cuidar de servidor. Bubble e Lovable ficam aqui (aPaaS no-code e PaaS assistido por IA).</p>
+            <ul class="chips"><li>Bubble</li><li>Lovable</li><li>Heroku</li><li>Google App Engine</li></ul></div>
+        </div>
+        <div class="faixa f-ipaas">
+          <h3>iPaaS</h3>
+          <div><p>Subcategoria de PaaS para integrar e automatizar sistemas. O n8n instalado no seu próprio servidor deixa de ser serviço: é você quem opera.</p>
+            <ul class="chips"><li>Make</li><li>n8n (na nuvem)</li></ul></div>
+        </div>
+        <div class="faixa f-saas">
+          <h3>SaaS</h3>
+          <div><p>Produto pronto, acessado pelo navegador e pago por assinatura. O fornecedor cuida de tudo.</p>
+            <ul class="chips"><li>Gmail</li><li>Google Workspace</li><li>Notion</li><li>Slack</li><li>Canva</li><li>Salesforce</li><li>Trello</li><li>Claude</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-cadeia">
+      <h2 id="t-cadeia">O PaaS constrói, o SaaS é vendido</h2>
+      <p>Você usa uma plataforma (PaaS) para criar um aplicativo. Se esse aplicativo for oferecido por assinatura a vários clientes, ele é um SaaS.</p>
+      <div class="fluxo">
+        <div class="no n-paas"><b>PaaS</b><span>Bubble, Lovable</span><em>onde você constrói e hospeda</em></div>
+        <svg class="seta" viewBox="0 0 36 36" aria-hidden="true"><path d="M4 18h26M22 9l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no n-app"><b>Seu aplicativo</b><span>ex.: sistema de inscrições</span><em>feito com a lógica e as telas que você criou</em></div>
+        <svg class="seta" viewBox="0 0 36 36" aria-hidden="true"><path d="M4 18h26M22 9l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no n-saas"><b>SaaS</b><span>quando é vendido por assinatura</span><em>nuvem, vários clientes, fornecedor opera</em></div>
+      </div>
+      <div class="notas">
+        <div class="nota"><h3>E o Make e o n8n?</h3><p>São iPaaS: ligam o seu aplicativo a planilhas, e-mail, CRM e outros sistemas. Costumam ficar dentro do SaaS que você construiu.</p></div>
+        <div class="nota"><h3>Todo app feito assim é SaaS?</h3><p>Não. Um app de uso interno da empresa é só uma aplicação. Ele vira SaaS quando é entregue como serviço, na nuvem e por assinatura, a vários clientes.</p></div>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="t-nao">
+      <h2 id="t-nao">E o que não é SaaS?</h2>
+      <p>Depende de quem hospeda e opera o software. Se o fornecedor opera e você assina, é SaaS. Nos outros casos:</p>
+      <dl class="nao-saas">
+        <div><dt>On-premise</dt><dd>Roda nos servidores da própria empresa, que cuida de infraestrutura, atualização e segurança.</dd></div>
+        <div><dt>Desktop ou instalável</dt><dd>Instalado no computador, em geral com licença paga uma vez. Ex.: versões antigas do Office, jogos de PC.</dd></div>
+        <div><dt>Sob medida (in-house)</dt><dd>Feito para uma empresa específica, sem modelo de serviço para vários clientes.</dd></div>
+        <div><dt>Self-hosted</dt><dd>Você instala e opera na sua infraestrutura, mesmo que se acesse pelo navegador. Ex.: n8n no seu servidor, WordPress hospedado por você.</dd></div>
+        <div><dt>App nativo de celular</dt><dd>Instalado no aparelho, podendo ou não depender da nuvem.</dd></div>
+        <div><dt>Software de prateleira (COTS)</dt><dd>Produto pronto comprado e usado como está, em geral por licença. A diferença para o SaaS é a entrega e a cobrança.</dd></div>
+      </dl>
+      <p style="margin-top:18px">Um mesmo software pode ter as duas versões: o n8n, por exemplo, existe como serviço na nuvem e como instalação própria.</p>
+    </section>
+
+    <section class="bloco teste" aria-labelledby="t-teste">
+      <h2 id="t-teste">Teste rápido: que tipo é?</h2>
+      <p>Clique para ver a resposta.</p>
+      <details><summary>Gmail</summary><p><strong>SaaS.</strong> O Google hospeda e opera, você acessa pelo navegador e usa o produto pronto.</p></details>
+      <details><summary>Servidor virtual alugado na Hetzner</summary><p><strong>IaaS.</strong> Você aluga a infraestrutura e cuida do sistema operacional e de tudo que roda nele.</p></details>
+      <details><summary>Make</summary><p><strong>iPaaS.</strong> É uma plataforma na nuvem para integrar e automatizar sistemas, vendida por assinatura.</p></details>
+      <details><summary>n8n instalado no seu próprio servidor</summary><p><strong>Self-hosted.</strong> Você opera, atualiza e protege. Não é SaaS nesse formato.</p></details>
+      <details><summary>Um app feito no Bubble só para uso interno da sua empresa</summary><p><strong>Aplicação sobre PaaS.</strong> O Bubble é a plataforma onde ele roda. Sem oferta por assinatura a vários clientes, não é SaaS.</p></details>
+    </section>
+  </main>
+</div>
+
+<footer class="fecho">
+  <div class="wrap">
+    <p>PaaS é onde você constrói. SaaS é o que você vende.</p>
+    <a href="02-seguranca-e-riscos.html">Próxima folha: segurança e riscos</a>
+  </div>
+</footer>
+<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
+</body>
+</html>

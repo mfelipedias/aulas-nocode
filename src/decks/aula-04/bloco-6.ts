@@ -20,6 +20,9 @@ Checkpoint 2: se passar de 19h50, aplicar os Cortes E (pular S42) e F (encerrar 
   // S40
   constellation({
     title: 'S40 Construtores por IA em 2026',
+    termos: [
+      { termo: 'Postgres', nota: 'banco de dados gratuito e muito usado.' },
+    ],
     titulo: 'Construtores por IA',
     subtitulo: 'Do texto ao app: quem faz o quê.',
     grupos: [
@@ -47,6 +50,9 @@ Fontes (acesso em 05/10/2026): framer.com/wireframer; webflow.com/updates/ai-sit
   // S41
   stat({
     title: 'S41 Lovable: US$ 13,3 bi',
+    termos: [
+      { termo: 'Receita anualizada', nota: 'faturamento de um mês multiplicado por 12.' },
+    ],
     contexto: 'Quanto vale um construtor de apps por IA fundado em 2023?',
     valor: 13.3,
     casas: 1,
@@ -64,6 +70,10 @@ Comparação: o Bubble, de 2012, é a referência do no-code visual há mais de 
   // S42
   grid({
     title: 'S42 O mercado em números',
+    termos: [
+      { termo: 'ARR', nota: 'receita anual recorrente, vinda de assinaturas.' },
+      { termo: 'Série D', nota: 'quarta grande rodada de investimento numa startup.' },
+    ],
     titulo: 'Para onde o dinheiro foi',
     cartoes: [
       {
@@ -109,6 +119,9 @@ Corte E: pular este slide e citar Replit e Supabase de passagem.`,
   // S43
   stat({
     title: 'S43 Brasil: +124%',
+    termos: [
+      { termo: 'Vibe coding', nota: 'criar app só conversando com a IA.' },
+    ],
     contexto: 'E no Brasil?',
     valor: 124,
     prefixo: '+',
@@ -135,7 +148,8 @@ Ponte: vamos ver o que um desses construtores faz com o nosso planejamento.`,
     ],
     duracao: 'Cerca de 8 minutos. Plano gratuito, só preview.',
     url: 'lovable.dev/projects/hackathon-lovable-ensaio',
-    captura: media('lovable-app-preview.png'),
+    captura: media('tela-lovable-app-preview.svg'),
+    capturaDescricao: 'Tela ilustrativa: app do Hackathon gerado no Lovable, só no preview',
     video: {
       src: media('v-lovable-app-completo.mp4'),
       label: 'Backup: o app completo gerado no Lovable (preview, sem publicar)',
@@ -148,7 +162,7 @@ Se o painel não mostrar créditos em 29/10: gerar ao vivo no Google AI Studio (
 3 No preview: inscrever Camila Persona / camila.persona@example.com; o contador cai. Repetir com CAMILA.PERSONA@example.com e espaço: deve bloquear. Se não bloquear, é conteúdo: "a IA esqueceu de normalizar; guardem para o agente".
 4 Cloud > Database > inscricoes > políticas: ler em voz alta "insert para anônimo; select só para organizador".
 5 Sem login, /organizacao pede login; com organizador@example.com, a lista aparece.
-6 O que aconteceria ao publicar: no S45, captura do diálogo Publish aberto e não confirmado.
+6 O que aconteceria ao publicar: no S45, lembrar a tela do diálogo Publish aberto e não confirmado (S15).
 7 Voltar à geração ao vivo: mesmo prompt, resultado parecido, não idêntico. Mostrar o contador de créditos.
 Se falhar: ficar no ensaio; tudo falhou, tecla V. Se gerar sem RLS: 1 min de comentário (é o CVE ao vivo). Corte F: parar depois do passo 4.
 Fonte dos limites do Free: Lovable Docs, Plans and credits; lovable.dev/pricing (acesso em 04/10/2026).`,
@@ -160,27 +174,27 @@ Fonte dos limites do Free: Lovable Docs, Plans and credits; lovable.dev/pricing 
     titulo: 'O que a IA gerou por baixo',
     plataforma: 'lovable',
     midia: {
-      src: media('lovable-rls-policies.png'),
-      descricao: 'Lovable Cloud: políticas RLS da tabela inscricoes no projeto de ensaio',
+      src: media('tela-lovable-rls-policies.svg'),
+      descricao: 'Tela ilustrativa: Lovable Cloud, políticas RLS da tabela inscricoes no projeto de ensaio',
     },
     url: 'lovable.dev/projects/hackathon-lovable-ensaio',
     anotacoes: [
       {
-        x: 14,
-        y: 22,
+        x: 10.6,
+        y: 56.5,
         titulo: 'Código seu, num repositório',
         texto: 'React e TypeScript, sincronizados com um GitHub seu.',
       },
       {
-        x: 52,
-        y: 46,
+        x: 58,
+        y: 38.6,
         titulo: 'A regra que protege',
         texto: 'Insert para visitante anônimo; leitura só para organizador.',
-        zoom: { x: 25, y: 20, w: 60, h: 60 },
+        zoom: { x: 22, y: 12, w: 78, h: 56 },
       },
       {
-        x: 78,
-        y: 74,
+        x: 89.8,
+        y: 73.5,
         titulo: 'Revisão útil, não garantia',
         texto: 'Ao publicar, um scan rápido rodaria antes. A regra tem de estar certa antes do botão.',
       },
@@ -190,10 +204,10 @@ Fonte dos limites do Free: Lovable Docs, Plans and credits; lovable.dev/pricing 
     notes: `Três achados do projeto de ensaio, sem publicar.
 Passo 1, código: React e TypeScript num repositório Git. Diferente do Bubble, esse código é de vocês. (Captura complementar: media/aula-04/lovable-codigo.png.)
 Passo 2, políticas RLS: a regra que protege. A chave pública do banco está no código do navegador, por projeto; o que protege é a política, não o segredo da chave.
-Passo 3, revisão de segurança feita sob demanda no ensaio (captura complementar: lovable-revisao-seguranca.png) e o diálogo Publish aberto e não confirmado (lovable-publish-dialog.png).
+Passo 3, revisão de segurança feita sob demanda no ensaio (captura complementar: lovable-revisao-seguranca.png) e o diálogo Publish aberto e não confirmado (S15, tela-lovable-publish-dialog.svg).
 Se publicasse, o Lovable rodaria um Quick scan automático antes e colocaria um snapshot num .lovable.app que qualquer pessoa com o link abriria. Por isso a regra tem de estar certa ANTES do botão.
 A própria documentação diz que as ferramentas não garantem segurança completa. No caso do CVE, o pesquisador criticou a 1ª versão do scanner por conferir só se existia alguma política, não se estava certa.
-Ajustar a posição dos marcadores (x, y) depois de inserir a captura real.`,
+Tela ilustrativa: marcador 1 no cartão do GitHub (barra lateral), 2 nas políticas, 3 na revisão de segurança.`,
   }),
 
   // S46

@@ -123,12 +123,17 @@ Capítulos 01 a 05 feitos; agora, do papel ao wireframe.`,
     ],
     duracao: 'Cerca de 7 minutos. Sem conta, ou papel e caneta.',
     url: 'excalidraw.com',
-    captura: m('excalidraw-vazio.png'),
+    captura: m('tela-excalidraw-vazio.svg'),
+    capturaDescricao: 'Tela ilustrativa: Excalidraw em tema escuro, canvas vazio, zoom 125%',
     video: {
       src: m('demo-excalidraw-wireframe.mp4'),
       poster: m('demo-excalidraw-poster.png'),
       label: 'Backup: wireframe no Excalidraw',
     },
+    termos: [
+      { termo: 'Wireframe', nota: 'esboço simples da tela: o que vai onde, sem cores.' },
+      { termo: 'Excalidraw', nota: 'quadro branco on-line para desenhar à mão livre.' },
+    ],
     cena: 'paineis',
     notes: `"Agora eu saio dos slides. Se você está ao vivo, abra excalidraw.com: não pede cadastro. Ou pegue o desenho da Unidade I. Se está vendo a gravação, pause e desenhe no seu ritmo."
 Trocar para a aba do Excalidraw (tela inteira já compartilhada). Tema escuro, canvas vazio, zoom 125%.
@@ -141,9 +146,9 @@ Plano B: arquivo wireframe-hackathon.excalidraw do ensaio, ou tecla V (vídeo de
     title: 'S53 · O wireframe pronto',
     titulo: 'O wireframe pronto',
     plataforma: 'excalidraw',
-    midia: { src: m('wireframe-hackathon-desktop.png'), descricao: 'Wireframe desktop da página de inscrição, exportado do Excalidraw no ensaio' },
+    midia: { src: m('tela-wireframe-hackathon-desktop.svg'), descricao: 'Tela ilustrativa: wireframe desktop da página de inscrição, no estilo do Excalidraw' },
     moldura: 'navegador',
-    url: 'wireframe-hackathon-desktop.png',
+    url: 'tela-wireframe-hackathon-desktop.svg',
     anotacoes: [
       { x: 10, y: 30, titulo: 'Hierarquia', texto: 'Título, apoio, formulário, botão.' },
       { x: 40, y: 70, titulo: 'Um único objetivo', texto: 'A inscrição. Nada de menu.' },
@@ -152,13 +157,13 @@ Plano B: arquivo wireframe-hackathon.excalidraw do ensaio, ou tecla V (vídeo de
         y: 30,
         titulo: 'No celular, o formulário sobe',
         texto: 'A ação vem antes da imagem e dos destaques.',
-        midia: { src: m('wireframe-hackathon-mobile.png'), descricao: 'Wireframe celular da página de inscrição, exportado do Excalidraw no ensaio', ajuste: 'conter', posicao: 'center' },
+        midia: { src: m('tela-wireframe-hackathon-mobile.svg'), descricao: 'Tela ilustrativa: wireframe celular da página de inscrição, no estilo do Excalidraw', ajuste: 'conter', posicao: 'center' },
       },
     ],
-    fonte: 'Captura própria (ensaio). Pause o vídeo e termine o seu.',
+    fonte: 'Tela ilustrativa. Pause o vídeo e termine o seu.',
     cena: 'paineis',
-    notes: `Volta ao deck. O slide não depende do desenho feito ao vivo: são os PNGs exportados no ensaio.
-Passo 3: a moldura troca para a versão celular (wireframe-hackathon-mobile.png), inteira e centralizada.
+    notes: `Volta ao deck. O slide não depende do desenho feito ao vivo: mostra um wireframe ilustrativo, desenhado no estilo do Excalidraw, com o mesmo conteúdo do roteiro.
+Passo 3: a moldura troca para a versão celular (tela-wireframe-hackathon-mobile.svg), inteira e centralizada.
 Pergunta-guia da Unidade I: a tela permite a tarefa essencial com o mínimo de esforço e confusão?
 "Pause o vídeo e termine o seu."
 Buffer de 1 min. Pergunta de bolso: "o que vocês tirariam deste wireframe?"

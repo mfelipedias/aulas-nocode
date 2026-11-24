@@ -20,6 +20,10 @@ export const bloco3: SlideDef[] = [
   // S17
   stat({
     title: 'S17 170 de 1.645',
+    termos: [
+      { termo: 'Chave de API', nota: 'senha que dá a um programa acesso a outro serviço.' },
+      { termo: 'CVE', nota: 'número oficial de registro de uma falha de segurança.' },
+    ],
     contexto: 'Um pesquisador testou só as páginas iniciais de 1.645 apps feitos no Lovable.',
     valor: 10.3,
     casas: 1,
@@ -37,6 +41,11 @@ Ponte: e não foi um caso isolado.`,
   // S18
   grid({
     title: 'S18 Quatro incidentes, uma causa',
+    termos: [
+      { termo: 'RLS', nota: 'regra no banco que define quem pode ler cada linha.' },
+      { termo: 'Token de API', nota: 'credencial que um programa usa para provar quem é.' },
+      { termo: 'app_id', nota: 'código público que identifica um app na plataforma.' },
+    ],
     titulo: 'Quatro incidentes, uma causa',
     cartoes: [
       {
@@ -103,7 +112,8 @@ Ponte: vamos ver isso acontecer no nosso app.`,
     passos: ['Ver o vazamento numa página inofensiva', 'Fechar com uma privacy rule', 'Provar que o formulário continua salvando'],
     duracao: 'Cerca de 6 minutos. App próprio, dados fictícios.',
     url: 'hackathon-seguranca.bubbleapps.io/version-test/inscritos',
-    captura: media('bubble-pagina-inscritos.png'),
+    captura: media('tela-bubble-pagina-inscritos.svg'),
+    capturaDescricao: 'Tela ilustrativa: página inscritos numa aba anônima e a resposta msearch no DevTools',
     video: {
       src: media('v-vazamento-privacy.mp4'),
       label: 'Backup: o vazamento e a privacy rule no Bubble',
@@ -124,6 +134,9 @@ Se falhar: tecla V e seguir para S21.`,
   // S21
   code({
     title: 'S21 A resposta do servidor',
+    termos: [
+      { termo: 'DevTools', nota: 'ferramentas do navegador que mostram o que a página recebe.' },
+    ],
     titulo: 'Mesma página. Outra resposta.',
     arquivo: 'Resposta da busca, aba Network do DevTools',
     linguagem: 'js',
@@ -158,6 +171,10 @@ Se o DevTools ficou ilegível na demo, as capturas de apoio estão em media/aula
   // S22
   grid({
     title: 'S22 OWASP: seis riscos no nosso app',
+    termos: [
+      { termo: 'OWASP', nota: 'comunidade aberta que lista os maiores riscos de segurança.' },
+      { termo: 'Log', nota: 'registro automático do que aconteceu no sistema.' },
+    ],
     titulo: 'Seis riscos da OWASP no nosso app',
     cartoes: [
       {
@@ -212,6 +229,10 @@ Corte B: dizer só os três primeiros riscos.`,
   // S23
   twoColumn({
     title: 'S23 Chave de API nunca no cliente',
+    termos: [
+      { termo: 'API Connector', nota: 'recurso do Bubble para chamar outros serviços.' },
+      { termo: 'Secrets', nota: 'área do Lovable para guardar chaves fora do código.' },
+    ],
     titulo: 'Tudo o que vai ao navegador é público',
     topicos: [
       {
@@ -255,6 +276,10 @@ Ponte: segurança também é lei. LGPD.`,
   // S24
   twoColumn({
     title: 'S24 LGPD no formulário',
+    termos: [
+      { termo: 'LGPD', nota: 'lei que regula o uso de dados pessoais no Brasil.' },
+      { termo: 'ANPD', nota: 'órgão do governo que fiscaliza a LGPD.' },
+    ],
     titulo: 'LGPD vira decisão de tela',
     topicos: [
       {
@@ -283,8 +308,8 @@ Ponte: segurança também é lei. LGPD.`,
       moldura: 'navegador',
       url: 'hackathon-seunome.bubbleapps.io/version-test',
       midia: {
-        src: media('bubble-form-aceite.png'),
-        descricao: 'Formulário de inscrição com a caixa de aceite e o texto de consentimento',
+        src: media('tela-bubble-form-aceite.svg'),
+        descricao: 'Tela ilustrativa: formulário de inscrição com a caixa de aceite e o texto de consentimento',
       },
     },
     cena: 'nevoa-suave',
@@ -293,7 +318,7 @@ Passo 1, finalidade: "gerenciar a inscrição e avisar sobre o evento".
 Passo 2, necessidade: precisamos do telefone? Se é só para avisar no dia, talvez o e-mail baste.
 Passo 3, transparência (dizer na tela) e segurança (o que fizemos na demo, art. 46). Base legal (art. 7º): na aula, consentimento; em projeto real, decide o controlador com apoio jurídico.
 Passo 4, incidente: comunicar a ANPD em 3 dias úteis (Resolução CD/ANPD nº 15/2024; art. 48).
-Captura: o texto do aceite. "Li e concordo que meus dados (nome, e-mail e telefone) sejam usados pela organização do Hackathon No-Code 2026 apenas para gerenciar minha inscrição e enviar avisos sobre o evento. Eles serão excluídos até 30 dias após o evento. Posso pedir acesso, correção ou exclusão pelo e-mail privacidade@hackathon-nocode.example."
+Tela ilustrativa: o texto do aceite. "Li e concordo que meus dados (nome, e-mail e telefone) sejam usados pela organização do Hackathon No-Code 2026 apenas para gerenciar minha inscrição e enviar avisos sobre o evento. Eles serão excluídos até 30 dias após o evento. Posso pedir acesso, correção ou exclusão pelo e-mail privacidade@hackathon-nocode.example."
 No Bubble, o botão ganha a condição only when Checkbox aceite is checked, e o campo aceite é salvo junto.`,
     fonte: 'Lei 13.709/2018 (LGPD), arts. 6º, 7º, 46 e 48; Resolução CD/ANPD nº 15/2024 (acesso em 04/10/2026).',
   }),

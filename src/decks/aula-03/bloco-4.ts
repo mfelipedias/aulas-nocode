@@ -33,6 +33,10 @@ export const bloco4: SlideDef[] = [
     ],
     passos: [['clica'], ['salva'], ['recebe'], ['aceita'], ['fila']],
     title: 'O que acontece no clique',
+    termos: [
+      { termo: 'Accepted', nota: '"aceito": o Make recebeu o pedido e vai processar em seguida.' },
+      { termo: 'Fila', nota: 'lista de espera: os pedidos são tratados um de cada vez.' },
+    ],
     notes: `Passo 0: o clique.
 Passo 1: "Primeiro o Bubble salva a inscrição no banco dele. O Bubble continua dono do dado."
 Passo 2: "Depois ele faz um POST com JSON para o webhook do Make, exatamente o que eu fiz com o curl."
@@ -56,9 +60,14 @@ Ponte: para o Bubble.`,
     ],
     duracao: 'Cerca de 5 minutos',
     url: 'bubble.io/page?id=hackathon-aula03&tab=Plugins',
-    captura: 'media/aula-03/bubble-api-connector.png',
+    captura: 'media/aula-03/tela-bubble-api-connector.svg',
+    capturaDescricao: 'Tela ilustrativa do API Connector do Bubble: chamada nova_inscricao, POST com corpo JSON para o webhook do Make (endereço mascarado)',
     video: { src: 'media/aula-03/demo-bubble-make.mp4', label: 'Backup: Bubble chamando o Make' },
     title: 'Demo: o Bubble faz um POST',
+    termos: [
+      { termo: 'Initialize call', nota: 'chamada de teste para o Bubble aprender a resposta.' },
+      { termo: 'Log', nota: 'registro automático do que o sistema fez, com data e hora.' },
+    ],
     notes: `App hackathon-aula03, aba Plugins, API Connector instalado e vazio.
 1. Add another API (ou + New) "Make", Authentication None. Chamada nova_inscricao: Use as Action, Data type Text, POST, URL do webhook, Body JSON com nome, email, telefone, trilha e ideia (ideia sem aspas). Desmarcar Private nos parâmetros.
 2. Initialize call: resposta Accepted. A Carla aparece na planilha e recebe o e-mail: é uma inscrição real de teste.
@@ -66,29 +75,30 @@ Ponte: para o Bubble.`,
 4. Preview: Davi Amostra, trilha IA. Ver planilha, Gmail, History do Make e Server logs do Bubble.
 Lembrar: Data type da resposta = Text. Se aparecer "non-object and you picked JSON", o erro vira conteúdo.
 Bubble lento mais de 30 s: tecla V (demo-bubble-make.mp4). Nada chega: curl com os dados do Davi ("o contrato é o mesmo").
-Passo a passo completo: conteudo.md, seção 4.3.`,
+Passo a passo completo: conteudo.md, seção 4.3.
+A moldura mostra uma tela ilustrativa desenhada da chamada configurada, não uma captura.`,
   }),
 
   // S33
   showcase({
     titulo: 'Dois logs, uma verdade',
     midia: {
-      src: 'media/aula-03/bubble-logs.png',
-      descricao: 'Server logs do Bubble com a chamada à API enviada ao Make',
+      src: 'media/aula-03/tela-bubble-logs.svg',
+      descricao: 'Tela ilustrativa dos Server logs do Bubble: a chamada Make - nova_inscricao saiu e voltou 200 Accepted',
     },
     url: 'bubble.io · Server logs',
     rotulo: 'Bubble: Server logs',
     par: {
       midia: {
-        src: 'media/aula-03/make-history.png',
-        descricao: 'History do cenário no Make com a execução e os três módulos verdes',
+        src: 'media/aula-03/tela-make-history.svg',
+        descricao: 'Tela ilustrativa do History do Make: a execução do Davi com os três módulos verdes',
       },
       url: 'make.com · History',
       rotulo: 'Make: History',
     },
     anotacoes: [
-      { x: 40, y: 40, titulo: 'A chamada saiu?', texto: 'Server logs do Bubble.' },
-      { x: 40, y: 40, naPar: true, titulo: 'Chegou e foi processada?', texto: 'History do Make: três módulos verdes.' },
+      { x: 70, y: 59, titulo: 'A chamada saiu?', texto: 'Server logs do Bubble.' },
+      { x: 50, y: 38, naPar: true, titulo: 'Chegou e foi processada?', texto: 'History do Make: três módulos verdes.' },
       { x: 50, y: 85, titulo: 'Se algo falhar', texto: 'Comece pelo log de quem enviou.' },
     ],
     notes: `"Depurar integração é procurar onde a mensagem parou."
@@ -96,7 +106,7 @@ Passo a passo completo: conteudo.md, seção 4.3.`,
 2. History do Make: chegou? Foi processada? Três módulos verdes.
 3. A regra: comece pelo log de quem enviou.
 Buffer 2: se a demo atrasou, este slide pode durar 30 s.
-Mídia: duas capturas lado a lado, bubble-logs.png (Server logs) e make-history.png (History), cada uma em 1920 x 1200.
+Mídia: duas telas ilustrativas desenhadas lado a lado (tela-bubble-logs.svg e tela-make-history.svg), não capturas. Na demo, mostrar os logs reais.
 Ponte: "Temos um fluxo funcionando. Agora, o que as empresas fazem com isso, quanto custa e o que acontece quando dá errado."`,
   }),
 ];

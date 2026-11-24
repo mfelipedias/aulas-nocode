@@ -1,4 +1,4 @@
-import { ArrowLeft, BookText, Check, Clock, Copy, Download, Eye, EyeOff, FileText, KeyRound, LayoutDashboard, LockKeyhole, LogOut, MessageSquareHeart, Search, Trash2, X, Images } from 'lucide';
+import { ArrowLeft, BookText, Gamepad2, MonitorPlay, Check, Clock, Copy, Download, Eye, EyeOff, FileText, KeyRound, LayoutDashboard, LockKeyhole, LogOut, MessageSquareHeart, Search, Trash2, X, Images } from 'lucide';
 import { marked } from 'marked';
 import { AULAS, api, aulaInfo, aviso, cabecalho, campo, ErroApi, iniciais, iniciarPagina, quando, sessao, tamanho, type ConfigPublica } from './aluno/comum';
 import { baixarCsv, painelFeedback, type Resposta } from './aluno/resultados';
@@ -9,7 +9,7 @@ import { icon } from './engine/icons';
  * Área do professor (professor.html), protegida por senha.
  * Abas: Visão geral (abrir/fechar envios e feedback por aula, moderação prévia), Envios (publicar, ocultar, excluir,
  * um a um ou em lote), Feedback (resultados, CSV, apagar respostas), Materiais (documentos .md de materiais-professor/,
- * só com login) e Conta (trocar senha, sair).
+ * só com login), Quiz (abrir o telão do quiz ao vivo e ver os resultados dos jogos) e Conta (trocar senha, sair).
  * A senha inicial é SENHA_PROFESSOR do .env; depois de trocada aqui, vale a nova (guardada com hash em dados/config.json).
  */
 
@@ -49,6 +49,7 @@ const ABAS = [
   { id: 'envios', rotulo: 'Envios', icone: Images },
   { id: 'feedback', rotulo: 'Feedback', icone: MessageSquareHeart },
   { id: 'materiais', rotulo: 'Materiais', icone: BookText },
+  { id: 'quiz', rotulo: 'Quiz', icone: Gamepad2 },
   { id: 'conta', rotulo: 'Conta', icone: KeyRound },
 ] as const;
 type Aba = (typeof ABAS)[number]['id'];
@@ -181,6 +182,7 @@ function mostrar() {
   else if (aba === 'envios') abaEnvios();
   else if (aba === 'feedback') void abaFeedback();
   else if (aba === 'materiais') void abaMateriais();
+  else if (aba === 'quiz') void abaQuiz();
   else abaConta();
 }
 
@@ -484,6 +486,66 @@ async function abaFeedback() {
     }
   };
   conteudo.replaceChildren(h('div.pf-filters', chips, csv), ...painelFeedback(lista, apagar));
+}
+
+/* ====================== Quiz ====================== */
+
+interface JogoQuiz {
+  id: string;
+  titulo: string;
+  abertoEm: string;
+  encerradoEm: string;
+  perguntas: number;
+  ranking: Array<{ nome: string; pontos: number; acertos: number; posicao: number }>;
+}
+
+function csvQuiz(j: JogoQuiz) {
+  const esc = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const linhas = j.ranking.map((r) => [r.posicao, r.nome, r.pontos, r.acertos, j.perguntas].map(esc).join(';'));
+  const blob = new Blob(['\ufeff' + ['posicao;nome;pontos;acertos;perguntas', ...linhas].join('\n')], { type: 'text/csv;charset=utf-8' });
+  const a = h('a', { href: URL.createObjectURL(blob), download: `quiz-${j.encerradoEm.slice(0, 10)}.csv` }) as HTMLAnchorElement;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+async function abaQuiz() {
+  conteudo.append(h('div.al-empty', h('p', 'Carregando...')));
+  let r: { quizzes: Array<{ arquivo: string; titulo: string; perguntas: number }>; resultados: JogoQuiz[] };
+  try {
+    r = await prof('/quiz/resultados');
+  } catch (err) {
+    conteudo.replaceChildren(h('div.al-empty', h('p.al-empty-title', 'Não deu para carregar.'), h('p', (err as Error).message)));
+    return;
+  }
+  if (abaAtual() !== 'quiz') return;
+  const jogos = r.resultados.map((j) => {
+    const csv = h('button.hub-btn', { type: 'button' }, icon(Download, 18), 'CSV');
+    csv.addEventListener('click', () => csvQuiz(j));
+    return h(
+      'div.pf-row',
+      h(
+        'div.pf-row-aula',
+        h('span.pf-row-txt', h('strong', j.titulo), h('span', `${new Date(j.encerradoEm).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}  ·  ${j.ranking.length} jogadores  ·  ${j.perguntas} perguntas`)),
+      ),
+      h('div.pf-row-txt', h('span', j.ranking.slice(0, 3).map((x) => `${x.posicao}º ${x.nome} (${x.pontos.toLocaleString('pt-BR')})`).join('   ') || 'Ninguém jogou.')),
+      csv,
+    );
+  });
+  conteudo.replaceChildren(
+    h(
+      'section.rs-panel.pf-panel',
+      h('h2.rs-panel-title', 'Quiz ao vivo'),
+      h(
+        'p.al-hint.pf-hint',
+        'Abra o telão no computador ligado ao projetor: ele mostra o QR para a turma entrar pelo celular, as perguntas e o placar. Espaço ou → avança; F coloca em tela cheia. ',
+        r.quizzes.length
+          ? `Disponível: ${r.quizzes.map((q) => `${q.titulo} (${q.perguntas} perguntas)`).join(', ')}.`
+          : 'Nenhum quiz encontrado: coloque um arquivo quiz-*.json em materiais-professor/.',
+      ),
+      h('div.al-header-row', h('a.al-cta', { href: 'quiz.html?telao', target: '_blank' }, icon(MonitorPlay, 20), 'Abrir o telão')),
+    ),
+    h('section.rs-panel.pf-panel', h('h2.rs-panel-title', 'Jogos anteriores'), jogos.length ? h('div.pf-rows', ...jogos) : h('p.al-hint', 'Os resultados aparecem aqui quando um jogo chega ao pódio.')),
+  );
 }
 
 /* ====================== Materiais ====================== */

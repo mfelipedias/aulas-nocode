@@ -43,6 +43,11 @@ Classificação própria a partir da pesquisa do ecossistema (§2).`,
     ],
     conclusao: 'Poderia fazer a nossa landing page. Não guarda dados com regras.',
     fonte: 'Webflow pricing e help center (mai/2026); Framer pricing; SiliconANGLE, 28/08/2025; Wix Studio; Figma pricing.',
+    termos: [
+      { termo: 'Landing page', nota: 'página única que leva o visitante a uma ação.' },
+      { termo: 'CMS', nota: 'sistema para editar o conteúdo do site sem código.' },
+      { termo: 'Domínio', nota: 'o endereço do site, como hackathon.com.br.' },
+    ],
     cena: 'paineis',
     notes: `Os quatro ladrilhos entram juntos. Para cada um: o que faz, o plano gratuito e um número.
 Webflow (2013): sites com CMS e hospedagem. Framer (2014): sites rápidos com IA. Wix Studio (2023): Wix para agências. Figma: design de interfaces; o Figma Make gera protótipos por prompt.
@@ -64,6 +69,10 @@ Wix aparece monocromático (diretriz da marca).`,
       { plataforma: 'softr', titulo: 'Softr', itens: ['Portais sobre seus dados', 'Free: 5 usuários de app'] },
     ],
     fonte: 'Bubble pricing e Bubble Wrapped 2025; FlutterFlow, Glide e AppSheet pricing; Softr blog. Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Multiplataforma', nota: 'roda em Android, iPhone e navegador.' },
+      { termo: 'Flutter', nota: 'tecnologia do Google para criar apps de celular.' },
+    ],
     cena: 'paineis',
     notes: `Os cinco ladrilhos entram juntos.
 O Bubble é a ferramenta central da disciplina porque faz as três coisas juntas: tela, banco e lógica. Agora com AI Agent.
@@ -85,6 +94,9 @@ FlutterFlow e AppSheet aparecem só como nome (sem kit oficial / marca Google).`
       { valor: 12, rotulo: 'pessoas na equipe' },
     ],
     fonte: 'Bubble blog, 2021 (fonte antiga).',
+    termos: [
+      { termo: 'Validar', nota: 'testar se a ideia interessa a quem vai usar.' },
+    ],
     cena: 'nevoa-esquerda',
     notes: `Passo 0: empresa e problema. Passo 1: a solução no Bubble. Passo 2: os números.
 "O ponto não é 'ficou rica com no-code'. É que doze pessoas validaram e operaram um produto real sem um time grande de engenharia."
@@ -103,6 +115,11 @@ Dizer que o caso é de 2021, por isso o ano está no slide.`,
       { titulo: 'Power Automate', itens: ['Fluxos no Microsoft 365', 'Free: conta de trabalho ou escola'] },
     ],
     fonte: 'Make pricing e Make Help 2025; Zapier pricing; n8n pricing e EQS, mai/2026; Microsoft Learn (licenças). Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Self-host', nota: 'instalar a ferramenta no seu próprio servidor.' },
+      { termo: 'Gatilho', nota: 'o evento que dispara a automação.' },
+      { termo: 'Canvas', nota: 'área de desenho onde se monta o fluxo.' },
+    ],
     cena: 'grafo',
     notes: `Família sem tela, que faz sistemas conversarem.
 Make (ex-Integromat): 1.000 créditos/mês e 2 cenários ativos no Free; 3.000+ apps. Zapier: 100 tarefas/mês, Zaps de 2 passos.
@@ -124,6 +141,9 @@ Passo 1: anel no Make (Aula 3) e o vocabulário: o Make cobra em créditos desde
       { valor: 85, sufixo: '%', rotulo: 'menos tempo por cotação' },
     ],
     fonte: 'n8n, estudo de caso Icatu Seguros. Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Em produção', nota: 'no ar, sendo usado por pessoas de verdade.' },
+    ],
     cena: 'nevoa-esquerda',
     notes: `Caso brasileiro, de empresa grande, com número antes e depois.
 Passo 1: a solução. O ganho veio de ligar sistemas que já existiam, não de uma tela nova.
@@ -143,6 +163,10 @@ Recebeu o prêmio Gartner Eye on Innovation 2025.`,
       { plataforma: 'supabase', titulo: 'Supabase', destaque: true, itens: ['Postgres, login e APIs; Free: 2 projetos', '60%+ dos bancos novos: criados por IA'] },
     ],
     fonte: 'Airtable, Notion e Supabase pricing; Google Sheets; Supabase, Série F (2026). Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Back-end', nota: 'a parte que ninguém vê: dados e regras.' },
+      { termo: 'Postgres', nota: 'um banco de dados muito usado.' },
+    ],
     cena: 'nevoa-suave',
     notes: `Os quatro ladrilhos entram juntos. Google Sheets aparece só como nome (marca Google); volta na Aula 3.
 Airtable: 1.000 registros por base no Free. Notion: blocos ilimitados para uso individual. Supabase: back-end open source em Postgres.
@@ -164,6 +188,9 @@ Passo 1: o dado do Supabase. Pergunta retórica: "Se a IA cria o banco, quem dec
     ],
     passos: [['webflow', 'bubble', 'airtable']],
     conclusao: '~US$ 3 mi de receita com uma stack de US$ 60–100 por mês (Makerpad/Zapier; ano não informado).',
+    termos: [
+      { termo: 'Stack', nota: 'o conjunto de ferramentas usadas juntas.' },
+    ],
     cena: 'nevoa-suave',
     notes: `O storyboard pede um caso com mini-diagrama; aqui o diagrama ocupa o slide e os números vêm na frase final.
 Três famílias juntas: o site no Webflow, a aplicação no Bubble, os dados no Airtable.
@@ -186,6 +213,11 @@ A fonte (Makerpad/Zapier) não informa o ano: dizer isso.`,
       { plataforma: 'figma', titulo: 'Figma Make', itens: ['Prompt vira protótipo', 'Free: em rascunhos'] },
     ],
     fonte: 'Lovable docs (créditos); Bolt, v0 e Replit pricing; Firebase blog, mar/2026; Figma Make GA. Acesso em 04/10/2026.',
+    termos: [
+      { termo: 'Token', nota: 'pedaço de texto que a IA lê ou escreve.' },
+      { termo: 'Crédito', nota: 'unidade de uso: cada pedido à IA gasta alguns.' },
+      { termo: 'Next.js', nota: 'kit de código popular para criar sites.' },
+    ],
     cena: 'paineis',
     notes: `Os seis ladrilhos entram juntos. Bolt.new e Google AI Studio aparecem só como nome.
 Lovable (2023, Estocolmo): 5 créditos por dia, até 30 por mês; publica em lovable.app. É a ferramenta da Demo 2.
@@ -260,6 +292,11 @@ O campo "Solução" do arquétipo aqui traz a lição.`,
       coluna: 'bubble',
       conclusao: 'E para o nosso evento? Validar: rápido e barato. Guardar com regras: app visual + automação.',
     },
+    termos: [
+      { termo: 'Workload units', nota: 'unidade do Bubble que mede o trabalho do app.' },
+      { termo: 'API', nota: 'porta pela qual um sistema conversa com outro.' },
+      { termo: 'GitHub', nota: 'site que guarda código e suas versões.' },
+    ],
     cena: 'nevoa-suave',
     notes: `Cada critério com a sua pergunta. Medidores: avaliação própria. Preços acessados em 04/10/2026.
 Passo 1, custo: quanto custa no dia em que der certo? Bubble: Free só em desenvolvimento; publicar a partir de US$ 29/mês (web, plano anual). Lovable publica no Free em lovable.app.

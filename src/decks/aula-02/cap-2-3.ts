@@ -66,6 +66,10 @@ Ponte: a definição exata de data type.`,
   // S18
   definition({
     title: 'S18 · Definição: data type',
+    termos: [
+      { termo: 'Unique ID', nota: 'código único que o Bubble dá a cada registro.' },
+      { termo: 'Slug', nota: 'trecho legível do endereço web, como /ana-exemplo.' },
+    ],
     termo: 'Data type',
     origem: 'no editor: Data › Data types › New type',
     definicao: 'O molde de um tipo de coisa que o app guarda: inscrições, usuários, equipes.',
@@ -85,6 +89,11 @@ Ponte: e de que tipo pode ser cada campo?`,
   // S19
   grid({
     title: 'S19 · Os tipos de campo do Bubble',
+    termos: [
+      { termo: 'Numeric range', nota: 'intervalo de números, como de 18 a 25.' },
+      { termo: 'Date interval', nota: 'uma duração, como 3 dias e 2 horas.' },
+      { termo: 'Input', nota: 'campo da tela onde a pessoa digita.' },
+    ],
     titulo: 'Os tipos de campo do Bubble',
     cartoes: [
       { icone: Hash, titulo: 'Texto e número', itens: ['text', 'number', 'numeric range'] },
@@ -123,6 +132,9 @@ Ponte: montar a nossa Inscricao, campo por campo.`,
   // S21
   dataModel({
     title: 'S21 · A Inscricao do hackathon',
+    termos: [
+      { termo: 'Option set', nota: 'lista fixa de opções do app.' },
+    ],
     titulo: 'A Inscricao do hackathon',
     entidades: [
       {
@@ -160,13 +172,17 @@ trilha não é texto livre, para não termos "web", "Web" e "WEB" como três tri
 Created Date e Created By são automáticos, de graça.
 Passo 1: o User aparece. Todo app Bubble já tem esse data type para quem faz login. Guardar o campo organizador: ele volta no bloco 6.
 Passo 2: frase-síntese. O formulário define o banco.
-A captura bubble-data-types.png volta no slide S27, ao lado da página index.
+A aba Data volta no slide S27, numa tela ilustrativa ao lado da página index.
 Ponte: o que é, exatamente, um option set?`,
   }),
 
   // S22
   twoColumn({
     title: 'S22 · Option set Trilha',
+    termos: [
+      { termo: 'Enum', nota: 'em programação, uma lista fechada de valores.' },
+      { termo: 'Display', nota: 'o nome de cada opção que aparece na tela.' },
+    ],
     titulo: 'Option set: a lista que não muda',
     subtitulo: 'Onde: Data › Option sets › New option set',
     topicos: [
@@ -202,6 +218,10 @@ Ponte: e como uma coisa se liga a outra?`,
   // S23
   dataModel({
     title: 'S23 · Relação um-para-muitos',
+    termos: [
+      { termo: 'Relação', nota: 'ligação entre registros de tipos diferentes.' },
+      { termo: 'Um-para-muitos', nota: 'um registro ligado a vários de outro tipo.' },
+    ],
     titulo: 'Relação um-para-muitos',
     entidades: [
       {
@@ -254,6 +274,9 @@ Ponte: o mesmo banco, escrito em SQL.`,
   // S24
   code({
     title: 'S24 · O mesmo banco, em SQL',
+    termos: [
+      { termo: 'SQL', nota: 'linguagem para criar e consultar bancos de dados.' },
+    ],
     titulo: 'O mesmo banco, em SQL',
     arquivo: 'inscricao.sql (tradução conceitual)',
     linguagem: 'sql',
@@ -277,7 +300,7 @@ Ponte: o mesmo banco, escrito em SQL.`,
       { linhas: '1-3', nota: 'O option set Trilha vira um tipo enumerado: a lista fixa.' },
       { linhas: '7-10', nota: 'Os fields do formulário viram colunas, cada uma com seu tipo.' },
       { linhas: 11, nota: 'A relação com a equipe é uma chave estrangeira: REFERENCES.' },
-      { linhas: '12-13', nota: 'Os campos que o Bubble preenche sozinho: Created Date e Created By.' },
+      { linhas: '12-13', nota: 'Preenchidos sozinhos: Created Date e Created By.' },
     ],
     cena: 'vazio',
     notes: `"Para quem é de ADS: vocês vão escrever isto em Banco de Dados. O Bubble faz o equivalente por baixo, só que com formulários."
@@ -313,6 +336,10 @@ Ponte: "Chega de desenho. Vamos ver isso nascer no Bubble."`,
   // S26
   demo({
     title: 'S26 · Demo 1: página e banco',
+    termos: [
+      { termo: 'Wireframe', nota: 'rascunho da tela: só onde fica cada coisa.' },
+      { termo: 'Dropdown', nota: 'lista que abre para a pessoa escolher uma opção.' },
+    ],
     plataforma: 'bubble',
     titulo: 'Agora, no Bubble: página e banco',
     passos: [
@@ -321,8 +348,9 @@ Ponte: "Chega de desenho. Vamos ver isso nascer no Bubble."`,
       'Inputs prontos para o workflow',
     ],
     duracao: 'Cerca de 11 minutos',
-    url: 'bubble.io · Data',
-    captura: 'media/aula-02/bubble-index-design.png',
+    url: 'bubble.io · Design',
+    captura: 'media/aula-02/tela-bubble-index-design.svg',
+    capturaDescricao: 'Tela ilustrativa: página index no editor do Bubble, com inputs renomeados, dropdown Trilha e botão Quero minha vaga',
     video: { src: 'media/aula-02/demo1-pagina-e-banco.mp4', poster: 'media/aula-02/demo1-pagina-e-banco.jpg', label: 'Backup: Demo 1, página e banco' },
     cena: 'paineis',
     notes: `Ler os 3 objetivos (um por passo) e trocar para o navegador no monitor 1.
@@ -339,15 +367,15 @@ Ao voltar: avançar para a síntese.`,
     titulo: 'O que existe agora',
     plataforma: 'bubble',
     midia: {
-      src: 'media/aula-02/bubble-data-types.png',
-      descricao: 'Aba Data do Bubble: data type Inscricao com seus campos e o option set Trilha',
+      src: 'media/aula-02/tela-bubble-data-types.svg',
+      descricao: 'Tela ilustrativa: aba Data do Bubble: data type Inscricao com seus campos e o option set Trilha',
     },
     url: 'bubble.io/page?id=hackathon-aula02&tab=Data',
     rotulo: 'Data: o que guardar',
     par: {
       midia: {
-        src: 'media/aula-02/bubble-index-design.png',
-        descricao: 'Página index no editor do Bubble: título, imagem, três inputs, dropdown de trilha e botão Quero minha vaga',
+        src: 'media/aula-02/tela-bubble-index-design.svg',
+        descricao: 'Tela ilustrativa: página index no editor do Bubble: título, imagem, três inputs, dropdown de trilha e botão Quero minha vaga',
       },
       url: 'bubble.io · Design',
       rotulo: 'Design: o que perguntar',
@@ -355,12 +383,12 @@ Ao voltar: avançar para a síntese.`,
     anotacoes: [
       { x: 30, y: 40, titulo: 'O banco sabe o que guardar', texto: 'Data type Inscricao e option set Trilha.' },
       { x: 50, y: 55, naPar: true, titulo: 'A tela sabe o que perguntar', texto: 'Inputs renomeados e dropdown ligado ao option set.' },
-      { x: 50, y: 85, naPar: true, titulo: 'Falta o que liga os dois', texto: 'Clicar em Quero minha vaga ainda não faz nada.', zoom: { x: 25, y: 55, w: 55, h: 45 } },
+      { x: 50, y: 90, naPar: true, titulo: 'Falta o que liga os dois', texto: 'Clicar em Quero minha vaga ainda não faz nada.', zoom: { x: 25, y: 45, w: 55, h: 55 } },
     ],
     cena: 'nevoa-suave',
-    notes: `De volta ao deck. Sintetizar em 30 segundos. As duas capturas lado a lado: Data à esquerda, Design à direita.
-Passo 1: o banco sabe o que guardar (bubble-data-types.png).
-Passo 2: a tela sabe o que perguntar (bubble-index-design.png).
+    notes: `De volta ao deck. Sintetizar em 30 segundos. As duas telas ilustrativas lado a lado (não são print): Data à esquerda, Design à direita.
+Passo 1: o banco sabe o que guardar (aba Data).
+Passo 2: a tela sabe o que perguntar (aba Design).
 Passo 3: falta o que liga os dois. Se clicarmos agora em "Quero minha vaga", nada acontece: é a situação da página da Aula 1, só que agora o banco existe.
 Opcional: no máximo 1 pergunta da demo, de 30 s.
 Ponte: o que falta é a lógica, o próximo bloco.`,

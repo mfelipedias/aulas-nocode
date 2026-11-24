@@ -74,6 +74,10 @@ Ponte: até a Aula 4.`,
       { texto: 'Listar 3 riscos do seu app', detalhe: 'Dados, custo e dependência de plataforma.' },
       { texto: 'Desafio opcional: CEP vira cidade', detalhe: 'Módulo HTTP, Make a request, com GET na ViaCEP; grave a cidade.' },
     ],
+    termos: [
+      { termo: 'Pitch', nota: 'apresentação curta da ideia, em poucas frases.' },
+      { termo: 'Módulo HTTP', nota: 'módulo do Make que chama qualquer API pela internet.' },
+    ],
     notes: `Nunca cortar. Cada passo marca um item.
 1. "Terminem o cenário de vocês e desliguem depois de testar, para não gastar créditos."
 2. Assistir à Unidade IV.
@@ -92,6 +96,9 @@ Ponte: perguntas.`,
       { icone: Wallet, titulo: 'Meus créditos acabaram', texto: 'Desative cenários parados e troque polling por webhook. O saldo renova no ciclo do plano.' },
       { icone: Webhook, titulo: 'O webhook não recebe nada', texto: 'O cenário está ligado? A URL está completa? O History mostra se chegou.' },
       { icone: TriangleAlert, titulo: 'O AppSheet pede para publicar', texto: 'Não precisa: o protótipo funciona com até 10 usuários de teste.' },
+    ],
+    termos: [
+      { termo: 'Janela anônima', nota: 'janela do navegador sem login nem dados salvos.' },
     ],
     notes: `Bloco elástico de perguntas (até 20h28): absorve atrasos.
 Com alunos: ler o chat primeiro. O FAQ cobre o resto, um item por passo (respostas completas no conteudo.md, seção 8.5).

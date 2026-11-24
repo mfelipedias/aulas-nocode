@@ -20,6 +20,9 @@ export const bloco89: SlideDef[] = [
   // S58
   grid({
     title: 'S58 Quatro caminhos',
+    termos: [
+      { termo: 'MVP', nota: 'produto mínimo viável: a menor versão útil do app.' },
+    ],
     titulo: 'Onde cada caminho brilha',
     cartoes: [
       {
@@ -182,6 +185,10 @@ Ponte: e o que isso tudo diz sobre carreira?`,
   // S65
   twoColumn({
     title: 'S65 Carreiras',
+    termos: [
+      { termo: 'QA', nota: 'quem testa o software para achar falhas antes do usuário.' },
+      { termo: 'Product builder', nota: 'quem cria produtos digitais com IA e no-code.' },
+    ],
     titulo: 'Os papéis ficam',
     topicos: [
       {
@@ -300,6 +307,9 @@ Delegar para uma plataforma, para uma IA ou para um agente é ótimo. Mas a resp
   // S69
   checklist({
     title: 'S69 Desafio final de portfólio',
+    termos: [
+      { termo: 'README', nota: 'arquivo que apresenta o projeto: o que é e como usar.' },
+    ],
     titulo: 'Desafio final, até 21/11/2026',
     subtitulo: 'Sem publicar e sem pagar: tudo cabe nos planos gratuitos que usamos.',
     itens: [

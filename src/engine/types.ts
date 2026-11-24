@@ -100,6 +100,17 @@ export interface CommonFields {
   scene?: SceneRequest;
   /** Cronômetro no canto inferior direito (demos, prova ao vivo). Tecla T pausa/retoma. */
   cronometro?: Cronometro;
+  /**
+   * Notas breves de termos técnicos que aparecem no slide (a turma é iniciante).
+   * Ficam no pé do slide, à direita, acima do rodapé. Máx. 3; nota com até ~70 caracteres.
+   */
+  termos?: Termo[];
+}
+
+/** Termo técnico + explicação curta em linguagem simples (ex.: { termo: 'Snapshot', nota: 'cópia congelada do app' }). */
+export interface Termo {
+  termo: string;
+  nota: string;
 }
 
 /**

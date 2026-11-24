@@ -65,6 +65,10 @@ Ponte: como o fluxo escolhe um caminho.`,
     passos: [['webhook', 'router'], ['mentoria'], ['espera'], ['normal']],
     conclusao: 'Filtro é o if. Router é o switch. Mesma lógica de programação, desenhada.',
     title: 'Filtros e rotas',
+    termos: [
+      { termo: 'if', nota: '"se": só segue se a condição for verdadeira.' },
+      { termo: 'switch', nota: 'escolhe um entre vários caminhos.' },
+    ],
     notes: `Passo 0: webhook e router. "Vocês já viram o filtro. O router divide o fluxo em rotas, e cada rota tem seu filtro."
 Passo 1: rota 1, trilha igual a IA: avisa a mentoria.
 Passo 2: rota 2, inscritos já chegaram a 120: lista de espera em vez de confirmar. (Um Google Sheets Search Rows conta as linhas antes do router: só no cenário pronto.)
@@ -111,6 +115,10 @@ Ponte: quanto custa.`,
       { criterio: 'Plano gratuito', celulas: ['1.000 créditos, 2 cenários', '100 tarefas, 2 passos', 'Self-host grátis'], passo: 2 },
     ],
     foco: { coluna: 'make', conclusao: 'Ninguém é mais barato sempre: depende do formato do fluxo.' },
+    termos: [
+      { termo: 'Execução', nota: 'uma rodada completa do fluxo, do gatilho ao fim.' },
+      { termo: 'Self-host', nota: 'instalar e rodar a ferramenta no seu próprio servidor.' },
+    ],
     notes: `"Agora custo, porque cada plataforma conta diferente."
 Passo 1: unidade e gatilho. Make: crédito por módulo executado, inclusive o gatilho. Zapier: tarefa por ação bem-sucedida; gatilho e filtro não contam. n8n: execução do fluxo inteiro.
 Passo 2: as 120 inscrições e o plano gratuito. Make: cerca de 360 créditos (3 módulos), cabe no Free. Zapier: 240 tarefas, mas o Free tem 100 tarefas e Zaps de 2 passos: não caberia. n8n: 120 execuções; Community Edition grátis no seu servidor (a nuvem é só trial).
@@ -135,6 +143,9 @@ Ponte: dois casos reais.`,
       { prefixo: 'US$ ', valor: 60, sufixo: ' mil', rotulo: 'por ano em software evitado' },
     ],
     fonte: 'Make, success story FranklinCovey, 30/09/2025 (acesso em 04/10/2026).',
+    termos: [
+      { termo: 'Barramento de integração', nota: 'sistema central por onde as áreas trocavam dados.' },
+    ],
     notes: `Passo 0: empresa e problema. "A FranklinCovey, empresa de treinamento corporativo."
 Passo 1: a solução. "Usa o Make para ligar RH, finanças, operações e vendas."
 Passo 2: os números. "Um processo anual de RH caiu de 30 dias para 2 horas. E eles evitaram comprar um software de 60 mil dólares por ano, porque automatizaram as ferramentas que já tinham."
@@ -157,6 +168,9 @@ Ponte: "E não é só empresa pequena."`,
       { valor: 33, rotulo: 'workflows desde ago/2024' },
     ],
     fonte: 'n8n, estudo de caso Vodafone (acesso em 04/10/2026).',
+    termos: [
+      { termo: 'Workflow', nota: 'fluxo automatizado: uma sequência de passos que roda sozinha.' },
+    ],
     notes: `Passo 0: "E não é só empresa pequena."
 Passo 1: "A Vodafone usa o n8n na segurança: 33 workflows desde agosto de 2024, processando bilhões de eventos por mês."
 Passo 2: "Resultado declarado: 2,2 milhões de libras em custos evitados e mais de 5 mil dias de trabalho poupados."
@@ -189,6 +203,10 @@ Ponte: então, qual escolher?`,
       { criterio: 'Bom para', celulas: ['MVP com fluxo ramificado', 'Ligar 2 apps rápido', 'Dado sensível, alto volume', 'Empresa que já é Microsoft'], passo: 2 },
     ],
     foco: { coluna: 'make', conclusao: 'Para o hackathon, Make. Mas escolha pelo contexto, não pela marca.' },
+    termos: [
+      { termo: 'RPA', nota: 'robô de software que imita os cliques de uma pessoa.' },
+      { termo: 'MVP', nota: 'primeira versão mínima do produto, para testar a ideia.' },
+    ],
     notes: `Passo 1: ponto forte e onde roda. Make: canvas visual, ótimo para lógica com várias rotas. Zapier: o mais simples e com mais apps. n8n: controle total, aceita código, roda no seu servidor. Power Automate: para a empresa que já vive no Microsoft 365, e ainda automatiza o desktop (RPA).
 Passo 2: curva de aprendizado e "bom para". Dizer: os medidores são avaliação minha, não pesquisa.
 Passo 3: foco no Make e a frase. Gancho para o critério de lock-in da Aula 1: quanto mais da sua lógica mora numa plataforma, mais caro é sair dela.

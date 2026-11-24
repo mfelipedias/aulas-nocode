@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baixo nível, alto nível e No-Code</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#111c33; --ink:#e8eefc; --muted:#9db0d3;
+    --hw:#64748b; --low:#ef4444; --mid:#f59e0b; --high:#3b82f6; --lc:#8b5cf6; --nc:#10b981;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#060b17;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;color:var(--ink)}
+  body{display:grid;place-items:center;overflow:hidden}
+
+  /* palco 16:9 que escala com a janela */
+  .stage{
+    width:min(100vw, calc(100vh * 16 / 9));
+    aspect-ratio:16/9;
+    container-type:inline-size;
+    background:radial-gradient(120% 120% at 15% 0%, #1b2a52 0%, var(--bg) 55%);
+    position:relative; overflow:hidden;
+    padding:2.2cqw 3cqw 1.6cqw;
+    display:flex; flex-direction:column; gap:1.1cqw;
+  }
+
+  header{display:flex;justify-content:space-between;align-items:flex-end}
+  h1{font-size:2.9cqw;line-height:1.05;letter-spacing:-.02em}
+  h1 span{background:linear-gradient(90deg,#60a5fa,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:1.25cqw;color:var(--muted);margin-top:.5cqw}
+  .legend{font-size:1.05cqw;color:var(--muted);text-align:right;line-height:1.5}
+  .legend b{color:var(--ink)}
+
+  /* cabeçalho das colunas */
+  .cols, .row{display:contents}
+  .cols div{font-size:.95cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .cols div:first-child{visibility:hidden}
+
+  .body{flex:1;display:flex;gap:.8cqw;min-height:0}
+
+  /* eixo lateral */
+  .axis{width:2.2cqw;display:flex;flex-direction:column;align-items:center;justify-content:space-between;color:var(--muted);font-size:.95cqw}
+  .axis .line{flex:1;width:.28cqw;margin:1.6cqw 0 .6cqw;border-radius:1cqw;background:linear-gradient(to top,var(--low),var(--mid),var(--high),var(--nc));position:relative}
+  .axis .line::before{content:"";position:absolute;top:-.9cqw;left:50%;transform:translateX(-50%);border:.8cqw solid transparent;border-bottom:1cqw solid var(--nc);border-top:0}
+  .axis span{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;letter-spacing:.08em}
+
+  .rows{flex:1;display:grid;grid-template-columns:11.5cqw 25cqw 28cqw 1fr;grid-template-rows:auto repeat(6,minmax(0,1fr));gap:.55cqw .9cqw;min-width:0;min-height:0}
+
+  /* colchetes de grupo */
+  .grp{border-radius:.9cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+       font-weight:800;font-size:1.05cqw;letter-spacing:.06em;line-height:1.25;padding:.4cqw;color:#fff}
+  .grp small{display:block;font-weight:500;letter-spacing:0;font-size:.82cqw;opacity:.9;margin-top:.25cqw}
+  .g-low{background:linear-gradient(160deg,#b91c1c,#7f1d1d)}
+  .g-mid{background:linear-gradient(160deg,#b45309,#78350f)}
+  .g-high{background:linear-gradient(160deg,#1d4ed8,#1e3a8a)}
+
+  .cell{background:var(--card);border-radius:.9cqw;padding:.6cqw 1cqw;display:flex;flex-direction:column;justify-content:center;border-left:.45cqw solid var(--c);min-width:0}
+  .cell h3{font-size:1.45cqw;line-height:1.1}
+  .cell p{font-size:1cqw;color:var(--muted);margin-top:.25cqw}
+  .ex{font-family:"Cascadia Mono",Consolas,Menlo,monospace;font-size:1.3cqw;color:#fff;background:#0a1226;border-radius:.9cqw;padding:.5cqw 1cqw;display:flex;flex-direction:column;justify-content:center;border:1px solid #223357;line-height:1.35}
+  .ex .c{color:#7e92bd}
+  .tr{font-size:1.05cqw;color:var(--ink);background:var(--card);border-radius:.9cqw;padding:.5cqw 1cqw;display:flex;align-items:center;gap:.7cqw}
+  .tr i{font-style:normal;color:var(--c);font-size:1.6cqw;line-height:1}
+
+  /* blocos do no-code */
+  .blocks{display:flex;align-items:center;gap:.5cqw;flex-wrap:nowrap;font-family:inherit}
+  .blk{background:var(--nc);color:#04140d;font-weight:800;border-radius:.6cqw;padding:.35cqw .8cqw;font-size:1.2cqw;position:relative;box-shadow:0 .25cqw 0 #0b7a56}
+  .blk.n{background:#fde68a;box-shadow:0 .25cqw 0 #b88a10;min-width:2.2cqw;text-align:center}
+  .op{font-weight:900;font-size:1.4cqw;color:var(--nc)}
+  .blk.r{background:#a7f3d0}
+
+  /* destaque no-code */
+  .row.nc .cell, .row.nc .ex, .row.nc .tr{box-shadow:0 0 0 .15cqw var(--nc), 0 0 2.2cqw rgba(16,185,129,.35)}
+  .row.nc .cell{background:#0c2a26}
+  .badge{display:inline-block;margin-left:.6cqw;background:var(--nc);color:#04140d;font-size:.8cqw;font-weight:800;padding:.15cqw .6cqw;border-radius:2cqw;vertical-align:middle;letter-spacing:.04em}
+
+  footer{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:.9cqw}
+  .tk{border-radius:.9cqw;padding:.7cqw 1.1cqw;font-size:1.08cqw;line-height:1.3;color:#fff}
+  .tk b{display:block;font-size:1.2cqw;margin-bottom:.1cqw}
+  .t1{background:#7f1d1d}.t2{background:#1e3a8a}.t3{background:#065f46;box-shadow:0 0 0 .15cqw var(--nc)}
+</style>
+</head>
+<body>
+<main class="stage">
+
+  <header>
+    <div>
+      <h1>Do <span>0 e 1</span> ao arrastar-e-soltar</h1>
+      <div class="sub">A escada da abstração: quanto mais alto, mais perto do humano. Quanto mais baixo, mais perto da máquina.</div>
+    </div>
+    <div class="legend">Exemplo usado em todas as camadas:<br><b>"somar 2 + 3 e guardar o resultado"</b></div>
+  </header>
+
+  <div class="body">
+    <div class="axis">
+      <span>mais fácil e rápido de criar</span>
+      <div class="line"></div>
+      <span>mais controle e desempenho</span>
+    </div>
+
+    <div class="rows">
+      <div class="cols">
+        <div></div><div>Camada</div><div>Como fica o "2 + 3"</div><div>Quem traduz para a camada de baixo</div>
+      </div>
+
+      <!-- NO-CODE -->
+      <div class="row nc" style="--c:var(--nc)">
+        <div class="grp g-high" style="grid-row:span 3">ALTO<br>NÍVEL<small>você descreve a lógica e a ferramenta cuida do resto</small></div>
+        <div class="cell"><h3>No-code <span class="badge">AQUI ENTRA O NO-CODE</span></h3><p>Bubble, Zapier, Power Apps, FlutterFlow</p></div>
+        <div class="ex"><div class="blocks"><span class="blk n">2</span><span class="op">+</span><span class="blk n">3</span><span class="op">→</span><span class="blk r">resultado</span></div></div>
+        <div class="tr"><i>↓</i><span>A <b>plataforma</b> transforma os blocos em código de alto nível e executa por você</span></div>
+      </div>
+
+      <!-- LOW-CODE -->
+      <div class="row" style="--c:var(--lc)">
+        <div style="display:none"></div>
+        <div class="cell"><h3>Low-code</h3><p>OutSystems, Power Fx, Retool</p></div>
+        <div class="ex">Set(r, 2 + 3)<span class="c">// blocos + uma fórmula sua</span></div>
+        <div class="tr"><i>↓</i><span><b>Plataforma</b> + um pouco de código escrito por você</span></div>
+      </div>
+
+      <!-- ALTO NÍVEL -->
+      <div class="row" style="--c:var(--high)">
+        <div style="display:none"></div>
+        <div class="cell"><h3>Linguagem de alto nível</h3><p>Python, JavaScript, Java</p></div>
+        <div class="ex">r = 2 + 3<span class="c"># quase uma frase em inglês</span></div>
+        <div class="tr"><i>↓</i><span><b>Interpretador</b> ou <b>compilador</b></span></div>
+      </div>
+
+      <!-- MÉDIO -->
+      <div class="row" style="--c:var(--mid)">
+        <div class="grp g-mid">NÍVEL<br>MÉDIO<small>fala com humano e com a máquina</small></div>
+        <div class="cell"><h3>C, C++, Rust</h3><p>Controla memória, ainda é legível</p></div>
+        <div class="ex">int r = 2 + 3;<span class="c">// você declara tipos e memória</span></div>
+        <div class="tr"><i>↓</i><span><b>Compilador</b> gera instruções da CPU</span></div>
+      </div>
+
+      <!-- ASSEMBLY -->
+      <div class="row" style="--c:var(--low)">
+        <div class="grp g-low" style="grid-row:span 2">BAIXO<br>NÍVEL<small>você fala a língua da máquina</small></div>
+        <div class="cell"><h3>Assembly</h3><p>Uma linha = uma instrução do processador</p></div>
+        <div class="ex">mov eax, 2<br>add eax, 3</div>
+        <div class="tr"><i>↓</i><span><b>Montador</b> (assembler)</span></div>
+      </div>
+
+      <!-- MÁQUINA -->
+      <div class="row" style="--c:var(--hw)">
+        <div style="display:none"></div>
+        <div class="cell"><h3>Código de máquina</h3><p>Só 0 e 1 (aqui em hexadecimal) rodando no hardware</p></div>
+        <div class="ex">B8 02 00 00 00<br>83 C0 03</div>
+        <div class="tr"><i>⚡</i><span>A <b>CPU</b> executa direto nos transistores</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="tk t1"><b>Baixo nível</b>Poucas abstrações: muito controle e velocidade, mas muito trabalho e conhecimento do hardware.</div>
+    <div class="tk t2"><b>Alto nível</b>Esconde o hardware: você descreve a lógica e a linguagem cuida do resto.</div>
+    <div class="tk t3"><b>No-code = o topo da escada</b>Não substitui as camadas de baixo, <u>roda em cima delas</u>. Por trás dos blocos sempre existe código.</div>
+  </footer>
+
+</main>
+</body>
+</html>

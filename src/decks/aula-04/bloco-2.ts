@@ -76,11 +76,19 @@ Make: cenário desligado é dev; ligou o agendamento ou o webhook, é produção
 Código: branches e ambientes no provedor de hospedagem.
 Passo 2: lembrar o Replit. O agente tinha acesso ao banco de produção a partir de onde trabalhava. A primeira correção anunciada foi separar os dois. "Não se testa no banco de verdade."`,
     fonte: 'Bubble Manual; Lovable Docs, Deploy; Make Help; The Register, 22/07/2025 (acesso em 04/10/2026).',
+    termos: [
+      { termo: 'Snapshot', nota: 'cópia congelada do app no momento em que se publica.' },
+      { termo: 'Branch', nota: 'ramo separado do código, para mexer sem afetar o principal.' },
+      { termo: 'Staging', nota: 'ambiente de ensaio, igual ao real, antes de ir ao ar.' },
+    ],
   }),
 
   // S10
   twoColumn({
     title: 'S10 version-test x live',
+    termos: [
+      { termo: 'Version-test', nota: 'endereço da versão de desenvolvimento do app no Bubble.' },
+    ],
     titulo: 'O link de teste não é para o público',
     topicos: [
       {
@@ -105,14 +113,14 @@ Passo 2: lembrar o Replit. O agente tinha acesso ao banco de produção a partir
       moldura: 'navegador',
       url: 'hackathon-seunome.bubbleapps.io/version-test',
       midia: {
-        src: media('bubble-url-version-test.png'),
-        descricao: 'App do Hackathon aberto no endereço /version-test do Bubble (plano Free)',
+        src: media('tela-bubble-url-version-test.svg'),
+        descricao: 'Tela ilustrativa: app do Hackathon aberto no endereço /version-test do Bubble (plano Free)',
       },
     },
     cena: 'nevoa-suave',
-    notes: `Captura: o nosso app no plano gratuito. Olhem a URL: hackathon-seunome.bubbleapps.io/version-test.
-Passo 1: funciona, salva no banco, manda para o Make. Mas é a versão de desenvolvimento, com o banco de teste. A captura amplia a barra de endereço.
-Passo 2: o Bubble pode mostrar a barra de depuração: é ferramenta de quem constrói.
+    notes: `Tela ilustrativa: o nosso app no plano gratuito. Olhem a URL: hackathon-seunome.bubbleapps.io/version-test.
+Passo 1: funciona, salva no banco, manda para o Make. Mas é a versão de desenvolvimento, com o banco de teste. A tela amplia o formulário: a inscrição foi salva, mas nos dados de teste (Development).
+Passo 2: o Bubble pode mostrar a barra de depuração (Debugger, no pé da tela): é ferramenta de quem constrói.
 Passo 3: o endereço não é para o público. Analogia: mandar esse link para 120 pessoas é como abrir a cozinha do restaurante para os clientes comerem lá dentro.
 Ponte: "e por que eu não mostro a versão live? Porque o plano gratuito para aqui."`,
   }),
@@ -121,13 +129,13 @@ Ponte: "e por que eu não mostro a versão live? Porque o plano gratuito para aq
   imageFull({
     title: 'S11 O plano gratuito para aqui',
     midia: {
-      src: media('bubble-deploy-bloqueado.png'),
+      src: media('tela-bubble-deploy-bloqueado.svg'),
       descricao: 'Bubble Free: aviso de upgrade ao tentar o Deploy to live',
     },
     legenda: 'Bubble Free: “projetos em construção”. Sem live, sem domínio, sem lojas.',
     detalhe: 'O gratuito quase sempre acaba no momento de publicar.',
-    fonte: 'bubble.io/pricing (acesso em 04/10/2026). Capturas do professor, plano Free.',
-    notes: `Captura: ao tentar publicar, o Bubble pede upgrade. Com o domínio próprio acontece o mesmo (captura complementar: media/aula-04/bubble-dominio-bloqueado.png, mostrar na ferramenta se der tempo).
+    fonte: 'bubble.io/pricing (acesso em 04/10/2026). Tela ilustrativa do plano Free.',
+    notes: `Tela ilustrativa: ao tentar publicar, o Bubble pede upgrade. Com o domínio próprio acontece o mesmo (captura complementar: media/aula-04/bubble-dominio-bloqueado.png, mostrar na ferramenta se der tempo).
 Não é defeito: é o modelo de negócio. O Free é descrito como para "projetos em construção": sem live, sem domínio, sem lojas de apps.
 Dizer: "Nesta aula usamos só planos gratuitos e não vamos publicar nada, de propósito: o bloqueio também é conteúdo."
 O que aconteceria do outro lado do botão: o Bubble copiaria o dev para o live, que tem banco próprio, e cada mudança depois exigiria um novo Deploy.
@@ -138,6 +146,9 @@ Ponte: onde cada plataforma põe essa catraca?`,
   // S12
   comparison({
     title: 'S12 Quanto custa publicar',
+    termos: [
+      { termo: 'WU', nota: 'workload unit: medida do trabalho do servidor no Bubble.' },
+    ],
     titulo: 'Onde cada plataforma põe a catraca',
     colunas: [
       { id: 'bubble', nome: 'Bubble' },
@@ -179,6 +190,10 @@ AppSheet aparece só como nome (regra de marca).`,
   // S13
   flow({
     title: 'S13 Domínio, DNS e HTTPS',
+    termos: [
+      { termo: 'DNS', nota: 'a “lista telefônica” da internet: liga o nome ao servidor.' },
+      { termo: 'TLS', nota: 'padrão de criptografia por trás do cadeado do HTTPS.' },
+    ],
     titulo: 'Do nome ao cadeado',
     nos: [
       {
@@ -220,18 +235,23 @@ AppSheet aparece só como nome (regra de marca).`,
     conclusao: 'A plataforma faz o 3 e o 4. Você precisa saber conferir.',
     cena: 'grafo',
     notes: `Um nó por passo.
-Passo 0, domínio: você registra um nome, por exemplo hackathonnocode.com.br, no Registro.br, por cerca de R$ 40 por ano.
+Passo 0, domínio: você registra um nome, por exemplo hackathonnocode.com.br, no Registro.br, por cerca de R$ 40 por ano (estimativa: reconferir na véspera).
 Passo 1, DNS: a lista telefônica da internet. Você cria um registro dizendo "esse nome aponta para os servidores do Bubble (ou do Lovable)". A plataforma mostra quais registros criar.
 Passo 2, certificado: a plataforma emite o certificado TLS automaticamente. É ele que faz o https e o cadeado.
 Passo 3, HTTPS: tudo o que a Camila digita no formulário viaja criptografado. Sem HTTPS, qualquer um na mesma rede Wi-Fi poderia ler.
 Passo 4: a boa notícia é que a plataforma faz o 3 e o 4 sozinha. A má: você precisa saber que existem para conferir.`,
-    fonte: 'Valor do domínio: estimativa de ~R$ 40/ano para .com.br no Registro.br (reconferir na véspera).',
+    fonte: 'Domínio: estimativa de ~R$ 40/ano para .com.br no Registro.br.',
   }),
 
   // S14
   comRevelacao(
     bulletsRich({
       title: 'S14 Versionamento',
+      termos: [
+        { termo: 'Savepoint', nota: 'ponto salvo para onde dá para voltar o app.' },
+        { termo: 'Blueprint', nota: 'arquivo que descreve o cenário inteiro do Make.' },
+        { termo: 'Git', nota: 'sistema que guarda o histórico de cada mudança no código.' },
+      ],
       titulo: 'Publicar bem é poder voltar atrás',
       itens: [
         {
@@ -272,12 +292,16 @@ Ponte: agora o tour guiado, no Lovable, sem publicar.`,
   // S15
   demo({
     title: 'S15 Tour guiado: publicar, sem publicar',
+    termos: [
+      { termo: 'Preview', nota: 'prévia do app que só você vê enquanto constrói.' },
+    ],
     plataforma: 'lovable',
     titulo: 'Tour guiado: publicar, sem publicar',
     passos: ['O dev: editor e preview', 'A porta: o diálogo Publish, aberto e cancelado', 'Domínio próprio e histórico de versões'],
     duracao: 'Cerca de 3 minutos. Plano gratuito: nada vai ao ar hoje.',
     url: 'lovable.dev/projects/hackathon-lovable-ensaio',
-    captura: media('lovable-publish-dialog.png'),
+    captura: media('tela-lovable-publish-dialog.svg'),
+    capturaDescricao: 'Tela ilustrativa: diálogo Publish do Lovable aberto e não confirmado',
     video: {
       src: media('v-lovable-tour-publicacao.mp4'),
       label: 'Backup: tour do fluxo de publicação no Lovable (sem publicar)',
@@ -292,7 +316,7 @@ Ainda com o diálogo aberto: mudanças posteriores não vão ao ar sozinhas; o l
 3 Domínio próprio: abrir as configurações de domínio (aviso de plano pago). O Lovable mostraria os registros DNS para o Registro.br e emitiria o certificado. Depois, o histórico de versões: desfazer a troca do subtítulo.
 Saída: "Publicar é decidir qual versão o mundo vê, e quem decide a hora é você."
 Cuidado: em clique acidental, despublicar em seguida e dizer em voz alta.
-Se falhar: tecla V. Corte A: mostrar as capturas lovable-preview-editor.png, lovable-publish-dialog.png, lovable-dominio-pago.png e lovable-historico-versoes.png (pasta media/aula-04) em 45 s.
+Se falhar: tecla V. Corte A: mostrar as capturas lovable-preview-editor.png, tela-lovable-publish-dialog.svg, lovable-dominio-pago.png e lovable-historico-versoes.png (pasta media/aula-04) em 45 s.
 Fonte: Lovable Docs, Deploy (mudanças posteriores não vão ao ar sozinhas; domínio próprio em plano pago; no Free/Pro, qualquer pessoa com o link vê o app publicado), acesso em 04/10/2026.`,
   }),
 ];
